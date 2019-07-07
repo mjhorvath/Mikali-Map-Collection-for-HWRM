@@ -1,0 +1,443 @@
+-- (2P) Ship Gallery v1.1.2 by Mikali
+-- Created: 2005/09/22
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>Gallery - Ships 1.1.2</c>"
+maxPlayers = 2
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+shiplist =
+{
+"ben_bentusiexchange",
+--"ben_bentusiexchange_hold00",		-- HW1RM only
+--"ben_bentusiexchange_hold01",		-- HW1RM only
+--"ben_bentusiexchange_hold02",		-- HW1RM only
+--"ben_bentusiexchange_hold03",		-- HW1RM only
+--"ben_bentusiexchange_hold04",		-- HW1RM only
+--"ben_bentusiexchange_hold05",		-- HW1RM only
+"ben_cargobarge",
+--"borgcone",		-- bugged
+"der_carrier",
+"der_carriernew",
+"der_crate",
+"der_dddfrigate",
+--"der_dddfrigatenew",		-- bugged
+"der_fragmentpanel0a",
+"der_fragmentpanel0b",
+"der_fragmentpanel0c",
+"der_fragmentpanel1",
+"der_fragmentpanel2",
+"der_fragmentpanel3",
+"der_fragmentpanel3_hw2",
+"der_fragmentstrut",
+"der_ghostship",
+"der_heavycorvette",
+"der_heavycruiser",
+"der_junk0_antenna",
+"der_junk0_antenna_hw2",
+"der_junk0_fin1",
+"der_junk0_fin1_hw2",
+"der_junk0_fin2",
+"der_junk0_fin2_hw2",
+"der_junk0_gunammo",
+"der_junk0_panel",
+"der_junk0_panel_hw2",
+"der_junk0_sensors",
+"der_junk0_sensors_hw2",
+"der_junk1_parta",
+"der_junk1_parta_hw2",
+"der_junk1_partb",
+"der_junk1_partb_hw2",
+"der_junk1_shell",
+"der_junk1_shell_hw2",
+"der_junk1_strut",
+"der_junk1_strut_hw2",
+"der_junk2_panela",
+"der_junk2_panela_hw2",
+"der_junk2_panelb",
+"der_junk2_panelb_hw2",
+"der_junk2_panelc",
+"der_junk2_panelc_hw2",
+"der_junk2_paneld",
+"der_junk2_paneld_hw2",
+"der_junk2_shipwreck",
+"der_junk3_boiler",
+"der_junk3_boilercasing",
+--"der_lifeboat",			-- bugged
+"der_lightcorvette",
+"der_lightcorvettenew",
+"der_minelayercorvette",
+"der_multiguncorvette",
+"der_multiguncorvettenew",
+"der_prisonshipnew",
+"der_prisonshipold",
+"der_repaircorvette",
+"der_scaffold",
+"der_scaffoldfingera_scarred",
+"der_scaffoldfingerb_scarred",
+"der_scaffold_scarred",
+"der_shipwreck",
+"der_supportfrigate",
+"der_supportfrigatenew",
+"hgn_assaultcorvette",
+"hgn_assaultcorvetteelite",
+"hgn_assaultfrigate",
+"hgn_attackbomber",
+"hgn_attackbomberelite",
+"hgn_battlecruiser",
+"hgn_carrier",
+--"hgn_carrier_pavel",		-- bugged
+--"hgn_cloakingfrigate",		-- bugged
+--"hgn_cloudexplode",		-- bugged
+"hgn_defensefieldfrigate",
+"hgn_destroyer",
+"hgn_dreadnaught",
+"hgn_drone_frigate",
+"hgn_drone_frigate_2",
+"hgn_drone_frigate_3",
+"hgn_ecmprobe",
+--"hgn_gunplatform",		-- bugged
+"hgn_gunturret",
+"hgn_hscore",
+"hgn_interceptor",
+"hgn_ioncannonfrigate",
+"hgn_ionturret",
+"hgn_marinefrigate",
+"hgn_marinefrigate_soban",
+"hgn_minelayercorvette",
+"hgn_mothership",
+"hgn_probe",
+"hgn_proximitysensor",
+"hgn_pulsarcorvette",
+--"hgn_pulsarplatform",		-- bugged
+"hgn_resourcecollector",
+"hgn_resourcecontroller",
+"hgn_scout",
+"hgn_shipyard",
+"hgn_shipyard_elohim",
+"hgn_shipyard_spg",
+--"hgn_supportfrigate",		-- bugged
+"hgn_targetdrone",
+"hgn_torpedofrigate",
+"junk_autogunl",
+"junk_autoguns",
+"junk_hyperspacegate",
+"junk_junkyarddog",
+"junk_junkyardoffice",
+"kad_advancedswarmer",
+"kad_fuelpod",
+"kad_multibeamfrigate",
+"kad_p2mothership",
+"kad_swarmer",
+"kpr_attackdroid",
+"kpr_destroyer",
+"kpr_destroyerm10",
+"kpr_mover",
+"kpr_mover_capture",
+"kpr_mover_salvage",
+"kpr_sajuuk",
+"kpr_sajuuk_nosensors",
+"kus_ambassador",
+"kus_assaultfrigate",
+"kus_attackbomber",
+"kus_carrier",
+"kus_cloakedfighter",
+"kus_cloakgenerator",
+"kus_cryotray",
+"kus_cryotray_m03",
+"kus_defender",
+"kus_destroyer",
+"kus_drone0",
+"kus_drone1",
+"kus_drone10",
+"kus_drone11",
+"kus_drone12",
+"kus_drone13",
+"kus_drone2",
+"kus_drone3",
+"kus_drone4",
+"kus_drone5",
+"kus_drone6",
+"kus_drone7",
+"kus_drone8",
+"kus_drone9",
+"kus_dronefrigate",
+"kus_gravwellgenerator",
+"kus_headshotasteroid",
+"kus_heavycorvette",
+"kus_heavycruiser",
+"kus_interceptor",
+"kus_ioncannonfrigate",
+"kus_lightcorvette",
+--"kus_lightdefender",			-- bugged
+"kus_minelayercorvette",
+"kus_missiledestroyer",
+"kus_mothership",
+"kus_multiguncorvette",
+"kus_probe",
+"kus_proximitysensor",
+"kus_repaircorvette",
+--"kus_researchship",			-- bugged
+--"kus_researchship_1",			-- bugged
+--"kus_researchship_2",			-- bugged
+--"kus_researchship_3",			-- bugged
+--"kus_researchship_4",			-- bugged
+--"kus_researchship_5",			-- bugged
+"kus_resourcecollector",
+"kus_resourcecontroller",
+"kus_salvagecorvette",
+"kus_scout",
+"kus_sensorarray",
+"kus_supportfrigate",
+"kus_targetdrone",
+--"meg_angelmoon",				-- removed by GearBox
+"meg_asteroid",
+--"meg_asteroidmp",				-- bugged
+"meg_asteroid_nosubs",
+"meg_balcoragate",
+"meg_bentus",
+"meg_bentus_ruined",
+"meg_bentus_ruins_core_1",
+"meg_bentus_ruins_core_2",
+"meg_bentus_ruins_core_3",
+"meg_bentus_ruin_1",
+"meg_bentus_ruin_10",
+"meg_bentus_ruin_11",
+"meg_bentus_ruin_2",
+"meg_bentus_ruin_3",
+"meg_bentus_ruin_4",
+"meg_bentus_ruin_5",
+"meg_bentus_ruin_6",
+"meg_bentus_ruin_7",
+"meg_bentus_ruin_8",
+"meg_bentus_ruin_9",
+"meg_bigred",
+"meg_chimera",
+"meg_crate_hw1container",
+"meg_crate_hw2container",
+--"meg_dreadnaughtberth",			-- bugged
+"meg_foundry",
+"meg_foundrydebris_chunk1",
+"meg_foundrydebris_chunk2",
+"meg_foundrydebris_chunk3",
+"meg_foundrydebris_chunk4",
+"meg_foundrydebris_flake1",
+"meg_foundrydebris_flake2",
+"meg_foundrydebris_flake3",
+"meg_foundrydebris_flake4",
+"meg_gehenna_1",
+"meg_gehenna_2",
+"meg_gehenna_3",
+"meg_gehenna_4",
+"meg_gehenna_5",
+"meg_gehenna_6",
+"meg_gehenna_7",
+"meg_homeworld",
+--"meg_kharak",				-- removed by GearBox
+--"meg_kharakburned",			-- removed by GearBox
+"meg_misslefrigate",
+"meg_progenitorpowermodule",
+"meg_progenitorpowertrigger",
+"meg_progenitorpowertrigger_noui",
+"meg_relic_rugenerator",
+"meg_sajhulknose",
+"meg_sajhulknose_ui",
+"meg_sajhulkpanels",
+"meg_sajhulkpanels_ui",
+"meg_sajhulkturret",
+"meg_salvagecollector",
+"meg_tanis",
+"meg_tanisstructure_medium",
+"meg_tanisstructure_medium2",
+"meg_veildebris_bit1",
+"meg_veildebris_bit10",
+"meg_veildebris_bit11",
+"meg_veildebris_bit12",
+"meg_veildebris_bit13",
+"meg_veildebris_bit14",
+"meg_veildebris_bit15",
+"meg_veildebris_bit2",
+"meg_veildebris_bit3",
+"meg_veildebris_bit4",
+"meg_veildebris_bit5",
+"meg_veildebris_bit6",
+"meg_veildebris_bit7",
+"meg_veildebris_bit8",
+"meg_veildebris_bit9",
+"meg_veildebris_chunk1",
+"meg_veildebris_chunk1_nd",
+"meg_veildebris_chunk2",
+"meg_veildebris_chunk2_nd",
+"meg_veildebris_chunk3",
+"meg_veildebris_chunk3_nd",
+"meg_veildebris_chunk4",
+"meg_veildebris_chunk4_nd",
+"meg_veildebris_chunk5",
+"meg_veildebris_chunk5_nd",
+"meg_veildebris_chunk_lighthouse",
+"meg_veildebris_flake1",
+"meg_veildebris_flake10",
+"meg_veildebris_flake2",
+"meg_veildebris_flake3",
+"meg_veildebris_flake4",
+"meg_veildebris_flake5",
+"meg_veildebris_flake6",
+"meg_veildebris_flake7",
+"meg_veildebris_flake8",
+"meg_veildebris_flake9",
+--"misc_asteroidhuge",				-- bugged
+--"misc_asteroidlarge",				-- bugged
+--"misc_galaxymap",				-- bugged
+--"misc_galaxymap1",				-- bugged
+--"misc_galaxymap2",				-- bugged
+--"misc_galaxymap3",				-- bugged
+--"misc_galaxymaps_capitols",				-- bugged
+--"misc_galaxymap_borders",				-- bugged
+--"misc_galaxymap_circles",				-- bugged
+--"misc_galaxymap_haskmarks",				-- bugged
+--"misc_galaxymap_labels",				-- bugged
+--"misc_galaxymap_routes",				-- bugged
+"misc_t-matmegaship",
+--"misc_t-matmegaship_hold",			-- HW1RM only
+--"neu_soundtest",				-- bugged
+--"neu_transport",				-- bugged
+"nis_galaxymap",
+"oni_cm_testship",
+"special_eventsimulator",
+"special_splitter",
+"special_unittestmap",
+"sp_tanker",
+"sp_tanker2",
+"sp_tanker3",
+"sp_tanker4",
+"sp_tanker5",
+"sp_tanker6",
+"tai_assaultfrigate",
+"tai_attackbomber",
+"tai_carrier",
+"tai_cloakgenerator",
+--"tai_cryotray",			-- bugged
+"tai_defender",
+"tai_defensefighter",
+"tai_destroyer",
+"tai_fieldfrigate",
+"tai_fieldgenerator",
+"tai_fieldgeneratordummy",
+"tai_fieldgeneratorsegment1",
+"tai_fieldgeneratorsegment2",
+"tai_fieldgeneratorsegment3",
+"tai_fieldgeneratorsegment4",
+"tai_fieldgeneratorsegment5",
+"tai_fieldgeneratorsegment6",
+"tai_fieldgeneratorsegment7",
+"tai_fieldgeneratorsegment8",
+"tai_gravwellgenerator",
+--"tai_headshotasteroid",			-- bugged
+"tai_heavycorvette",
+"tai_heavycruiser",
+"tai_interceptor",
+"tai_ioncannonfrigate",
+"tai_lightcorvette",
+--"tai_lightdefender",			-- bugged
+"tai_minelayercorvette",
+"tai_missiledestroyer",
+"tai_mothership",
+"tai_multiguncorvette",
+"tai_probe",
+"tai_proximitysensor",
+"tai_repaircorvette",
+--"tai_researchship",			-- bugged
+--"tai_researchship_1",			-- bugged
+--"tai_researchship_2",			-- bugged
+--"tai_researchship_3",			-- bugged
+--"tai_researchship_4",			-- bugged
+--"tai_researchship_5",			-- bugged
+"tai_researchstation",
+"tai_resourcecollector",
+"tai_resourcecontroller",
+"tai_salvagecorvette",
+"tai_scout",
+"tai_sensorarray",
+"tai_supportfrigate",
+"tai_targetdrone",
+"test_mesh",
+"tes_twosidetest",
+"tur_fighter",
+"tur_ionarrayfrigate",
+"tur_missilecorvette",
+"tur_p1mothership",
+"tur_standardcorvette",
+--"vgr_artillerycruiser",			-- bugged
+"vgr_assaultfrigate",
+"vgr_battlecruiser",
+"vgr_bomber",
+"vgr_carrier",
+"vgr_commandcorvette",
+"vgr_commstation",
+"vgr_destroyer",
+"vgr_heavymissilefrigate",
+"vgr_hyperspace_platform",
+"vgr_infiltratorfrigate",
+"vgr_interceptor",
+"vgr_lancefighter",
+"vgr_lasercorvette",
+--"vgr_listeningpost",			-- bugged
+"vgr_minelayercorvette",
+"vgr_missilecorvette",
+"vgr_mothership",
+"vgr_mothership_makaan",
+"vgr_planetkiller",
+"vgr_planetkillermissile",
+"vgr_prisonstation",
+"vgr_probe",
+"vgr_probe_ecm",
+"vgr_probe_prox",
+"vgr_resourcecollector",
+"vgr_resourcecontroller",
+"vgr_scout",
+"vgr_shipyard",
+--"vgr_transportfrigate",			-- bugged
+"vgr_weaponplatform_gun",
+"vgr_weaponplatform_missile",
+}
+
+function DetermChunk()
+	setWorldBoundsInner({0, 0, 0}, {100000, 50000, 100000})
+
+	local XPos = 0
+	local ZPos = 0
+	for k, kCount in shiplist do
+		XPos = mod(k + 20, 20)
+		if (XPos == 0) then
+			ZPos = ZPos + 1
+		end
+		-- addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+		addSquadron("Ship" .. k, kCount, {XPos * 5000 - 45000, 0, ZPos * 5000 - 45000}, 0, {0, 0, 0}, 0, 0)
+	end
+
+	addPoint("StartPos0", {0,  10000, 0}, {0, 0, 0})
+	addPoint("StartPos1", {0, 100000, 0}, {0, 0, 0})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", {0,      0, 0}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", {0, 100000, 0}, {1, 1, 1, 1}, 0, 4096)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -123983445}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

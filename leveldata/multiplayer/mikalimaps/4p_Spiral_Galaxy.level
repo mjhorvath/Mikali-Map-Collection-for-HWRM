@@ -1,0 +1,96 @@
+-- (4P) Spiral Galaxy v1.5.14 by Mikali
+-- Created: 2003/11/12
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>Spiral Galaxy 1.5.14</c>"
+maxPlayers = 4
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+	local my_seed_2 = {seed = -12345}
+
+	setWorldBoundsInner({0,0,0,}, {60000, 30000, 60000,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	-- spectator position
+--	addPoint("StartPos4", {0,100000,0}, {0,0,0})
+
+	-- distributions
+	local startRing =
+	{
+		--addPoint(<sPointName>, <tPosition>, <tRotation>)
+		{maxPlayers, "StartPoint", "StartPos", {0,0,0,}, {0,0,0,}, 1,},
+		--addCloud("polySurface1", "cloud_text_2", {-25000, 25000, 0}, {1, 1, 1, 1}, 0, 2048)
+--		{maxPlayers, "CloudText", "CloudText", {0,0,0,}, {1,1,1,1}, 0, 4096,},
+	}
+	local dustSpiral =
+	{
+		--addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{36, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {srandom(my_seed_2),srandom(my_seed_2),srandom(my_seed_2),srandom(my_seed_2)}, 0, 5000,},
+	}
+	local centerSphere =
+	{
+		--addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+		{1, "Squadron",  "Bentus1",  "meg_bentus_ruin_1", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus2",  "meg_bentus_ruin_2", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus3",  "meg_bentus_ruin_3", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus4",  "meg_bentus_ruin_4", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus5",  "meg_bentus_ruin_5", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus6",  "meg_bentus_ruin_6", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus7",  "meg_bentus_ruin_7", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus8",  "meg_bentus_ruin_8", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron",  "Bentus9",  "meg_bentus_ruin_9", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron", "Bentus10", "meg_bentus_ruin_10", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+		{1, "Squadron", "Bentus11", "meg_bentus_ruin_11", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360),}, 1, 0, 1},
+	}
+
+	-- player positions
+	--ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0,0,0,}, startRing, {33333, 33333, 0, 0, {0,360,}, 0,}, {0,0,0,}, 0, my_seed_1)
+
+	-- patches
+	--easyPatch(<tPos>, <fRUs>, <tSeed>)
+	easyPatch({-05036,0,  2608,}, 100, my_seed_1)
+	easyPatch({  1910,0, 11560,}, 100, my_seed_1)
+	easyPatch({ 23930,0,  3628,}, 100, my_seed_1)
+	easyPatch({ 22404,0,-44700,}, 100, my_seed_1)
+	easyPatch({  5036,0,-02608,}, 100, my_seed_1)
+	easyPatch({-01910,0,-11560,}, 100, my_seed_1)
+	easyPatch({-23930,0,-03628,}, 100, my_seed_1)
+	easyPatch({-22404,0, 44700,}, 100, my_seed_1)
+	easyPatch({0, 20000,0,}, 100, my_seed_1)
+	easyPatch({0,-20000,0,}, 100, my_seed_1)
+
+	-- spiral
+	--spiralAdd(<tPos>, <tDst>, {<sLay>, <nRad>, <nArm>, <nRot>, <nAng>, <nHgh>, <nWid>, <nThk>, <tTim>, <iMod>,}, <tRot>, <tSeed>)
+	spiralAdd({0,0,0,}, dustSpiral, {"Nautilus", 50000, 2, 1, 120, 0, 0, 0, {0,1,}, 0}, {0,0,0,}, my_seed_1)
+
+	-- center sphere
+	--shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+	--If <sLay> is "Ellipsoid", then <fA> equals the length of axis 1, <fB> equals the length of axis 2, <fC> equals the length of axis 3, <fD> equals the thickness, and <fE> is zero.
+	shapeAdd({0,0,0,}, centerSphere, {"Ellipsoid", 5000, 5000, 5000, 5000, 0,}, {0,0,0,}, my_seed_1)
+	addNebula("Nebula4_OLD1", "MP_Bentusi_Radiation", {0,0,0,}, {1,1,1,1,}, 0.0, 5000)
+	addSquadron("BentusMain", "meg_bentus_ruined", {0,0,0,}, -1, {srandom(my_seed_1, 360), srandom(my_seed_1, 360), srandom(my_seed_1, 360)}, 0, 0)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -2340806578}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0,0,0,1)
+	setSensorsManagerCameraDistances(10000,100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

@@ -1,0 +1,80 @@
+-- (4P) The Squid v1.2.1 by Mikali
+-- Created: 2005/09/05
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>The Squid 1.2.1</c>"
+maxPlayers = 4
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions, should be less than 65536
+	local my_seed_1 = {seed = -12345}
+	local my_seed_2 = {seed = -12345}
+	local my_seed_3 = {seed = -12345}
+	local my_seed_4 = {seed = -12345}
+	local my_seed_5 = {seed = -12345}
+	local my_seed_6 = {seed = -12345}
+	local AstPerc = 100
+
+	setWorldBoundsInner({0,0,0,}, {50000, 50000, 50000,})
+	addPoint("StartPos0", {     0, 1000, -15000,}, {0,   0, 0,})
+	addPoint("StartPos1", {-15000, 1000,      0,}, {0,  90, 0,})
+	addPoint("StartPos2", {     0, 1000,  15000,}, {0, 180, 0,})
+	addPoint("StartPos3", { 15000, 1000,      0,}, {0, 270, 0,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", {     0, 1000, -15000,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", {-15000, 1000,      0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", {     0, 1000,  15000,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", { 15000, 1000,      0,}, {1, 1, 1, 1}, 0, 4096)
+
+--	addAsteroid("Asteroid_5", { -5000, 1000, -15000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_5", {-20000, 1000,   5000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_5", {  5000, 1000,  20000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_5", { 20000, 1000,  -5000,}, AstPerc, 0, 0, 0, 0)
+
+	local PebbleDist_1 =
+	{
+		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{512, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+	}
+	local PebbleDist_2 =
+	{
+		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{2048, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+	}
+	local AsteroidDist =
+	{
+		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{ 8, "Asteroid", "Asteroid_4", {0,0,0,}, AstPerc, 0, 0, 0, 0,},
+		{32, "Asteroid", "Asteroid_3", {0,0,0,}, AstPerc, 0, 0, 0, 0,},
+	}
+
+	--shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+	shapeAdd({0,0,0,}, PebbleDist_2, {"Ellipsoid", 25000, 25000, 10000, 0, 0,}, {0,0,0,}, my_seed_1)
+	--spiralAdd(<tPos>, <tDst>, {<sLay>, <fRad>, <iArm>, <fRot>, <fAng>, <fHgh>, <fWid>, <fThk>, <tTim>, <iMod>,}, <tRot>, <tSeed>)
+	spiralAdd({0, -5000, 0,}, PebbleDist_1,	{"Archimedes", 50000, 4, 0.5, 120, -10000, 5000, 1000, {0,1,}, 2,}, {0,0,0,}, my_seed_2)
+	spiralAdd({0, -5000, 0,}, AsteroidDist,	{"Archimedes", 50000, 1, 0.5, 120, -10000, 5000, 1000, {0,1,}, 2,}, {0,  0,0,}, my_seed_3)
+	spiralAdd({0, -5000, 0,}, AsteroidDist,	{"Archimedes", 50000, 1, 0.5, 120, -10000, 5000, 1000, {0,1,}, 2,}, {0, 90,0,}, my_seed_4)
+	spiralAdd({0, -5000, 0,}, AsteroidDist,	{"Archimedes", 50000, 1, 0.5, 120, -10000, 5000, 1000, {0,1,}, 2,}, {0,180,0,}, my_seed_5)
+	spiralAdd({0, -5000, 0,}, AsteroidDist,	{"Archimedes", 50000, 1, 0.5, 120, -10000, 5000, 1000, {0,1,}, 2,}, {0,270,0,}, my_seed_6)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -2198845}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0,0,0,1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

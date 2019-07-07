@@ -1,0 +1,217 @@
+-- (6P) Voronoi Steppes v1.0.8 by Mikali
+-- Created: 2006/01/02
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>Voronoi Steppes 1.0.8</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+	local iStartPoints = 0
+
+	setWorldBoundsInner({0,0,0,}, {50000, 20000, 50000,})
+	setWorldBoundsOuter({0,0,0,}, {50000, 20000, 50000,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	local cells =
+	{
+		-- position, startpos, height
+		{{0.219600, 0.272535, 0.0}, 1, srandom(my_seed_1) * 2 - 1,},	-- 0
+		{{0.245459, 0.710012, 0.0}, 0, srandom(my_seed_1) * 2 - 1,},	-- 1
+		{{0.253906, 0.138719, 0.0}, 1, srandom(my_seed_1) * 2 - 1,},	-- 2
+		{{0.272730, 0.833099, 0.0}, 2, srandom(my_seed_1) * 2 - 1,},	-- 3
+		{{0.309035, 0.248277, 0.0}, 0, srandom(my_seed_1) * 2 - 1,},	-- 4
+		{{0.318995, 0.623501, 0.0}, 0, srandom(my_seed_1) * 2 - 1,},	-- 5
+		{{0.386229, 0.499978, 0.0}, 0, srandom(my_seed_1) * 2 - 1,},	-- 6
+		{{0.540097, 0.324627, 0.0}, 0, srandom(my_seed_1) * 2 - 1,},	-- 7
+		{{0.756582, 0.915128, 0.0}, 2, srandom(my_seed_1) * 2 - 1,},	-- 8
+		{{0.763274, 0.479235, 0.0}, 0, srandom(my_seed_1) * 2 - 1,},	-- 9
+		{{0.769827, 0.110270, 0.0}, 1, srandom(my_seed_1) * 2 - 1,},	-- 10
+		{{0.856068, 0.676310, 0.0}, 2, srandom(my_seed_1) * 2 - 1,},	-- 11
+	}
+	local corners =
+	{
+		-- 0
+		{
+			{0.0, 0.144932, 0.0},
+			{0.0, 0.505018, 0.0},
+			{0.085973, 0.499937, 0.0},
+			{0.186671, 0.471419, 0.0},
+			{0.299192, 0.388983, 0.0},
+			{0.250409, 0.209128, 0.0},
+		},
+		-- 1
+		{
+			{0.0, 0.82896, 0.0},
+			{0.0, 0.505018, 0.0},
+			{0.085973, 0.499937, 0.0},
+			{0.375243, 0.745822, 0.0},
+		},
+		-- 2
+		{
+			{0.0, 0.144932, 0.0},
+			{0.0, 0.0, 0.0},
+			{0.505001, 0.0, 0.0},
+			{0.508326, 0.060297, 0.0},
+			{0.489944, 0.088595, 0.0},
+			{0.250409, 0.209128, 0.0},
+		},
+		-- 3
+		{
+			{0.0, 1.0, 0.0},
+			{0.0, 0.82896, 0.0},
+			{0.375243, 0.745822, 0.0},
+			{0.530592, 0.780113, 0.0},
+			{0.493314, 1.0, 0.0},
+		},
+		-- 4
+		{
+			{0.299192, 0.388983, 0.0},
+			{0.250409, 0.209128, 0.0},
+			{0.489944, 0.088595, 0.0},
+			{0.401004, 0.357759, 0.0},
+		},
+		-- 5
+		{
+			{0.085973, 0.499937, 0.0},
+			{0.186671, 0.471419, 0.0},
+			{0.583826, 0.687588, 0.0},
+			{0.582368, 0.702424, 0.0},
+			{0.530592, 0.780113, 0.0},
+			{0.375243, 0.745822, 0.0},
+		},
+		-- 6
+		{
+			{0.186671, 0.471419, 0.0},
+			{0.299192, 0.388983, 0.0},
+			{0.401004, 0.357759, 0.0},
+			{0.575943, 0.511266, 0.0},
+			{0.585411, 0.683366, 0.0},
+			{0.583826, 0.687588, 0.0},
+		},
+		-- 7
+		{
+			{0.575943, 0.511266, 0.0},
+			{0.401004, 0.357759, 0.0},
+			{0.489944, 0.088595, 0.0},
+			{0.508326, 0.060297, 0.0},
+			{0.726428, 0.29404, 0.0},
+		},
+		-- 8
+		{
+			{0.493314, 1.0, 0.0},
+			{0.530592, 0.780113, 0.0},
+			{0.582368, 0.702424, 0.0},
+			{1.0, 0.876399, 0.0},
+			{1.0, 1.0, 0.0},
+		},
+		-- 9
+		{
+			{0.585411, 0.683366, 0.0},
+			{0.575943, 0.511266, 0.0},
+			{0.726428, 0.29404, 0.0},
+			{1.0, 0.298898, 0.0},
+			{1.0, 0.488156, 0.0},
+		},
+		-- 10
+		{
+			{0.508326, 0.060297, 0.0},
+			{0.505001, 0.0, 0.0},
+			{1.0, 0.0, 0.0},
+			{1.0, 0.298898, 0.0},
+			{0.726428, 0.29404, 0.0},
+		},
+		-- 11
+		{
+			{1.0, 0.876399, 0.0},
+			{0.582368, 0.702424, 0.0},
+			{0.583826, 0.687588, 0.0},
+			{0.585411, 0.683366, 0.0},
+			{1.0, 0.488156, 0.0},
+		},
+	}
+
+	local dustSpiral =
+	{
+		--addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{4, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {1, 1, 1, 1}, 0, 5000,},
+		{128, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{2, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+	}
+
+	local team_1_coo = {}
+	local team_2_coo = {}
+
+	local cellMax = getn(cells)
+	for i = 1, cellMax do
+		local thisCell = cells[i]
+		local cellCoord = thisCell[1]
+		local cellTeam = thisCell[2]
+		local cellHeight = thisCell[3]
+		local new_coord = fix_coords(cellCoord, cellHeight)
+
+		if (cellTeam == 1) then
+			tinsert(team_1_coo, vaddV(new_coord, {1000,1000,1000,}))
+		elseif (cellTeam == 2) then
+			tinsert(team_2_coo, vaddV(new_coord, {1000,1000,1000,}))
+		end
+		easyPatch(new_coord, 100, my_seed_1)
+
+		local cellSides = corners[i]
+		local sideMax = getn(cellSides)
+		for j = 1, sideMax do
+			local thisCoord = fix_coords(cellSides[j], cellHeight)
+			local nextCoord = {}
+			if (j < sideMax) then
+				nextCoord = fix_coords(cellSides[j + 1], cellHeight)
+			else
+				nextCoord = fix_coords(cellSides[1], cellHeight)
+			end
+			--spline2Add(<tPos>, <tDst>, {<tP1>, <tP2>, <tP3>, <tRad>, <tThk>,}, <tRot>, <tSeed>)
+			spline2Add({0,0,0,}, dustSpiral, {thisCoord, vmidpoint(thisCoord, nextCoord), nextCoord, {200,200,}, {100,100,},}, {0,0,0,}, my_seed_1)
+		end
+	end
+
+	for i, iCount in team_1_coo do
+		--addPoint(<sPointName>, <tPosition>, <tRotation>)
+		addPoint("StartPos" .. iStartPoints, iCount, {0,0,0,})
+--		addCloud("polySurface1", "cloud_text_" .. (iStartPoints+1), iCount, {1, 1, 1, 1}, 0, 4096)
+		iStartPoints = iStartPoints + 1
+	end
+	for i, iCount in team_2_coo do
+		--addPoint(<sPointName>, <tPosition>, <tRotation>)
+		addPoint("StartPos" .. iStartPoints, iCount, {0,0,0,})
+--		addCloud("polySurface1", "cloud_text_" .. (iStartPoints+1), iCount, {1, 1, 1, 1}, 0, 4096)
+		iStartPoints = iStartPoints + 1
+	end
+
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -354801287}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+function fix_coords(in_table, in_height)
+	local horz_scale = 60000
+	local vert_scale = 10000
+	local translate = {-horz_scale/2,0,-horz_scale/2,}
+	return vaddV({in_table[1] * horz_scale, in_height * vert_scale, in_table[2] * horz_scale}, translate)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

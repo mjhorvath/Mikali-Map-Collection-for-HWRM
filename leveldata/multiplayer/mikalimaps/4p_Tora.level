@@ -1,0 +1,82 @@
+-- (4P) Tora! Tora! Tora! v1.3.16 by Mikali
+-- Created: 2004/09/22
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>Tora! Tora! Tora! 1.3.16</c>"
+maxPlayers = 4
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+
+	setWorldBoundsInner({0, 0, 0,}, {60000, 60000, 60000,})
+
+	addPoint("StartPos0", {     0, 0,  55000,}, {0, 180, 0,})
+	addPoint("StartPos1", { 55000, 0,      0,}, {0, 270, 0,})
+	addPoint("StartPos2", {     0, 0, -55000,}, {0,   0, 0,})
+	addPoint("StartPos3", {-55000, 0,      0,}, {0,  90, 0,})
+
+	addAsteroid("Asteroid_5", { 1000, 0, 0,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_5", {-1000, 0, 0,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_5", {0, 0, 1000,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_5", {0, 0,-1000,}, 100, 0, 0, 0, 0)
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", {     0, 0,  55000,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", { 55000, 0,      0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", {     0, 0, -55000,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", {-55000, 0,      0,}, {1, 1, 1, 1}, 0, 4096)
+
+	-- distributions
+	local threeRings =
+	{
+--		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{6561, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+--		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{243, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 81, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 27, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+	}
+	local DustClouds =
+	{
+--		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{4, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1)}, 0, 12500,}
+	}
+	local EasyPatches =
+	{
+		{2, "Function", easyPatch, {0,0,0,}, 100,},
+	}
+
+	-- center sphere
+--	shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+--	If <sLay> is "Toroid", then <fA> equals the length of axis 1, <fB> equals the length of axis 2, <fC> equals the width of the tube, <fD> equals the thickness, and <fE> equals the height of the tube.
+	shapeAdd({0, 0, 0,}, threeRings, {"Toroid", 50000, 50000, 10000, 0, 10000,}, {0,0,0,}, my_seed_1)
+
+	-- corner clouds & patches
+--	ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0, 0, 0,}, EasyPatches, {50000, 50000, 0, 0, {0,360,}, 0,}, { 0, 0, 0,}, my_seed_1)
+	ringAdd({0, 0, 0,}, EasyPatches, {50000, 50000, 0, 0, {0,360,}, 0,}, { 0,90, 0,}, my_seed_1)
+
+	-- top patches
+	ringAdd({0, 0, 0,}, EasyPatches, {40000, 40000, 0, 0, {0,360,}, 0,}, {0, 0, 90,}, my_seed_1)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -42555658}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

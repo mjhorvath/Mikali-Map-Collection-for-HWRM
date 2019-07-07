@@ -1,0 +1,53 @@
+-- (2P) Go Around v1.0.3 by Mikali
+-- Created: 2015/03/26
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: 1 vs. 1
+
+levelDesc = "<c=FF4800>Go Around 1.0.3</c>"
+maxPlayers = 2
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+
+	-- addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+--	addSquadron("", "hgn_destroyer", {1000,1000,1000}, -1, {0,0,0}, 1, 0)
+--	addSquadron("", "hgn_destroyer", {-1000,-1000,-1000}, -1, {0,0,0}, 1, 0)
+
+	setWorldBoundsInner({0, 0, 0}, {100000, 50000, 100000})
+
+	addPoint("StartPos0", {-32768,0,-2048}, {0,180,0})
+	addPoint("StartPos1", { 32768,0, 2048}, {0,  0,0})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("cloud", "cloud_text_1", {-32768,0,-2048}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("cloud", "cloud_text_2", { 32768,0, 2048}, {1, 1, 1, 1}, 0, 4096)
+
+	addSquadron("noname", "box_131072_64_131072", {0,0,0}, -1, {0,0,90}, 1, 0)
+
+	-- player 0
+	easyPatch({-32768,0,     0}, 100)
+	easyPatch({ -8192,0,-32768}, 100)
+	easyPatch({ -8192,0, 32768}, 100)
+	-- player 1
+	easyPatch({ 32768,0,     0}, 100)
+	easyPatch({  8192,0,-32768}, 100)
+	easyPatch({  8192,0, 32768}, 100)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -190805445}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)
+	setSensorsManagerCameraDistances(0, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

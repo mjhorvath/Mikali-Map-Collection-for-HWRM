@@ -1,0 +1,354 @@
+<html>
+<!-- HexMaze, version 1.0, by Dan Rollins -->
+<!-- Modified by posfan12 -->
+<!-- Creates a maze of hexagonal cells, similar to a honeycomb -->
+<!--http://www.experts-exchange.com/Programming/Languages/Scripting/JavaScript/A_7849-Hex-Maze.html-->
+<body>
+<pre id='mazeDisplay'></pre>
+</body>
+<script type="text/javascript">
+var gnX;
+var gnY;
+var gtMaze;       // the TMaze object -- variables and functions
+var radius = 5
+var gnWide = radius * 2 - 1;
+var gnHigh = radius * 2 - 1;
+var restrictTable = [];
+var restrictCount = 0;
+
+for (var y = 0; y < gnHigh; y++) {
+	restrictTable[y] = [];
+	for (var x = 0; x < gnWide; x++) {
+		restrictTable[y][x] = 0;
+	}
+}
+
+
+//------------------------------ CONSTANTS
+DIR_N = 0; DIR_NE = 1; DIR_SE = 2; DIR_S = 3; DIR_SW = 4; DIR_NW = 5;
+DOOR_N = 1; DOOR_NE = 2; DOOR_SE = 4; DOOR_S = 8; DOOR_SW = 16; DOOR_NW = 32; DOOR_ALL = 63;
+
+//----------------------------- delta arrays  00 offsets to add to 
+//-----------------------------   X,Y when moving in any of 6 directions
+var ganDeltaX = new Array(6);
+var ganDeltaY = new Array(6);
+
+ganDeltaX[DIR_N]  = 0;  ganDeltaY[DIR_N]   =-1;  
+ganDeltaX[DIR_NE] = 1;  ganDeltaY[DIR_NE]  =-1;
+ganDeltaX[DIR_SE] = 1;  ganDeltaY[DIR_SE]  = 1;
+ganDeltaX[DIR_S]  = 0;  ganDeltaY[DIR_S]   = 1;  
+ganDeltaX[DIR_SW] =-1;  ganDeltaY[DIR_SW]  = 1;
+ganDeltaX[DIR_NW] =-1;  ganDeltaY[DIR_NW]  =-1;  
+
+//=======================================================
+// The 2-dimensional array that contains the cell information
+//
+function TMazeArray(nHigh, nWide) {
+    var a = new Array(nHigh);
+    for (var i = 0; i < nHigh; i++) {
+        a[i] =  new Array(nWide);
+        for (var j = 0; j < nWide; j++) {	
+            a[i][j] = 0; 
+        }
+    }
+    return a;
+}
+
+
+//=======================================================
+//=======================================================
+//=======================================================
+// The TMaze object
+//------------------------------------------------------------------------------ Ctor
+function TMaze(nHigh, nWide) {
+    this.high = nHigh;
+    this.wide = nWide;
+    this.ary = TMazeArray(nHigh, nWide);
+
+    this.totRooms = nHigh * nWide - restrictCount;  // less (short) bottom line
+    this.curRoomCnt = 0;  // rooms that have been visited/door opened
+    
+    this.GetCell = function(x,y) {return this.ary[y][x];}
+    this.SetCell = function(x,y,value) {this.ary[y][x] = value;}
+
+    this.HasCellBit = function(x,y,value) {return ((this.ary[y][x] & value) == value);}
+    this.SetCellBit = function(x,y,value) {this.ary[y][x] |= value;}
+    this.ClearCellBit = function(x,y,value) {this.ary[y][x] &= ~value;}
+    this.ToggleCellBit = function(x,y,value) {this.ary[y][x] ^= value;}
+
+    this.IsEmptyCellAt = IsEmptyCellAt;  // some member fns, defined below
+    this.IsValidXY = IsValidXY;
+    this.GetNewXY = GetNewXY;
+}
+
+//----------- TRUE if cell in that direction is empty and valid
+//
+function IsEmptyCellAt(x, y, dir) {
+    var o = this.GetNewXY(x, y, dir);
+
+    if (!this.IsValidXY(o.newX, o.newY))   return (false); 
+    if (this.GetCell(o.newX, o.newY) != 0)  return (false);
+
+    return true;  // yes, it's possible to move into that cell
+}
+
+//------------------------------------------------------------------------------
+// return -1 if that would be an invalid move (off the board)
+// true if X,Y is on the board
+//
+function IsValidXY(x, y) {
+    if (y < 0) return (false);
+    if (y > this.high-1) return (false);
+    if (x < 0) return (false);
+    if (x > this.wide-1) return (false);
+	if (restrictTable[y][x] == 1) return false;
+    return true;  // possible to move into that direction
+}
+
+//------------------------------------------
+// If I move in a direction, what are the new X,Y values?
+// Return an object with newX and newY properties
+//
+function GetNewXY(x, y, dir) {
+    var oRet = {"newX":-1, "newY":-1, "isValid":false};
+    var newX = x;
+    var newY = y;
+
+    newX += ganDeltaX[dir];  // add the deltas
+    newY += ganDeltaY[dir];
+
+    if (this.IsValidXY(newX, newY)) {
+        oRet.newX = newX;
+        oRet.newY = newY;
+        oRet.isValid = true;
+    }
+    return oRet;
+}
+//=====================================================
+//=====================================================
+//===================================================== end of TMaze members
+
+//------------------------------------------
+// generate the inner HTML (all of the img objects)
+//
+function DrawMaze() {
+    var s = "";
+    for (var y = 0; y < gtMaze.high; y ++) {
+        //----------------------- first line of images per cell row
+        for (var x = 0; x < gtMaze.wide; x ++) {
+            var v = gtMaze.GetCell(x, y);
+			if (x%2 == 0) {
+				if (v > 0) {
+					if (v < 10)
+						s += "0" + v;
+					else
+						s += v;
+				}
+				else
+					s += "--";
+			}
+			else
+				s += "--";
+        }
+        s += "\n";
+        //----------------------- second line of images per cell row
+        for (var x = 0; x < gtMaze.wide; x ++) {
+            var v = gtMaze.GetCell(x, y);
+			if (x%2 == 1) {
+				if (v > 0) {
+					if (v < 10)
+						s += "0" + v;
+					else
+						s += v;
+				}
+				else
+					s += "--";
+			}
+			else
+				s += "--";
+        }
+        s += "\n";
+    }
+    document.getElementById('mazeDisplay').innerHTML = s;
+}
+
+//==========================================
+function ClearTheMaze() {
+    gtMaze = new TMaze(gnHigh, gnWide);
+    for (var y = 0; y < gtMaze.high; y++) {
+        for (var x = 0; x < gtMaze.wide; x++) {
+            gtMaze.ary[y][x] = 0;
+        }
+    }
+}
+
+//=========================================================
+// Create the maze, using the incremental technique to enable 
+// watching the creation process
+//=========================================================
+
+function DoCreate() {
+    ClearTheMaze();       // set all cells to 0
+
+    gnX = Math.floor(gtMaze.wide/2);
+    gnY = Math.floor(gtMaze.high/2);
+    gtMaze.curRoomCnt = 1;  // account for the entry room
+
+    while (gtMaze.curRoomCnt < gtMaze.totRooms) {
+        DoOneStepCreate()
+		gtMaze.curRoomCnt++;
+    }
+
+//    gtMaze.SetCellBit(0, 0, DOOR_NW);  // put the entrance door in place
+//    var nExitX = gnWide-1;
+//    var nExitY = gnHigh-1;
+//    gtMaze.SetCellBit(nExitX, nExitY, DOOR_SE);  // put the exit door in place, doesn't work
+//    gtMaze.SetCellBit(gtMaze.wide/2, gtMaze.high/2, DOOR_ALL);  // test
+
+    gfCreateDone = true;
+    DrawMaze();    // already drawn as you watched!
+}
+
+//---------------------------------------------------------
+// Perform one step of the creation process
+// Add a door to a room and the adjacent room
+// If stuck, scan for a place to branch
+//
+function DoOneStepCreate() {
+	var oldX = gnX
+	var oldY = gnY
+    var anDirs = new Array(6);                 // N, WE, SE, S, SW, NW
+    var nDirCnt = GetDirs(gnX, gnY, anDirs);   // Fill anDirs with valid directions to move from here
+
+    while (nDirCnt == 0) {           // Trapped! Look for a room I've been in
+        gnY++;                       //          that is next to a doorless one
+        if (gnY > gtMaze.high-1) {
+            gnY = 0;
+			gnX++;
+            if (gnX > gtMaze.wide-1) {
+                gnX = 0;
+            }
+        }
+		if (gtMaze.GetCell(gnX, gnY) != 0) {
+			nDirCnt = GetDirs(gnX, gnY, anDirs);
+		}
+    }
+
+    //-------- It is now possible to move to another room
+    var nDirIdx = RndmInt(0, nDirCnt);       // 0 thru possible dirs -- pick one at random
+    var nDir = anDirs[nDirIdx];              // 0, 1, 2, 3, 4,  or 5  (direction code)
+    var nDoorVal = (1 << nDir);               // 1, 2, 4, 8, 16, or 32 (door value)
+	var o = GetNewXY(gnX, gnY, nDir);
+
+	gtMaze.SetCellBit(gnX, gnY, nDoorVal);  // put the door in place
+	gnX = o.newX;                             // move into that room
+	gnY = o.newY;
+											 //======= set door in this room, too
+	nDir = (nDir+3) % 6;                      //=== clockwize opposite (1->4, 2->5, 3->0, etc
+	nDoorVal = (1 << nDir);                   // 1, 2, 4, 8, 16, or 32 (door value)
+	gtMaze.SetCellBit(gnX, gnY, nDoorVal);  // put the door in place
+}
+
+function WhatEver() {
+	
+}
+
+//------------------------------------------------------------------------------
+// See which directions are possible; populate array anDirs
+//
+function GetDirs(x, y, anDirs) {
+    var nCnt = 0;
+
+    var f = gtMaze.IsEmptyCellAt(x, y, DIR_N);
+    if (f) anDirs[nCnt++] = DIR_N;          // can go N
+
+    f = gtMaze.IsEmptyCellAt(x, y, DIR_NE);
+    if (f) anDirs[nCnt++] = DIR_NE;      // can go radius
+
+    f = gtMaze.IsEmptyCellAt(x, y, DIR_SE);
+    if (f) anDirs[nCnt++] = DIR_SE;      // can go SE
+
+    f = gtMaze.IsEmptyCellAt(x, y, DIR_S);
+    if (f) anDirs[nCnt++] = DIR_S;       // can go S
+
+    f = gtMaze.IsEmptyCellAt(x, y, DIR_SW);
+    if (f) anDirs[nCnt++] = DIR_SW;      // can go SW
+
+    f = gtMaze.IsEmptyCellAt(x, y, DIR_NW );
+    if (f) anDirs[nCnt++] = DIR_NW;      // can go NW
+
+    return nCnt;
+}
+
+//------------------------------------------------------------------------------
+// utility fn:  get a random integer in the specified range, inclusive
+//
+function RndmInt(min, max) {
+    var tmp = Math.random() * (max-min);
+    return Math.floor(tmp) + min;
+}
+
+
+//===================================================
+//===================================================
+//===================================================
+
+var gride = [];
+var grido = [];
+
+for (var y = 0; y < gnHigh; y++) {
+	gride[y] = [];
+	grido[y] = [];
+	for (var x = 0; x < radius; x++) {
+		gride[y][x] = 0;
+		grido[y][x] = 0;
+	}
+}
+
+function makeHexagon() {
+	var cne = Math.ceil(radius/2) - radius%2;
+	for (var y = 0; y < gnHigh; y++) {
+		for (var x = 0; x < cne; x++) {
+			gride[y][x] = 1;
+			gride[y][radius-x-1] = 1;
+		}
+		if (y < radius-1)
+			cne--;
+		else if (y > radius-1-radius%2)
+			cne++;
+	}
+	cne = Math.ceil(radius/2) - radius%2 - 1;
+	for (var y = 0; y < gnHigh; y++) {
+		for (var x = 0; x < cne; x++) {
+			grido[y][x] = 1;
+			grido[y][radius-x-2] = 1;
+		}
+		if (y < radius-1-radius%2)
+			cne--;
+		else if (y > radius-2)
+			cne++;
+	}
+}
+
+function combineTables() {
+	for (var y = 0; y < gnHigh; y++) {
+		for (var x = 0; x < gnHigh; x++) {
+			if (x%2 == 0) {
+				var value = gride[y][x/2]
+				restrictTable[y][x] = value
+				restrictCount += value
+			} else {
+				var value = grido[y][Math.floor(x/2)]
+				restrictTable[y][x] = value
+				restrictCount += value
+			}
+		}
+	}
+}
+
+makeHexagon()
+combineTables()
+DoCreate()
+console.log(restrictCount)
+</script>
+</html>

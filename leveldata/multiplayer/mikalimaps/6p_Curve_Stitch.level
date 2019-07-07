@@ -1,0 +1,106 @@
+-- (6P) Curve Stitch v1.0.14 by Mikali
+-- Created: 2013/09/05
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs bottom
+
+levelDesc = "<c=FF4800>Curve Stitch 1.0.14</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	local my_seed_1 = {seed = -12345}
+	local n = 20
+	local dim = 10000
+	local dim2 = 9000
+	local dist = {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}
+
+	setWorldBoundsInner({0, 0, 0}, {30000, 30000, 30000})
+
+	addPoint("StartPos0", {0, 0, -dim}, {0,   0, 0})
+	addPoint("StartPos1", {0, -dim, 0}, {0,  90, 0})
+	addPoint("StartPos2", {-dim, 0, 0}, {0,  90, 0})
+	addPoint("StartPos3", {0, 0,  dim}, {0, 180, 0})
+	addPoint("StartPos4", {0, dim,  0}, {0, 180, 0})
+	addPoint("StartPos5", { dim, 0, 0}, {0, 270, 0})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", {0, 0, -dim}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", {0, -dim, 0}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", {-dim, 0, 0}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", {0, 0,  dim}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_5", {0, dim,  0}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_6", { dim, 0, 0}, {1, 1, 1, 1}, 0, 4096)
+
+--	addAsteroid("Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_5", {dim,0,0,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_5", {0,dim,0,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_5", {0,0,dim,}, 100, 0, 0, 0, 0)
+
+	easyPatch({ 0, dim2, dim2,}, 100, my_seed_1)
+	easyPatch({ 0,-dim2, dim2,}, 100, my_seed_1)
+	easyPatch({ 0,-dim2,-dim2,}, 100, my_seed_1)
+	easyPatch({ 0, dim2,-dim2,}, 100, my_seed_1)
+
+	easyPatch({ dim2, 0, dim2,}, 100, my_seed_1)
+	easyPatch({-dim2, 0, dim2,}, 100, my_seed_1)
+	easyPatch({-dim2, 0,-dim2,}, 100, my_seed_1)
+	easyPatch({ dim2, 0,-dim2,}, 100, my_seed_1)
+
+	easyPatch({ dim2, dim2, 0,}, 100, my_seed_1)
+	easyPatch({-dim2, dim2, 0,}, 100, my_seed_1)
+	easyPatch({-dim2,-dim2, 0,}, 100, my_seed_1)
+	easyPatch({ dim2,-dim2, 0,}, 100, my_seed_1)
+
+	easyPatch({ 0, 0, 0,}, 100, my_seed_1)
+
+
+
+	--stitchAdd(tPos, tRes, {PtA, PtB, PtD, Ndiv}, tRot, xNil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim, dim,}, {-dim,-dim,-dim,}, { dim,-dim,-dim,}, n, 1, 1,}, {  0,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, {-dim,-dim, dim,}, { dim,-dim, dim,}, n, 1, 1,}, {  0,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{ dim,-dim,-dim,}, { dim,-dim, dim,}, {-dim,-dim, dim,}, n, 1, 1,}, {  0,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, { dim,-dim,-dim,}, { dim,-dim, dim,}, n, 1, 1,}, {  0,0,0,}, nil)
+
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim, dim,}, {-dim,-dim,-dim,}, { dim,-dim,-dim,}, n, 1, 1,}, { 90,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, {-dim,-dim, dim,}, { dim,-dim, dim,}, n, 1, 1,}, { 90,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{ dim,-dim,-dim,}, { dim,-dim, dim,}, {-dim,-dim, dim,}, n, 1, 1,}, { 90,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, { dim,-dim,-dim,}, { dim,-dim, dim,}, n, 1, 1,}, { 90,0,0,}, nil)
+
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim, dim,}, {-dim,-dim,-dim,}, { dim,-dim,-dim,}, n, 1, 1,}, {180,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, {-dim,-dim, dim,}, { dim,-dim, dim,}, n, 1, 1,}, {180,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{ dim,-dim,-dim,}, { dim,-dim, dim,}, {-dim,-dim, dim,}, n, 1, 1,}, {180,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, { dim,-dim,-dim,}, { dim,-dim, dim,}, n, 1, 1,}, {180,0,0,}, nil)
+
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim, dim,}, {-dim,-dim,-dim,}, { dim,-dim,-dim,}, n, 1, 1,}, {270,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, {-dim,-dim, dim,}, { dim,-dim, dim,}, n, 1, 1,}, {270,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{ dim,-dim,-dim,}, { dim,-dim, dim,}, {-dim,-dim, dim,}, n, 1, 1,}, {270,0,0,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, { dim,-dim,-dim,}, { dim,-dim, dim,}, n, 1, 1,}, {270,0,0,}, nil)
+
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim, dim,}, {-dim,-dim,-dim,}, { dim,-dim,-dim,}, n, 1, 1,}, {0,0, 90,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, {-dim,-dim, dim,}, { dim,-dim, dim,}, n, 1, 1,}, {0,0, 90,}, nil)
+	stitchAdd({0,0,0,}, dist, {{ dim,-dim,-dim,}, { dim,-dim, dim,}, {-dim,-dim, dim,}, n, 1, 1,}, {0,0, 90,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, { dim,-dim,-dim,}, { dim,-dim, dim,}, n, 1, 1,}, {0,0, 90,}, nil)
+
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim, dim,}, {-dim,-dim,-dim,}, { dim,-dim,-dim,}, n, 1, 1,}, {0,0,270,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, {-dim,-dim, dim,}, { dim,-dim, dim,}, n, 1, 1,}, {0,0,270,}, nil)
+	stitchAdd({0,0,0,}, dist, {{ dim,-dim,-dim,}, { dim,-dim, dim,}, {-dim,-dim, dim,}, n, 1, 1,}, {0,0,270,}, nil)
+	stitchAdd({0,0,0,}, dist, {{-dim,-dim,-dim,}, { dim,-dim,-dim,}, { dim,-dim, dim,}, n, 1, 1,}, {0,0,270,}, nil)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -186573945}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

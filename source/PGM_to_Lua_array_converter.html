@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>PGM to Array Converter by Mikali</title>
+		<SCRIPT LANGUAGE="JavaScript">
+function docode()
+{
+//	var rowsNum = parseInt(myform.rows.value)
+	var colsNum = parseInt(myform.cols.value)
+	var inputString = myform.source.value
+	var inputArray = inputString.split(' ')
+	var outputString = 'local MyTable =\n{\n'
+	if (inputString.length > 0)
+	{
+		for (var i = 0; i < inputArray.length; i++)
+		{
+			if (i % colsNum == 0)
+			{
+				outputString += '\t{'
+			}
+			outputString += inputArray[i] + ','
+			if (i % colsNum == colsNum - 1)
+			{
+				outputString += '},\n'
+			}
+		}
+	}
+	outputString += '}'
+	myform.output.value = outputString
+}
+		</SCRIPT>
+	</head>
+	<body>
+		<h3>PGM to Array Converter by Mikali</h3>
+		<p>This tool converts ASCII PGM image data to Lua tables. See <a href="https://en.wikipedia.org/wiki/Portable_graymap">here</a> for an explanation of what the PGM image format is. PGM files can be read and written by XnView.</p>
+		<p>Directions: Type the number of columns of image data into the Cols field. Copy the ASCII image data into the input text field. The data should be all on one line as the script does not handle line breaks. Press the "Split Me" button. The output Lua table will appear in the output text field. Hopefully the number of rows will match the original image.</p>
+		<p>Large images greater than 64 x 64 pixels are probably not a good idea.</p>
+		<form name="myform">
+			<fieldset>
+				<legend>Input</legend>
+				<!--Rows: <input type="text" name="rows"><br/>-->
+				Cols: <input type="text" name="cols"><br/>
+				Data: <textarea name="source" rows="4" cols="80"></textarea><br/>
+				<input type="button" value="Split Me" onclick="docode()"><br/>
+			</fieldset>
+			<fieldset>
+				<legend>Output</legend>
+				<textarea name="output" rows="40" cols="80"></textarea><br/>
+			</fieldset>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+-- (2P) The Squash v1.1.9 by Mikali
+-- Created: 2005/09/05
+-- Updated: 2015/09/18
+-- Homepage: http://isometricland.net
+-- Teams: Top vs. Bottom
+
+levelDesc = "<c=FF4800>The Squash 1.1.9</c>"
+maxPlayers = 2
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+	local my_seed_2 = {seed = -12345}
+	local my_seed_3 = {seed = -12345}
+
+	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000})
+	addPoint("StartPos0", { 25000,-25000, 0}, {0, 270, 0})
+	addPoint("StartPos1", {-25000, 25000, 0}, {0,  90, 0})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", { 25000,-25000, 0}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", {-25000, 25000, 0}, {1, 1, 1, 1}, 0, 4096)
+
+	local PebbleDist =
+	{
+		Pebble = {4096, "Pebble", "Pebble_0", {0, 0, 0,}, 0, 0, 0,},
+	}
+	local AsteroidDist =
+	{
+		Asteroid = {64, "Asteroid", "Asteroid_4", {0, 0, 0,}, 100, 0, 0, 0, 0,},
+	}
+
+	-- shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+	-- If <sLay> is "Toroid", then <fA> equals the length of axis 1, <fB> equals the length of axis 2, <fC> equals the width of the tube, <fD> equals the thickness, and <fE> equals the height of the tube.
+	shapeAdd({0, 0, 0,}, PebbleDist,	{"Toroid", 25000, 10000, 25000, 0, 25000,}, {0, 0, 0,}, my_seed_1)
+	shapeAdd({0, 0, 0,}, AsteroidDist,	{"Toroid", 25000, 10000, 25000, 0, 25000,}, {0, 0, 0,}, my_seed_1)
+	shapeAdd({0, 0, 0,}, PebbleDist,	{"Toroid", 25000, 10000, 25000, 0, 25000,}, {0, 180, 0,}, my_seed_2)
+	shapeAdd({0, 0, 0,}, AsteroidDist,	{"Toroid", 25000, 10000, 25000, 0, 25000,}, {0, 180, 0,}, my_seed_2)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -1230892345}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

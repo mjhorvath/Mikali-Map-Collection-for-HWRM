@@ -1,0 +1,105 @@
+-- (4P) Plasma Globe v1.0.11 by Mikali
+-- Created: 2013/09/15
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>Plasma Globe 1.0.11</c>"
+maxPlayers = 4
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+	local my_seed_1 = {seed = -12345}
+	local my_seed_2 = {seed = -12345}
+	local my_seed_3 = {seed = -12345}
+	local my_seed_4 = {seed = -12345}
+	local my_seed_5 = {seed = -12345}
+	local my_seed_6 = {seed = -12345}
+	local CenterRadius = 1000
+
+	setWorldBoundsInner({0, 0, 0,}, {50000, 50000, 50000,})
+
+	addPoint("StartPos2", { 0, 0, 25000,}, {0, 180, 0,})
+	addPoint("StartPos0", { 0, 0,-25000,}, {0,   0, 0,})
+	addPoint("StartPos3", { 25000, 0, 0,}, {0, 270, 0,})
+	addPoint("StartPos1", {-25000, 0, 0,}, {0,  90, 0,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", { 0, 0, 25000,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", { 0, 0,-25000,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", { 25000, 0, 0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", {-25000, 0, 0,}, {1, 1, 1, 1}, 0, 4096)
+
+	-- distributions
+	local threeRings =
+	{
+--		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{128, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+--		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{  4, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  2, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{  1, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
+	}
+	local centerBall =
+	{
+--		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{128, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+--		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{  4, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  2, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{  1, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
+	}
+	local outerBall =
+	{
+--		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{16384, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+	}
+
+	--branchAdd(<tPos>, <tDst>, {<tDiv>, <tInt>, <tFrq>, <tBeg>, <tEnd>, <tRad>, <tLen>, <tThk>, <tAng>, <iMod>,}, <tRot>, <tSeed>, ...)
+	branchAdd({ CenterRadius,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {100,100,}, {0,30,}, 3,}, {0,  0,  0,}, my_seed_1)
+	branchAdd({0,0,-CenterRadius,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {100,100,}, {0,30,}, 3,}, {0, 90,  0,}, my_seed_1)
+	branchAdd({-CenterRadius,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {100,100,}, {0,30,}, 3,}, {0,180,  0,}, my_seed_1)
+	branchAdd({0,0, CenterRadius,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {100,100,}, {0,30,}, 3,}, {0,270,  0,}, my_seed_1)
+	branchAdd({0, CenterRadius,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {100,100,}, {0,30,}, 3,}, {0,  0, 90,}, my_seed_1)
+	branchAdd({0,-CenterRadius,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {100,100,}, {0,30,}, 3,}, {0,  0,270,}, my_seed_1)
+
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {0,  0,  0,}, my_seed_1)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {0, 90,  0,}, my_seed_2)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {0,180,  0,}, my_seed_3)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {0,270,  0,}, my_seed_4)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {0,  0, 90,}, my_seed_5)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {0,180,270,}, my_seed_6)
+
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
+--	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
+
+	shapeAdd({0,0,0,}, outerBall, {"Ellipsoid", 50000, 50000, 50000, 0}, {0,0,0,}, my_seed_1)
+	shapeAdd({0,0,0,}, centerBall, {"Ellipsoid", CenterRadius, CenterRadius, CenterRadius, CenterRadius}, {0,0,0,}, my_seed_1)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -2419879840}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

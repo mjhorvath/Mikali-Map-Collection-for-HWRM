@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<body>
+<pre id='s1'></pre>
+<pre id='s2'></pre>
+</body>
+<script>
+// i = y, j = x
+
+//var ne = prompt('enter n (even)', 5);
+var ne = 6;
+var side = 2*ne-1;
+var gride = [];
+var grido = [];
+var gridb = []
+
+for (var i = 0; i < side; i++) {
+	gride[i] = [];
+	grido[i] = [];
+	gridb[i] = [];
+	for (var j = 0; j < ne; j++) {
+		gride[i][j] = 0;
+		grido[i][j] = 0;
+	}
+	for (var j = 0; j < side; j++) {
+		gridb[i][j] = 0;
+	}
+}
+
+function drawGrid(target) {
+	var str = ''
+	for (var i = 0; i < side; i++) {
+		for (var j = 0; j < side; j++) {
+			if (j%2 == 0) {
+				str += gridb[i][j];
+				if (j < side - 1)
+					str += '-------';
+			}
+		}
+		str += '\n';
+		for (var j = 0; j < side; j++) {
+			if (j%2 == 1) {
+				str += '----' + gridb[i][j] + '---';
+				if (j == side - 2)
+					str += '-';
+			}
+		}
+		str += '\n';
+	}
+	target.innerHTML = str;
+}
+
+function makeHexagon() {
+	var cne = Math.ceil(ne/2) - ne%2;
+	for (var i = 0; i < side; i++) {
+		for (var j = 0; j < cne; j++) {
+			gride[i][j] = 1;
+			gride[i][ne-j-1] = 1;
+		}
+		if (i < ne-1)
+			cne--;
+		else if (i > ne - 1 - ne%2)
+			cne++;
+	}
+	cne = Math.ceil(ne/2) - 1 - ne%2;
+	for (var i = 0; i < side; i++) {
+		for (var j = 0; j < cne; j++) {
+			grido[i][j] = 1;
+			grido[i][ne-j-2] = 1;
+		}
+		if (i < ne - 1 - ne%2)
+			cne--;
+		else if (i > ne-2)
+			cne++;
+	}
+}
+
+function combineTables() {
+	for (var i = 0; i < side; i++) {
+		for (var j = 0; j < side; j++) {
+			if (j%2 == 0) {
+				gridb[i][j] = gride[i][j/2]
+			} else {
+				gridb[i][j] = grido[i][Math.floor(j/2)]
+			}
+		}
+	}
+}
+
+drawGrid(s1);
+makeHexagon();
+combineTables()
+drawGrid(s2);
+</script>
+</html>

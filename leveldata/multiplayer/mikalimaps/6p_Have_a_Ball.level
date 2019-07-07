@@ -1,0 +1,97 @@
+-- (6P) Have a Ball v1.3.18 by Mikali
+-- Created: 2004/03/18
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: odds vs. evens
+
+levelDesc = "<c=FF4800>Have a Ball 1.3.18</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+	local RRad = 30000
+
+	setWorldBoundsInner({0, 0, 0}, {RRad*3/2, RRad*3/2, RRad*3/2})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	local startRing =
+	{
+		{1, "StartPoint", "StartPos", {0,0,0,}, {0,0,0,}, 1,},
+--		{1, "CloudText", "CloudText", {0,0,0,}, {1,1,1,1}, 0, 4096,},
+	}
+	local patchRing =
+	{
+		{6, "Function", easyPatch, {0,0,0,}, 100,},
+	}
+	local patchRing2 =
+	{
+		{4, "Function", easyPatch, {0,0,0,}, 10,},
+	}
+	local pebbleRing =
+	{
+		{512,     "Pebble",   "Pebble_0", {0,0,0,}, 0, 0, 0,},
+	}
+	local dustcloudRing =
+	{
+		{36, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {1, 1, 1, 1}, 0, 10000,}
+	}
+	local deadroidRing =
+	{
+--		{0,   "Asteroid",   "Asteroid_3", {0,0,0,}, 0, 0, 0, 0, 0,},
+		{128,   "Asteroid",   "Asteroid_2", {0,0,0,}, 0, 0, 0, 0, 0,},
+	}
+
+--	addSquadron("Squadron1", "Hgn_Carrier", {0, 100, 0,}, 0, {0, 0, 0,}, 0, 0)
+
+--	shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+	-- these need to be updated to current syntax
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipsoid", RRad/10, RRad/10, RRad/10, random(0, RRad/10), 0,}, {0, 0, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipsoid", RRad/10, RRad/10, RRad/10, random(0, RRad/10), 0,}, {0, 60, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipsoid", RRad/10, RRad/10, RRad/10, random(0, RRad/10), 0,}, {0, -60, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipsoid", RRad/10, RRad/10, RRad/10, random(0, RRad/10), 0,}, {90, 0, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipsoid", RRad/10, RRad/10, RRad/10, random(0, RRad/10), 0,}, {-90, 0, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipse", RRad/2, RRad/2, 0, RRad/2, 0,}, {0, +000, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipse", RRad/2, RRad/2, 0, RRad/2, 0,}, {0, +060, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, deadroidRing, {"Ellipse", RRad/2, RRad/2, 0, RRad/2, 0,}, {0, -060, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, dustcloudRing, {"Ellipse", RRad, RRad, RRad/4, RRad/4, 0,}, {0, 0, 0,}, 1)
+--	shapeAdd({0, 0, 0,}, dustcloudRing, {"Ellipsoid", RRad, RRad, RRad/4, RRad/4, 0,}, {0, 0, 0,}, 0)
+
+	easyPatch({0,    0,0,}, 100, my_seed_1)
+	easyPatch({0, RRad,0,}, 100, my_seed_1)
+	easyPatch({0,-RRad,0,}, 100, my_seed_1)
+
+--	globeAdd(<tPos>, <tDst>, {<fRad>, <fLat>, <fLon>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <xNull>, <tSeed>)
+	globeAdd({0,0,0,}, pebbleRing, {RRad, 5, 3, 1000, 0, { 0, 360,}, 2,}, nil, my_seed_1)
+	globeAdd({0,0,0,},  patchRing, {RRad, 2, 0,    0, 0, {30, 390,}, 0,}, nil, my_seed_1)
+
+	local PSgn = 1
+	local YDeg = 30
+	for i = 1, maxPlayers do
+--		ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+		ringAdd({0,0,0,}, startRing, {RRad, RRad, 0, 0, {5 + 30 * PSgn, 365 + 30 * PSgn,}, 0,}, {90, YDeg, 0,}, my_seed_1)
+		PSgn = PSgn * -1
+		YDeg = YDeg + 60
+	end
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -871687}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 100000)
+--	setDustCloudAmbient({ random(), random(), random(), random(), })
+--	setNebulaAmbient({ random(), random(), random(), random(), })
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

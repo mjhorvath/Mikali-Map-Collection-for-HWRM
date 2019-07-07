@@ -1,0 +1,69 @@
+-- (4P) Metaball Madness v2.0.2 by Mikali
+-- Created: 2013/08/22
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: FFA
+
+levelDesc = "<c=FF4800>Metaball Madness 2.0.2</c>"
+maxPlayers = 4
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	local my_seed_1 = {seed = -random(235)}
+	local cloud_color = {srandom(my_seed_1),srandom(my_seed_1),srandom(my_seed_1),1}
+
+	setWorldBoundsInner({0, 0, 0}, {40000, 40000, 40000})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	local threeRings =
+	{
+		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{256, "Asteroid", "Asteroid_1", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{128, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 64, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 32, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		{  8, "Asteroid", "Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0,},
+	}
+
+	local BlobArea_1 = {}
+	local max_blobs = 4
+	for i = 1, max_blobs do
+		local u, v, r = srandom(my_seed_1, 360), srandom(my_seed_1, 180), srandom(my_seed_1, 10000) + 10000
+		local radius = r
+		local tCoo =
+		{
+			r * cos(u) * sin(v),
+			r * cos(v),
+			r * sin(u) * sin(v),
+		}
+		local rotate_amt = {0,srandom(my_seed_1, 360),0}
+		addPoint("StartPos"..(i-1), vaddV(tCoo, vrotate({-2000,0,0}, rotate_amt)), rotate_amt)
+--		addCloud("polySurface1", "cloud_text_"..i, tCoo, {1,1,1,1}, 0, 4096)
+		addCloud("polySurface1", "Cloud_0", tCoo, cloud_color, 0, radius)
+		easyPatch(tCoo, 100, my_seed_1)
+		BlobArea_1[i] = {tCoo, radius,}
+	end
+
+	--blobAdd(<tPos>, <tDst>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
+	blobAdd({0,0,0}, threeRings, {BlobArea_1, 4, 4.1, {1,1,1}}, {0,0,0}, my_seed_1)
+	--blobAdd3(tPos, tPar, tRot)
+	blobAdd3({0,0,0}, {BlobArea_1, 4, 4.1, 100, 80000}, {0,0,0})
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -1209843743}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

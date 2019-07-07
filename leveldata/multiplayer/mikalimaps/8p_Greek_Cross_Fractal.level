@@ -1,0 +1,349 @@
+-- (8P) Greek Cross Fractal 1.2.1 by Mikali
+-- Created: 2010/12/28
+-- Updated: 2015/09/18
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: Top vs. Bottom
+
+levelDesc = "<c=FF4800>Greek Cross Fractal 1.2.1</c>"
+maxPlayers = 8
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+coords = {}
+ccount = 1
+basedm = 4096
+levels = 3
+noaxes = 3
+WallsMode = 0				-- 0 = made of mixed-size plates but not overlapping; 1 = made of mixed-size plates but overlapping; 2 = made of the smallest plates but not overlapping
+
+function put_walls_0(coo)
+	local lvl = coo[4]
+	local num = 2^(levels-lvl)
+	local coo_length = getn(coo)
+	for k = 1, noaxes do
+		local k_2 = k + 1
+		if (k_2 == 4) then
+			k_2 = 1
+		end
+		for j = 1, 2 do
+			local pos_1 = num/2 * basedm - (j-1) * num * basedm
+			for l = 1, 2 do
+				local pos_2 = num/2 * basedm - (l-1) * num * basedm
+				coords[ccount] = {}
+				-- 1 thru 4
+				for m = 1, coo_length do
+					coords[ccount][m] = coo[m]
+				end
+				coords[ccount][k] = coords[ccount][k] + pos_1
+				coords[ccount][k_2] = coords[ccount][k_2] + pos_2
+				coords[ccount][5] = k
+				coords[ccount][6] = num/2 * basedm
+				ccount = ccount + 1
+			end
+		end
+	end
+end
+
+function put_walls_1(coo)
+	local lvl = coo[4]
+	local num = 2^(levels-lvl)
+	for k = 1, noaxes do
+		coords[ccount] = {}
+		for m = 1, getn(coo) do
+			coords[ccount][m] = coo[m]
+		end
+		coords[ccount][5] = k
+		ccount = ccount + 1
+	end
+end
+
+function put_walls_2(coo)
+	local lvl = coo[4]
+	local num = 2^(levels+1-lvl)
+	for k = 1, noaxes do
+		local k_2 = k + 1
+		if (k_2 == 4) then
+			k_2 = 1
+		end
+		for j = 1, num do
+			local pos_1 = basedm * j - basedm * num/2
+			for l = 1, num do
+				local pos_2 = basedm * l - basedm * num/2
+				coords[ccount] = {}
+				for m = 1, getn(coo) do
+					coords[ccount][m] = coo[m]
+				end
+				coords[ccount][k] = coords[ccount][k] + pos_1
+				coords[ccount][k_2] = coords[ccount][k_2] + pos_2
+				coords[ccount][5] = k
+				ccount = ccount + 1
+			end
+		end
+	end
+end
+
+function get_corners(coo)
+	local lvl = coo[4] + 1
+	local num = 2^(levels+1-lvl)
+	local points = {}
+	local pcount = 1
+	for j = 1, noaxes do
+		points[pcount] = {}
+		for k = 1, getn(coo) do
+			points[pcount][k] = coo[k]
+		end
+		points[pcount][j] = points[pcount][j] + basedm * num
+		points[pcount][4] = lvl
+		pcount = pcount + 1
+
+		points[pcount] = {}
+		for k = 1, getn(coo) do
+			points[pcount][k] = coo[k]
+		end
+		points[pcount][j] = points[pcount][j] - basedm * num
+		points[pcount][4] = lvl
+		pcount = pcount + 1
+	end
+	return points
+end
+
+function plot_shape(coo)
+	if (WallsMode == 0) then
+		put_walls_0(coo)
+	elseif (WallsMode == 1) then
+		put_walls_1(coo)
+	elseif (WallsMode == 2) then
+		put_walls_2(coo)
+	end
+	local lvl = coo[4]
+	if lvl < levels then
+		local temp = get_corners(coo)
+		for k = 1, getn(temp) do
+			plot_shape(temp[k])
+		end
+	end
+end
+
+function trim_duplicates_0()
+	local fclean = {}
+	local fcount = 1
+	for i = 1, getn(coords) do
+		local pass = 1
+		local check_1 = coords[i]
+		local level_1 = check_1[4]
+		local orient_1 = check_1[5]
+		local diff_1 = check_1[6]
+		for j = 1, getn(fclean) do
+			local check_2 = fclean[j]
+			local level_2 = check_2[4]
+			local orient_2 = check_2[5]
+			local diff_2 = check_2[6]
+			if ((orient_1 == orient_2) and (diff_1 < diff_2)) then
+				-- perpendicular to x
+				if (check_1[1] == check_2[1]) then
+					local cond_1 = check_1[3] > (check_2[3] - diff_2)
+					local cond_2 = check_1[3] < (check_2[3] + diff_2)
+					local cond_3 = check_1[2] > (check_2[2] - diff_2)
+					local cond_4 = check_1[2] < (check_2[2] + diff_2)
+					if (cond_1 and cond_2 and cond_3 and cond_4) then
+						pass = 0
+						break
+					end
+				-- perpendicular to y
+				elseif (check_1[2] == check_2[2]) then
+					local cond_1 = check_1[1] > (check_2[1] - diff_2)
+					local cond_2 = check_1[1] < (check_2[1] + diff_2)
+					local cond_3 = check_1[3] > (check_2[3] - diff_2)
+					local cond_4 = check_1[3] < (check_2[3] + diff_2)
+					if (cond_1 and cond_2 and cond_3 and cond_4) then
+						pass = 0
+						break
+					end
+				-- perpendicular to z
+				elseif (check_1[3] == check_2[3]) then
+					local cond_1 = check_1[1] > (check_2[1] - diff_2)
+					local cond_2 = check_1[1] < (check_2[1] + diff_2)
+					local cond_3 = check_1[2] > (check_2[2] - diff_2)
+					local cond_4 = check_1[2] < (check_2[2] + diff_2)
+					if (cond_1 and cond_2 and cond_3 and cond_4) then
+						pass = 0
+						break
+					end
+				end
+			end
+			if (pass == 0) then
+				break
+			end
+		end
+		if (pass == 1) then
+			fclean[fcount] = check_1
+			fcount = fcount + 1
+		end
+	end
+	return fclean
+end
+
+function trim_duplicates_2()
+	local fclean = {}
+	local fcount = 1
+	for i = 1, getn(coords) do
+		local pass = 1
+		local check_1 = coords[i]
+		local level_1 = check_1[4]
+		local lmove_1 = 2^(levels+1-level_1) * basedm
+		for j = 1, getn(fclean) do
+			local check_2 = fclean[j]
+			local level_2 = check_2[4]
+			local lmove_2 = 2^(levels+1-level_2) * basedm
+			if (((check_1[1] - check_2[1]) == 0) and ((check_1[2] - check_2[2]) == 0) and ((check_1[3] - check_2[3]) == 0) and ((check_1[5] - check_2[5]) == 0)) then
+				pass = 0
+				break
+			end
+		end
+		if (pass == 1) then
+			fclean[fcount] = check_1
+			fcount = fcount + 1
+		end
+	end
+	return fclean
+end
+
+function spawn_walls_0(coords)
+	for i = 1, getn(coords) do
+		local k = coords[i]
+		local iLevel = k[4]
+		local iOrient = k[5]
+		local wallobj = ""
+		local rotate = {}
+		if (WallsMode == 0) then
+			if (iLevel == 1) then
+				wallobj = "box_16384_64_16384"
+			elseif (iLevel == 2) then
+				wallobj = "box_8192_64_8192"
+			elseif (iLevel == 3) then
+				wallobj = "box_4096_64_4096"
+			end
+		elseif (WallsMode == 1) then
+			if (iLevel == 1) then
+				wallobj = "box_32768_64_32768"
+			elseif (iLevel == 2) then
+				wallobj = "box_16384_64_16384"
+			elseif (iLevel == 3) then
+				wallobj = "box_8192_64_8192"
+			end
+		elseif (WallsMode == 2) then
+			wallobj = "box_4096_64_4096"
+		end
+		if (iOrient == 1) then
+			rotate = {090,000,000,}
+		elseif (iOrient == 2) then
+			rotate = {000,000,090,}
+		elseif (iOrient == 3) then
+			rotate = {000,000,000,}
+		end
+		addSquadron("none", wallobj, {k[1],k[2],k[3],}, -1, rotate, 1, 0)
+	end
+end
+
+function spawn_walls_2(coords)
+	local wallobj = "box_4096_64_4096"
+	for i = 1, getn(coords) do
+		local k = coords[i]
+		local iOrient = k[5]
+		local position = {}
+		local rotate = {}
+		if (iOrient == 1) then
+			position = {k[1]-basedm/2,k[2]-basedm/2,k[3],}
+			rotate = {090,000,000,}
+		elseif (iOrient == 2) then
+			position = {k[1],k[2]-basedm/2,k[3]-basedm/2,}
+			rotate = {000,000,090,}
+		elseif (iOrient == 3) then
+			position = {k[1]-basedm/2,k[2],k[3]-basedm/2,}
+			rotate = {000,000,000,}
+		end
+		addSquadron("none", wallobj, position, -1, rotate, 1, 0)
+	end
+end
+
+function DetermChunk()
+	local offset_angle = 7
+	addPoint("StartPos0", vrotate({ basedm*2, basedm*2, basedm*2}, {0,offset_angle,0}), {0,225+offset_angle, 0})
+	addPoint("StartPos1", vrotate({-basedm*2, basedm*2, basedm*2}, {0,offset_angle,0}), {0,135+offset_angle, 0})
+	addPoint("StartPos2", vrotate({ basedm*2,-basedm*2, basedm*2}, {0,offset_angle,0}), {0,225+offset_angle, 0})
+	addPoint("StartPos3", vrotate({-basedm*2,-basedm*2, basedm*2}, {0,offset_angle,0}), {0,135+offset_angle, 0})
+	addPoint("StartPos4", vrotate({ basedm*2, basedm*2,-basedm*2}, {0,offset_angle,0}), {0,315+offset_angle, 0})
+	addPoint("StartPos5", vrotate({-basedm*2, basedm*2,-basedm*2}, {0,offset_angle,0}), {0, 45+offset_angle, 0})
+	addPoint("StartPos6", vrotate({ basedm*2,-basedm*2,-basedm*2}, {0,offset_angle,0}), {0,315+offset_angle, 0})
+	addPoint("StartPos7", vrotate({-basedm*2,-basedm*2,-basedm*2}, {0,offset_angle,0}), {0, 45+offset_angle, 0})
+
+	easyPatch({ basedm*2, basedm*2, basedm*2}, 100)
+	easyPatch({-basedm*2, basedm*2, basedm*2}, 100)
+	easyPatch({ basedm*2,-basedm*2, basedm*2}, 100)
+	easyPatch({-basedm*2,-basedm*2, basedm*2}, 100)
+	easyPatch({ basedm*2, basedm*2,-basedm*2}, 100)
+	easyPatch({-basedm*2, basedm*2,-basedm*2}, 100)
+	easyPatch({ basedm*2,-basedm*2,-basedm*2}, 100)
+	easyPatch({-basedm*2,-basedm*2,-basedm*2}, 100)
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", vrotate({ basedm*2, basedm*2, basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", vrotate({-basedm*2, basedm*2, basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", vrotate({ basedm*2,-basedm*2, basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", vrotate({-basedm*2,-basedm*2, basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_5", vrotate({ basedm*2, basedm*2,-basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_6", vrotate({-basedm*2, basedm*2,-basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_7", vrotate({ basedm*2,-basedm*2,-basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_8", vrotate({-basedm*2,-basedm*2,-basedm*2}, {0,offset_angle,0}), {1, 1, 1, 1}, 0, 4096)
+
+	plot_shape({0,0,0,1})
+
+	if (WallsMode == 0) then
+		coords = trim_duplicates_0()
+		spawn_walls_0(coords)
+	elseif (WallsMode == 1) then
+		spawn_walls_0(coords)
+	elseif (WallsMode == 2) then
+		coords = trim_duplicates_2()
+		spawn_walls_2(coords)
+	end
+
+	for i = 1, 4 do
+		local xmulti = 1
+		local ymulti = 1
+		local zmulti = 1
+		if (i == 2) then
+			xmulti = 5
+		elseif (i == 3) then
+			ymulti = 5
+		elseif (i == 4) then
+			zmulti = 5
+		end
+		addAsteroid("Asteroid_5", {-basedm*xmulti,-basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", { basedm*xmulti,-basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", {-basedm*xmulti, basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", { basedm*xmulti, basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", {-basedm*xmulti,-basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", { basedm*xmulti,-basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", {-basedm*xmulti, basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_5", { basedm*xmulti, basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+	end
+
+	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000,})
+end
+
+function NonDetermChunk()
+	fogSetActive(0)
+	setGlareIntensity(0.000000)
+	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)
+	setSensorsManagerCameraDistances(20000,60000)
+	local my_seed_1 = {seed = -278981}
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

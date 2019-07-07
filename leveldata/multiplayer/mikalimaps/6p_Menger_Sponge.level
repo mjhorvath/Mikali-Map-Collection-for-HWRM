@@ -1,0 +1,130 @@
+-- (6P) Menger Sponge 1.1.2 by Mikali
+-- Created: 2010/12/28
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: Odds vs. Evens
+
+levelDesc = "<c=FF4800>Menger Sponge 1.1.2</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+coords = {}
+ccount = 1
+basedm = 4096
+levels = 2
+noaxes = 3
+modobj = "box_4096_4096_4096"
+
+function put_boxes(coo)
+	local lvl = coo[4] + 1
+	local points = {}
+	local pcount = 1
+	for i = 1, noaxes do
+		for j = 1, noaxes do
+			for k = 1, noaxes do
+				if (i == 2 and j == 2) then
+					if ((j == 2 and k == 2) or (k == 2 and i == 2)) then
+						points[pcount] =  {}
+						for l = 1, noaxes do
+							points[pcount][l] = coo[l] * lvl
+						end
+						points[pcount][1] = points[pcount][1] + (i-1) * basedm
+						points[pcount][2] = points[pcount][2] + (j-1) * basedm
+						points[pcount][3] = points[pcount][3] + (k-1) * basedm
+						points[pcount][4] = lvl
+						points[pcount][5] = 0
+						pcount = pcount + 1
+					end
+				else
+					if not (j == 2 and k == 2) then
+						if not (k == 2 and i == 2) then
+							if (coo[5] == 1) then
+								points[pcount] =  {}
+								for l = 1, noaxes do
+									points[pcount][l] = coo[l] * lvl
+								end
+								points[pcount][1] = points[pcount][1] + (i-1) * basedm
+								points[pcount][2] = points[pcount][2] + (j-1) * basedm
+								points[pcount][3] = points[pcount][3] + (k-1) * basedm
+								points[pcount][4] = lvl
+								points[pcount][5] = 1
+								pcount = pcount + 1
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	return points
+end
+
+function plot_shape(coo)
+	if (check_duplicates(coo) == 0) then
+		return 0
+	end
+	local lvl = coo[4]
+	if lvl <= levels then
+		local temp = put_boxes(coo)
+		for k = 1, getn(temp) do
+			plot_shape(temp[k])
+		end
+	else
+		local addAmt = basedm/2 - 3 * lvl * basedm/2
+		local newPos = {coo[1] + addAmt, coo[2] + addAmt, coo[3] + addAmt}
+		if (coo[5] == 1) then
+			addSquadron("none", modobj, newPos, -1, {0,0,0,}, 1, 0)
+		else
+			addAsteroid("Asteroid_5", newPos, 100, 0, 0, 0, 0)
+		end
+	end
+end
+
+function check_duplicates(in_coo)
+	for i = 1, getn(coords) do
+		local this_coo = coords[i]
+		if ((in_coo[1] == this_coo[1]) and (in_coo[2] == this_coo[2]) and (in_coo[3] == this_coo[3]) and (in_coo[4] == this_coo[4]) and (in_coo[5] == this_coo[5])) then
+			return 0
+		end
+	end
+	tinsert(coords, in_coo)
+	return 1
+end
+
+function DetermChunk()
+	addPoint("StartPos0", {-basedm*3, 0, 0,}, {0, 0, 0,})
+	addPoint("StartPos1", { basedm*3, 0, 0,}, {0, 0, 0,})
+	addPoint("StartPos2", { 0,-basedm*3, 0,}, {0, 0, 0,})
+	addPoint("StartPos3", { 0, basedm*3, 0,}, {0, 0, 0,})
+	addPoint("StartPos4", { 0, 0,-basedm*3,}, {0, 0, 0,})
+	addPoint("StartPos5", { 0, 0, basedm*3,}, {0, 0, 0,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", {-basedm*3, 0, 0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", { basedm*3, 0, 0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", { 0,-basedm*3, 0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", { 0, basedm*3, 0,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_5", { 0, 0,-basedm*3,}, {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_6", { 0, 0, basedm*3,}, {1, 1, 1, 1}, 0, 4096)
+
+	plot_shape({0,0,0,1,1})
+
+	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000,})
+end -- end of deterministic function
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -8724216}
+	fogSetActive(0)
+	setGlareIntensity(0.000000)
+	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)
+	setSensorsManagerCameraDistances(20000,60000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end -- end of nondeterm function
+
+dofilepath("data:scripts/MapFunctions.lua")

@@ -1,0 +1,63 @@
+-- (6P) Klein Bottle v1.0.13 by Mikali
+-- Created: 2006/01/02
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+levelDesc = "<c=FF4800>Klein Bottle 1.0.13</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+
+	setWorldBoundsInner({0,0,0,}, {50000, 20000, 50000,})
+	setWorldBoundsOuter({0,0,0,}, {50000, 20000, 50000,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	local PebDist =
+	{
+		{8192, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{128, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+	}
+	local StartDist =
+	{
+		{3, "StartPoint", "StartPos", {0,0,0,}, {0,0,0,},},
+--		{3, "CloudText", "CloudText", {0,0,0,}, {1,1,1,1}, 0, 4096,},
+	}
+	local EasyDist =
+	{
+		{3, "Function", easyPatch, {0,0,0,}, 100, my_seed_1,},
+	}
+
+	easyPatch({-9000, 12000,-9000,}, 100, my_seed_1)
+	easyPatch({ 9000,-12000, 9000,}, 100, my_seed_1)
+
+--	ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0,0,0,},  EasyDist, {30000, 30000, 0, 0, {  5, 145,}, 0,}, {0,0,0,}, my_seed_1)
+	ringAdd({0,0,0,},  EasyDist, {30000, 30000, 0, 0, {185, 335,}, 0,}, {0,0,0,}, my_seed_1)
+	ringAdd({0,0,0,}, StartDist, {30000, 30000, 0, 0, {  0, 150,}, 0,}, {0,0,0,}, my_seed_1)
+	ringAdd({0,0,0,}, StartDist, {30000, 30000, 0, 0, {180, 330,}, 0,}, {0,0,0,}, my_seed_1)
+--	shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+--	If <sLay> is "Klein8", then <fA> equals the scaling along the x-axis, <fB> equals the scaling along the z-axis, <fC> equals the scaling along the y-axis, <fD> is zero, and <fE> is the radius of the circle before scaling.
+	shapeAdd({0,0,0,}, PebDist, {"Klein8", 10000, 10000, 10000, 0, 3,}, {0,0,0,}, my_seed_1)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -1564821}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

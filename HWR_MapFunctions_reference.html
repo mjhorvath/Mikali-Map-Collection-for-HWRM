@@ -1,0 +1,697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Map Functions Reference</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<a name="top"></a>
+<h3>Map Functions Reference</h3>
+<p>Note that this reference may be out of date. If you are having problems, check the descriptions for the functions themselves in the &quot;MapFunctions.lua&quot; source code.</p>
+<h4>&quot;DetermChunk&quot; functions (these go in the &quot;DetermChunk&quot; portion of your level file):</h4>
+<ul>
+<li><a href="#easyPatch">easyPatch</a>: Creates a resource patch with minimal effort.</li>
+<li><a href="#shapeAdd">shapeAdd</a>: Creates one of several available mathematical shapes.</li>
+<li><a href="#harmonographAdd">harmonographAdd</a>: Creates a squiggly curving tube. The shape is similar to that produced by a harmonograph, except in three dimensions.</li>
+<li><a href="#branchAdd">branchAdd</a>: Creates a branching tree using either straight sections or smooth splines.</li>
+<li><a href="#blobAdd">blobAdd</a>: Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields.</li>
+<li><a href="#fieldAdd">fieldAdd</a>: Similar to blobAdd, except it produces a heightmap based on the field strength instead of blobs.</li>
+<li><a href="#heightmapAdd">heightmapAdd</a>: Creates a matrix of dots based on heightmap data.</li>
+<li><a href="#flokalAdd">flokalAdd</a>: Creates a kaleidoscopic bubble and swirl pattern kind of like a doily.</li>
+<li><a href="#stitchAdd">stitchAdd</a>: Generates a triangle made of crosshatched line segments, like in the art of curvestitching.</li>
+<li><a href="#spline2Add">spline2Add</a>: Creates a quadratic spline-shaped tube using two end points and a control point.</li>
+<li><a href="#spline3Add">spline3Add</a>: Creates a Hermite cubic spline-shaped tube using two end points and two control points.</li>
+<li><a href="#ringAdd">ringAdd</a>: Creates an elliptical ring centered around one of its foci.</li>
+<li><a href="#globeAdd">globeAdd</a>: Creates a series of rings in the shape of a sphere, like the lines of latitude and longite on a globe.</li>
+<li><a href="#spiralAdd">spiralAdd</a>: Creates a Nautilus (i.e., equiangular or logarithmic) or Archimedes spiral.</li>
+<li><a href="#literalAdd">literalAdd</a>: Plots all objects' positions exactly as entered.</li>
+</ul>
+<h4>&quot;NonDetermChunk&quot; functions (these go in the &quot;NonDetermChunk&quot; portion of your level file):</h4>
+<ul>
+<li><a href="#randomBackground">randomBackground</a>: Randomly selects the level background.</li>
+<li><a href="#randomMusic">randomMusic</a>: Randomly selects the level music.</li>
+</ul>
+<h4>Other functions:</h4>
+<ul>
+<li><a href="#appendShape">appendShape</a>: General shape-adding function utilized internally by the other functions.</li>
+<li>addCoordinate: Simply adds the outputted coordinates to a table. You can then do whatever you want with the coordinates.</li>
+<li>fieldCalc: calculates the strength of an electromagnetic field at a given point.</li>
+</ul>
+<h4>Table manipulation functions:</h4>
+<ul>
+<li>getn: Returns the length of a table. Useful where the &quot;getn&quot; function is normally unavailable.</li>
+<li>tinsert: Inserts an item into a table. Useful where the &quot;tinsert&quot; function is normally unavailable.</li>
+<li>tcomp: Compares two tables and returns true if they are equal and false if they are not.</li>
+</ul>
+<h4>Random number functions:</h4>
+<ul>
+<li>randomSign: Randomly returns either 1 or -1.</li>
+<li>randomBit: Randomly returns either 1 or 0.</li>
+<li>random2: Works just like &quot;random&quot;, but can accept zero as an argument.</li>
+<li>random3: Works just like &quot;random&quot;, but can accept zero as an argument and always returns a float value instead of an integer.</li>
+<li>randomSet: For each argument, returns a random float value between 0 and the value of the argument. Can take between one and five arguments.</li>
+<li>randomSet2: For every two arguments, returns a random number between the value of the former argument and the value of the latter argument. Can take between two and ten arguments.</li>
+<li>srandom: Works like random(), except you provide your own seed as the first argument. The results are that maps appear the same each time you run the game, but desyncs may possibly be avoided.</li>
+<li>srandomSign: Randomly returns either 1 or -1. Seeded.</li>
+<li>srandomBit: Randomly returns either 1 or 0. Seeded.</li>
+<li>srandom2: Works just like &quot;random&quot;, but can accept zero as an argument. Seeded.</li>
+<li>srandom3: Works just like &quot;random&quot;, but can accept zero as an argument and always returns a float value instead of an integer. Seeded.</li>
+<li>srandomSet: For each argument, returns a random float value between 0 and the value of the argument. Can take between one and five arguments. Seeded.</li>
+<li>srandomSet2: For every two arguments, returns a random number between the value of the former argument and the value of the latter argument. Can take between two and ten arguments. Seeded.</li>
+<li>vrand</li>
+<li>svrand</li>
+<li>vrand2</li>
+<li>svrand2</li>
+<li>vrand3</li>
+<li>svrand3</li>
+</ul>
+<h4>Vector functions (modeled after the functions found in the POV-Ray raytracer):</h4>
+<ul>
+<li>vnormalize: Returns the normalized form of a vector.</li>
+<li>vlength: Returns the length of a vector.</li>
+<li>vdistance: Returns the distance between two vectors.</li>
+<li>vdot: Returns the dot product of two vectors.</li>
+<li>vangle: Returns the angle between two vectors.</li>
+<li>vcross: Returns the cross product of two vectors as a new vector.</li>
+<li>vadd: Adds an amount to each vector component, then returns the resulting vector.</li>
+<li>vaddV: Adds the components of the second vector to the components of the first vector, then returns the resulting vector.</li>
+<li>vsubtract: Subtracts an amount from each vector component, then returns the resulting vector.</li>
+<li>vsubtractV: Subtracts the components of the second vector from the components of the first vector, then returns the resulting vector.</li>
+<li>vmultiply: Multiplies each vector component by some amount, then returns the resulting vector.</li>
+<li>vmultiplyV: Multiplies the components of the first vector by the components of the second vector, then returns the resulting vector.</li>
+<li>vdivide: Divides each vector component by some amount, then returns the resulting vector.</li>
+<li>vdivideV: Divides the components of the first vector by the components of the second vector, then returns the resulting vector.</li>
+<li>vpower: Raises each vector component to the some power, then returns the new vector.</li>
+<li>vpowerV: Raises the components of the first vector to the power specified by the components the second vector, then returns the new vector.</li>
+<li>vsum: Returns the sum of all the vector's components.</li>
+<li>vstr: Returns a vector converted into a string.</li>
+<li>vrotate: Rotates a vector around the origin by the specified Euler angles, then returns the resulting vector.</li>
+<li>vanglesXY: Returns an array containing the vector's Euler angles, relative to the z-axis.</li>
+<li>vaxis_rotate: Rotates the first vector around the second vector by some amount, then returns the resulting vector.</li>
+</ul>
+<h4>Miscellaneaous mathematical functions:</h4>
+<ul>
+<li>round: Rounds a number to the nearest integer.</li>
+</ul>
+<h4>Trigonometric functions:</h4>
+<ul>
+<li>cosh: Returns the hyperbolic cosine of an angle.</li>
+<li>sinh: Returns the hyperbolic sine of an angle.</li>
+<li>tanh: Returns the hyperbolic tangent of an angle.</li>
+<li>csch: Returns the hyperbolic cosecant of an angle.</li>
+<li>sech: Returns the hyperbolic secant of an angle.</li>
+<li>coth: Returns the hyperbolic cotangent of an angle.</li>
+<li>csc: Returns the cosecant of an angle.</li>
+<li>sec: Returns the secant of an angle.</li>
+<li>cot: Returns the cotangent of an angle.</li>
+<li>exsec: Returns the exsecant of an angle.</li>
+<li>coexsec: Returns the coexsecant of an angle.</li>
+<li>vers: Returns the versesine of an angle.</li>
+<li>covers: Returns the coversesine of an angle.</li>
+<li>hav: Returns the half-versesine of an angle.</li>
+</ul>
+<h4>Curve and surface functions (these are used by the &quot;shapeAdd&quot; function):</h4>
+<table cellspacing="0" cellpadding="0">
+<tr valign="top">
+<td>
+<ul>
+<li>makeCuboid</li>
+<li>makeEllipsoid</li>
+<li>makeCylinder</li>
+<li>makeCone</li>
+<li>makeToroid</li>
+<li>makeHelicoid</li>
+<li>makeParaboloid</li>
+<li>makeHyperboloid</li>
+<li>makeAstroid</li>
+<li>makeFunnel</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>makeDini</li>
+<li>makeCorkscrew</li>
+<li>makeSeashell</li>
+<li>makeSineDisc</li>
+<li>makeSinePlane</li>
+<li>makeMoebius</li>
+<li>makeLissajous3D</li>
+<li>makeKlein</li>
+<li>makeKlein8</li>
+<li>makeKuen</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>makeBoy</li>
+<li>makeRectangle</li>
+<li>makeEllipse</li>
+<li>makeParabola</li>
+<li>makeHyperbola</li>
+<li>makeHypotrochoid</li>
+<li>makeEpitrochoid</li>
+<li>makeLissajous2D</li>
+</ul>
+</td>
+</tr>
+</table>
+<h4>Debug functions:</h4>
+<ul>
+<li>print_map_stats: Prints the number of objects of each type added to the map.</li>
+</ul>
+<br />
+<hr />
+<p>
+<a name="easyPatch"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="2">easyPatch</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="2">Creates a resource patch with minimal effort.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="2">easyPatch(&lt;tPos&gt;, &lt;fRUs&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td>the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;fRUs&gt;:</td>	<td>(optional) the percent of the default RU to retain.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td>(optional) the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="shapeAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">shapeAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates one of several available shapes.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">shapeAdd(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;sLay&gt;, &lt;fA&gt;, &lt;fB&gt;, ...}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following six parameters: &lt;sLay&gt;, &lt;fA&gt;, &lt;fB&gt;, &lt;fC&gt;, &lt;fD&gt; and &lt;fE&gt;. The last five vary depending on &lt;sLay&gt;.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;sLay&gt;:</td>	<td colspan="2">the type of shape to generate. (string)</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Cylinder&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Cone&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Ellipsoid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Cuboid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Toroid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the width of the tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>equals the height of the tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Helicoid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the width. (Thickness is not supported in this case.)</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is the number of revolutions.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Paraboloid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1 at a height of 1000 units.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2 at a height of 1000 units.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Hyperboloid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Astroid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Funnel&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals roughly the inverse of the length of axis 3 for large numbers of objects.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Dini&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the distance between each twist.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is the number of twists.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Corkscrew&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the height of the screw.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Seashell&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1 of the tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2 of the tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the vertical separation between revolutions.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the radius of the center gap.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>equals the number of revolutions.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;SineDisc&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the maximum height of the wave.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>equals the frequency of the wave pattern.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;SinePlane&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the maximum height of the wave.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>equals the frequency of the wave pattern.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Moebius&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals half the width of the strip.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Klein&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the scaling along the x-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the scaling along the z-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the scaling along the y-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Klein8&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the scaling along the x-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the scaling along the z-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the scaling along the y-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Boy&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the scaling along the x-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the scaling along the z-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the scaling along the y-axis.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is an integer greater than 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Rectangle&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Ellipse&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the length of axis 3.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Parabola&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the distance between the vertex and the focus.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the height.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Hyperbola&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the distance from the origin to one of the foci.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the thickness.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>is always zero.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Hypotrochoid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the radius of the greater circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the radius of the lesser circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the radius of the sphere sweep.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the distance from the center of the lesser circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>equals the number of revolutions.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td colspan="2">If &lt;sLay&gt; is &quot;Epitrochoid&quot;:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fA&gt;:</td>	<td>equals the radius of the greater circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fB&gt;:</td>	<td>equals the radius of the lesser circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fC&gt;:</td>	<td>equals the radius of the sphere sweep.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fD&gt;:</td>	<td>equals the distance from the center of the lesser circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fE&gt;:</td>	<td>equals the number of revolutions.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z Euler rotation angles, in degrees, for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+
+<p>
+<a name="harmonographAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="4">harmonographAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="4">Creates a squiggly curving tube. The shape is similar to that produced by a harmonograph, except in three dimensions. See for more info: <a href="http://en.wikipedia.org/wiki/Harmonograph">http://en.wikipedia.org/wiki/Harmonograph</a></td></tr>
+<tr valign="top"><td>Syntax:</td>		<td colspan="4">harmonographAdd(&lt;tPos&gt;, &lt;tDst&gt;, {{&lt;fA&gt;, &lt;fF&gt;, &lt;fP&gt;, &lt;fD&gt;}, &lt;tGrp2&gt;, &lt;tGrp3&gt;, &lt;tGrp4&gt;, &lt;tGrp5&gt;, &lt;tGrp6&gt;, &lt;fTim&gt;, &lt;fRad&gt;, &lt;fThk&gt;, &lt;tScale&gt;, &lt;iMod&gt;}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="3">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="3">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="3">a table containing the following six parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tGrp1&gt;:</td>	<td colspan="2">a table containing the following four parameters:</td></tr>
+<tr valign="top"><td colspan="3"></td>					<td>&lt;fA&gt;: amplitude.</td></tr>
+<tr valign="top"><td colspan="3"></td>					<td>&lt;fF&gt;: frequency.</td></tr>
+<tr valign="top"><td colspan="3"></td>					<td>&lt;fP&gt;: phase (degrees).</td></tr>
+<tr valign="top"><td colspan="3"></td>					<td>&lt;fD&gt;: damping.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tGrp2&gt;:</td>	<td colspan="2">ditto.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tGrp3&gt;:</td>	<td colspan="2">ditto.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tGrp4&gt;:</td>	<td colspan="2">ditto.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tGrp5&gt;:</td>	<td colspan="2">ditto.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fTim&gt;:</td>	<td colspan="2">the time parameter.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fRad&gt;:</td>	<td colspan="2">the radius of the curving tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThk&gt;:</td>	<td colspan="2">the thickness of the tube as a percentage of the radius.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tScale&gt;:</td>	<td colspan="2">scale the entire shape by this much.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iMod&gt;:</td>	<td colspan="2">0 = non-random, 1 = random.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="3">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="3">the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="branchAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">branchAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a branching tree using either straight sections or smooth splines.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">branchAdd(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;tDiv&gt;, &lt;tInt&gt;, &lt;tFrq&gt;, &lt;tBeg&gt;, &lt;tEnd&gt;, &lt;tRad&gt;, &lt;tLen&gt;, &lt;tThk&gt;, &lt;tAng&gt;, &lt;iMod&gt;,}, &lt;tRot&gt;, &lt;tSeed&gt;, ...)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following ten parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tDiv&gt;:</td>	<td>a table containing the minimum and maximum number of new shoots that are generated each time the tree divides.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tInt&gt;:</td>	<td>a table containing the minimum and maximum number of segments between instances of division.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tFrq&gt;:</td>	<td>a table containing the minimum and maximum number of times the tree divides.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tBeg&gt;:</td>	<td>a table containing the minimum and maximum number of segments added to the beginning of the tree.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tEnd&gt;:</td>	<td>a table containing the minimum and maximum number of segments added to the end of the tree (at the end of each branch). (Note: this value needs to be greater than zero in order for the last division to be noticable.)</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tRad&gt;:</td>	<td>a table containing the the minimum and maximum radius of a segment.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tLen&gt;:</td>	<td>a table containing the minimum and maximum length of a segment.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tThk&gt;:</td>	<td>a table containing the minimum and maximum thickness, as percentages of the radius, of a segment.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tAng&gt;:</td>	<td>a table containing the minimum and maximum angle of deviation between segments.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iMod&gt;:</td>	<td>0 is non-random mode, 1 is random placement with steadily decreasing length and radius, 2 is random placement with random length and radius, 3 is a method using splines similar to method 1.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+<tr valign="top"><td></td>		<td colspan="3">The remaining arguments are used internally by the function and should not be modified.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="blobAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">blobAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">blobAdd(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;tBlobs&gt;, &lt;fThrsh1&gt;, &lt;fThrsh2&gt;, &lt;tScale&gt;,}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following four parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tBlobs&gt;:</td>	<td>a table containing the location coordinates and strength of each blob.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThrsh1&gt;:</td>	<td>threshold 1 of the blob formula (see below).</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThrsh2&gt;:</td>	<td>threshold 2 of the blob formula (see below).</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tScale&gt;:</td>	<td>scale the entire shape by these amounts in the {x,y,z} directions. Scaling occurs before translation and rotation.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+<tr valign="top"><td colspan="5">See "Method 1" at <a href="http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm">http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm</a> for math formula info.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="fieldAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">fieldAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Similar to blobAdd, except it produces a heightmap based on the field strength instead of 3D blobs.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">fieldAdd(&lt;tPos&gt;, &lt;tRes&gt;, {&lt;tBlobs&gt;, &lt;fThrshMin&gt;, &lt;fThrshMax&gt;, &lt;tScale&gt;,}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRes&gt;:</td>	<td colspan="2">a table containing the parameters of the outputted pebble or asteroid.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following five parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tBlobs&gt;:</td>	<td>a table containing the location coordinates and strength of each blob.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThrshMin&gt;:</td>	<td>minimum threshold in units of field strength.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThrshMax&gt;:</td>	<td>maximum threshold in units of field strength.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fFieldSize&gt;:</td>	<td>the size of the entire field in X, Y, Z dimensions.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fStepHeight&gt;:</td>	<td>the height of one unit of field strength.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+<tr valign="top"><td colspan="5">See "Method 1" at <a href="http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm">http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm</a> for math formula info.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="heightmapAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">heightmapAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a matrix of dots based on heightmap data.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">heightmapAdd(&lt;tPos&gt;, &lt;tRes&gt;, {&lt;tData&gt;, &lt;tScale&gt;}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRes&gt;:</td>	<td colspan="2">a table containing the parameters of the outputted pebble or asteroid.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following five parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tData&gt;:</td>		<td>the heightmap data in the form of a two-dimensional array.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tScale&gt;:</td>	<td>the amount to scale the heightmap in the X, Y and Z directions.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;xNil&gt;:</td>	<td colspan="2">this should always remain &quot;nil&quot;. It is ignored and used only to adhere to the API.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="flokalAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">flokalAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a kaleidoscopic bubble and swirl pattern kind of like a doily. Based on &quot;doodle 4&quot; by bitcraft, <a href="http://www.openprocessing.org/sketch/17344">http://www.openprocessing.org/sketch/17344</a></td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">flokalAdd(&lt;tPos&gt;, &lt;tRes&gt;, {&lt;iNx&gt;, &lt;iNy&gt;, &lt;iXmin&gt;, &lt;iSx&gt;, &lt;iSy&gt;, &lt;iSym&gt;, &lt;fEcc&gt;, &lt;bInside&gt;, &lt;fScale&gt;,}, &lt;tRot&gt;, &lt;xNil&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRes&gt;:</td>	<td colspan="2">a table containing the parameters of the outputted pebble or asteroid.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following nine parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iNx&gt;:</td>	<td>the number of &quot;horizontal&quot; equipotential lines per charge, not taking into account iXmin.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iNy&gt;:</td>	<td>the number of &quot;vertical&quot; flow lines per charge.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iXmin&gt;:</td>	<td>size of the empty hole for each charge, measured in &quot;horizontal&quot; lines.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iSx&gt;:</td>	<td>the number of extra items spaced between &quot;horizontal&quot; lines.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iSy&gt;:</td>	<td>the number of extra items spaced between &quot;vertical&quot; lines.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iSym&gt;:</td>	<td>number of charges arranged around the origin.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fEcc&gt;:</td>	<td>the eccentricity of the shape, i.e. the amount the shape diverges from a circle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;bInside&gt;:</td>	<td>are the curved lines inside or outside of the reference circle?</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fScale&gt;:</td>	<td>scale the whole shape by this amount in all directions.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;xNil&gt;:</td>	<td colspan="2">this should always remain &quot;nil&quot;. It is ignored and used only to adhere to the API.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="stitchAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">stitchAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Generates a triangle made of crosshatched line segments, like in the art of curvestitching.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">stitchAdd(&lt;tPos&gt;, &lt;tRes&gt;, {&lt;tPtA&gt;, &lt;tPtB&gt;, &lt;tPtC&gt;, &lt;iNum&gt;, &lt;bAll&gt;, &lt;bCorners&gt;,}, &lt;tRot&gt;, &lt;xNil&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRes&gt;:</td>	<td colspan="2">a table containing the parameters of the outputted pebble or asteroid.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following six parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tPtA&gt;:</td>	<td>a table containing the X, Y and Z coordinates of a point on the triangle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tPtB&gt;:</td>	<td>a table containing the X, Y and Z coordinates of a point on the triangle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tPtC&gt;:</td>	<td>a table containing the X, Y and Z coordinates of the center point on the triangle.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iNum&gt;:</td>	<td>the number of line segments to generate.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;bAll&gt;:</td>	<td>turn this off to generate only the points on the spline defined by the line segments.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;bCorners&gt;:</td>	<td>enables/disables generation of points at the corners of the triangle to prevent duplicate overlapping asteroids.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;xNil&gt;:</td>	<td colspan="2">this should always remain &quot;nil&quot;. It is ignored and used only to adhere to the API.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="spline2Add"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">spline2Add</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a quadratic spline-shaped tube connecting any two points using a control point.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">spline2Add(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;tP1&gt;, &lt;tP2&gt;, &lt;tP3&gt;, &lt;tRad&gt;, &lt;tThk&gt;}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following six parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP1&gt;:</td>	<td>a table containing the coordinates of the starting point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP2&gt;:</td>	<td>a table containing the coordinates of the control point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP3&gt;:</td>	<td>a table containing the coordinates of the ending point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tRad&gt;:</td>	<td>a table containing the initial and final radii of the tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tThk&gt;:</td>	<td>a table containing the minimum and maximum thickness, as percentages of the radius, of the tube.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="spline3Add"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">spline3Add</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a Hermite cubic spline-shaped tube connecting any two points using two control points.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">spline3Add(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;tP1A&gt;, &lt;tP1B&gt;, &lt;tP2A&gt;, &lt;tP2B&gt;, &lt;tRad&gt;, &lt;tThk&gt;}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following six parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP1A&gt;:</td>	<td>a table containing the coordinates of the starting point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP1B&gt;:</td>	<td>a table containing the coordinates of the first control point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP2A&gt;:</td>	<td>a table containing the coordinates of the ending point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tP2B&gt;:</td>	<td>a table containing the coordinates of the second control point.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tRad&gt;:</td>	<td>a table containing the initial and final radii of the tube.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tThk&gt;:</td>	<td>a table containing the minimum and maximum thickness, as percentages of the radius, of the tube.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="ringAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">ringAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates an elliptical ring centered around one of its foci.</td></tr>
+<tr valign="top"><td>Syntax:</td>	<td colspan="3">ringAdd(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;fAx1&gt;, &lt;fAx2&gt;, &lt;fThk&gt;, &lt;fHgh&gt;, &lt;tArc&gt;, &lt;iMod&gt;,}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following six parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fAx1&gt;:</td>	<td>the length of axis 1.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fAx2&gt;:</td>	<td>the length of axis 2.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThk&gt;:</td>	<td>the distance from the outer radius to the inner radius (varies according to &lt;iMod&gt;).</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fHgh&gt;:</td>	<td>the height of the ring, relative to the plane.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tArc&gt;:</td>	<td>a table containing the beginning and ending degrees of the arc.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iMod&gt;:</td>	<td>if 0, then non-random mode. If 1, then random mode w/ gradual width. If 2, then random mode w/ even width.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="globeAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">globeAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a series of rings in the shape of a sphere, like the latitudinal and longitudinal lines of a globe.</td></tr>
+<tr valign="top"><td>Syntax:</td>		<td colspan="3">globeAdd(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;fRad&gt;, &lt;fLat&gt;, &lt;fLon&gt;, &lt;fThk&gt;, &lt;fHgh&gt;, &lt;tArc&gt;, &lt;iMod&gt;,}, &lt;xNil&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>		<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>			<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following seven parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;fRad&gt;:</td>	<td>the radius of the sphere.</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;fLat&gt;:</td>	<td>the number of latitudinal rings.</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;fLon&gt;:</td>	<td>the number of longitudinal rings.</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;fThk&gt;:</td>	<td>see the description for the &quot;ringAdd&quot; function.</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;fHgh&gt;:</td>	<td>see the description for the &quot;ringAdd&quot; function.</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;tArc&gt;:</td>	<td>see the description for the &quot;ringAdd&quot; function.</td></tr>
+<tr valign="top"><td colspan="2"></td>				<td>&lt;iMod&gt;:</td>	<td>see the description for the &quot;ringAdd&quot; function.</td></tr>
+<tr valign="top"><td></td>			<td>&lt;xNil&gt;:</td>	<td colspan="2">this argument should always remain "nil". It is ignored and used only to adhere to the API.</td></tr>
+<tr valign="top"><td></td>			<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+<tr valign="top"><td>Note:</td>		<td colspan="3">Beware that objects may overlap where the longitudinal rings intersect at the poles.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="spiralAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="3">spiralAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="3">Creates a spiral.</td></tr>
+<tr valign="top"><td>Suntax:</td>	<td colspan="3">spiralAdd(&lt;tPos&gt;, &lt;tDst&gt;, {&lt;sLay&gt;, &lt;nRad&gt;, &lt;nArm&gt;, &lt;nRot&gt;, &lt;nAng&gt;, &lt;nHgh&gt;, &lt;nWid&gt;, &lt;nThk&gt;, &lt;tTim&gt;, &lt;iMod&gt;,}, &lt;tRot&gt;, &lt;tSeed&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>	<td>&lt;tPos&gt;:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tDst&gt;:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tPar&gt;:</td>	<td colspan="2">a table containing the following ten parameters:</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;sLay&gt;:</td>	<td>may be either &quot;Nautilus&quot; or &quot;Archimedes&quot;.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fRad&gt;:</td>	<td>depending on &lt;fAng&gt;, this is either the minimum or maximum radius of the spiral.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iArm&gt;:</td>	<td>the number of arms the spiral will have.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fRot&gt;:</td>	<td>the number of times the spiral will rotate around the origin.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fAng&gt;:</td>	<td>the angle (degrees) of deviation (90' and 270' makes a circle).</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fHgh&gt;:</td>	<td>the height of the spiral above the plane.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fWid&gt;:</td>	<td>the width of the spiral arms.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;fThk&gt;:</td>	<td>the thickness of the spiral arms.</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;tTim&gt;:</td>	<td>a table containing the minimum and maximum values for &quot;t&quot; (time, percent) at which the curve is sampled. (must be a float between 0 and 1)</td></tr>
+<tr valign="top"><td colspan="2"></td>			<td>&lt;iMod&gt;:</td>	<td>0 is non-random, 1 is random, 2 is random-mode with tapering width.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tRot&gt;:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
+<tr valign="top"><td></td>		<td>&lt;tSeed&gt;:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="literalAdd"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="2">literalAdd</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="2">Adds the contents of a distribution table to the map without changing any values.</td></tr>
+<tr valign="top"><td>Syntax:</td>		<td colspan="2">literalAdd(&lt;tDst&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>		<td>&lt;tDst&gt;:</td>	<td>the distribution table used to populate the shape.</td></tr>
+<tr valign="top"><td>Note:</td>		<td colspan="2">This function is the one used to process the "Main" distribution.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="randomBackground"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="2">randomBackground</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="2">Randomly selects the level background.</td></tr>
+<tr valign="top"><td>Syntax:</td>		<td colspan="2">randomBackground(&lt;iMod&gt;, &lt;tTab&gt;, &lt;iLen&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>		<td>&lt;iMod&gt;:</td>	<td>may be 0, 1, 2, 3, 4 or 5.</td></tr>
+<tr valign="top"><td></td>			<td colspan="2">If &lt;iMod&gt; is 0, then this function has been disabled.</td></tr>
+<tr valign="top"><td></td>			<td colspan="2">If &lt;iMod&gt; is 1, then the level background is selected from only the mission backgrounds.</td></tr>
+<tr valign="top"><td></td>			<td colspan="2">If &lt;iMod&gt; is 2, then the level background is selected from only the other backgrounds.</td></tr>
+<tr valign="top"><td></td>			<td colspan="2">If &lt;iMod&gt; is 3, then the level background is selected from both the mission and other backgrounds.</td></tr>
+<tr valign="top"><td></td>			<td colspan="2">If &lt;iMod&gt; is 4, then the level background is selected from only &lt;tTab&gt;.</td></tr>
+<tr valign="top"><td></td>			<td colspan="2">If &lt;iMod&gt; is 5, then the level background is selected from all of the above.</td></tr>
+<tr valign="top"><td></td>			<td>&lt;tTab&gt;:</td>	<td>(optional) a table containing the names of the custom backgrounds.</td></tr>
+<tr valign="top"><td></td>			<td>&lt;iLen&gt;:</td>	<td>(optional) the length of &lt;tTab&gt;.</td></tr>
+<tr valign="top"><td>Note:</td>		<td colspan="2">This function must be called from within the &quot;NonDetermChunk&quot; portion of a &quot;.level&quot; file.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="randomMusic"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="2">randomMusic</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="2">Randomly selects the level music.</td></tr>
+<tr valign="top"><td>Syntax:</td>		<td colspan="2">randomMusic(&lt;iMod&gt;, &lt;tTab&gt;, &lt;iLen&gt;, &lt;sDir&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>		<td>&lt;iMod&gt;:</td>	<td>may be 0, 1, 2, 3, 4 or 5.</td></tr>
+<td></td>			<td colspan="2">If &lt;iMod&gt; is 0, then this function is disabled.</td></tr>
+<td></td>			<td colspan="2">If &lt;iMod&gt; is 1, then the level music is selected from only the ambient tracks.</td></tr>
+<td></td>			<td colspan="2">If &lt;iMod&gt; is 2, then the level music is selected from only the battle tracks.</td></tr>
+<td></td>			<td colspan="2">If &lt;iMod&gt; is 3, then the level music is selected from both the ambient and battle tracks.</td></tr>
+<td></td>			<td colspan="2">If &lt;iMod&gt; is 4, then the level music is selected from only &lt;tTab&gt;.</td></tr>
+<td></td>			<td colspan="2">If &lt;iMod&gt; is 5, then the level music is selected from all of the above.</td></tr>
+<td></td>			<td>&lt;tTab&gt;:</td>	<td>a table containing the names of the custom audio tracks. (table, optional)</td></tr>
+<td></td>			<td>&lt;iLen&gt;:</td>	<td>the length of &lt;tTab&gt;. (number, optional)</td></tr>
+<td></td>			<td>&lt;sDir&gt;:</td>	<td>the directory where the extra files can be found. Must have a trailing slash. (string, optional)</td></tr>
+<tr valign="top"><td>Note:</td>		<td colspan="2">This function must be called from within the &quot;NonDetermChunk&quot; portion of a &quot;.level&quot; file.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="appendShape"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr valign="top"><td>Name:</td>		<td colspan="2">appendShape</td></tr>
+<tr valign="top"><td>Description:</td>	<td colspan="2">General shape-adding function utilized by the other functions.</td></tr>
+<tr valign="top"><td>Syntax:</td>		<td colspan="2">appendShape(&lt;tPos&gt;, &lt;i&gt;, &lt;tPar&gt;, &lt;j&gt;, &lt;tCoo&gt;, &lt;tRot&gt;)</td></tr>
+<tr valign="top"><td>Arguments:</td>		<td>&lt;tPos&gt;:</td>	<td>a table containing the initial coordinates for the object.</td></tr>
+<td></td>			<td>&lt;i&gt;:</td>	<td>the position number of the object within the distribution table.</td></tr>
+<td></td>			<td>&lt;tPar&gt;:</td>	<td>a table containing the object-specific parameters.</td></tr>
+<td></td>			<td>&lt;j&gt;:</td>	<td>the nth number of this object type spawned.</td></tr>
+<td></td>			<td>&lt;tCoo&gt;:</td>	<td>a table containing the modified coordinates for the object.</td></tr>
+<td></td>			<td>&lt;tRot&gt;:</td>	<td>a table containing the Euler rotation angles.</td></tr>
+</table>
+</p>
+</body>

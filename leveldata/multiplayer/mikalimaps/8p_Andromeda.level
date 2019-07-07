@@ -1,0 +1,163 @@
+-- (8P) Andromeda v1.6.3 by Mikali
+-- Created: 2004/10/29
+-- Updated: 2016/07/11
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+-- Positions: fixed
+
+-- This map used to have a few hyperspace gates for each player, as well as 
+-- some of the large megalith asteroids with hyperspace inhibitors and defense 
+-- fields. Problems with this approach:
+--   1) hyperspace gates can only be used by the Vaygr, regardless of in whose 
+--      possession they are;
+--   2) the large asteroids are considered build capable and untargetable, and 
+--      cannot be destroyed - only captured - causing the game to never end 
+--      until they are eliminated by being captured.
+-- Fixing this would require modding the ship files, which I want to avoid.
+-- I'm tempted to place some salvage debris in the center area of the map, but 
+-- that would be somewhat unfair too the unobservant or newbies. Alternately, I 
+-- could place some radiation clouds in the center. But I made enough maps like 
+-- that already.
+
+levelDesc = "<c=FF4800>Andromeda 1.6.3</c>"
+maxPlayers = 8
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = {seed = -12345}
+
+	setWorldBoundsInner({0, 0, 0}, {120000, 120000, 120000})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	local plane_pitch = {0,45,15,}
+
+	-- distributions
+	local coordRing =
+	{
+		{maxPlayers, "Coordinate", {},},
+	}
+	local polarRing =
+	{
+		{2, "Function", easyPatch, {0,0,0,}, 100,},
+	}
+	local centerSphere =
+	{
+		--addNebula(<sNebulaName>, <sNebulaType>, <tPosition>, <tColor>, ?, <fSize>)
+--		{8, "Nebula", "Nebula4_OLD1", "M11_Bentusi_Radiation", {0,0,0,}, {1,1,1,1,}, 0, 10000,},
+		--addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+		{1, "Squadron",  "Bentus1",  "meg_bentus_ruin_1", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus2",  "meg_bentus_ruin_2", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus3",  "meg_bentus_ruin_3", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus4",  "meg_bentus_ruin_4", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus5",  "meg_bentus_ruin_5", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus6",  "meg_bentus_ruin_6", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus7",  "meg_bentus_ruin_7", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus8",  "meg_bentus_ruin_8", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron",  "Bentus9",  "meg_bentus_ruin_9", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron", "Bentus10", "meg_bentus_ruin_10", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+		{1, "Squadron", "Bentus11", "meg_bentus_ruin_11", {0,0,0,}, -1, {0,0,0,}, 1, 0,},
+	}
+	local pebbleRing1 =
+	{
+		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{640, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0},
+		{320, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0},
+	}
+	local pebbleRing2 =
+	{
+		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{ 80, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0},
+		{ 40, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0},
+	}
+	local rockRing =
+	{
+		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{1, "Asteroid", "Asteroid_5", {0,0,0,}, 100,0,0, 0, 0},
+	}
+	local dustSpiral =
+	{
+		--addCloud(<sObjName>, <sCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{144, "Cloud", "polySurface1", "Cloud_0", {0,0,0,}, {srandom(my_seed_1),srandom(my_seed_1),1,1,}, 0,  4000,},
+		{ 72, "Cloud", "polySurface1", "Cloud_0", {0,0,0,}, {srandom(my_seed_1),srandom(my_seed_1),1,1,}, 0,  8000,},
+		{ 36, "Cloud", "polySurface1", "Cloud_0", {0,0,0,}, {srandom(my_seed_1),srandom(my_seed_1),1,1,}, 0, 16000,},
+	}
+
+	-- ring 1
+	coordRing[1][3] = {}
+	--ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0,0,0,}, coordRing, { 20000,  20000, 0, 0, {0,360,}, 0,}, plane_pitch, my_seed_1)
+	for k, tPos in coordRing[1][3] do
+		local playerNum = k - 1
+		local patchPos = vmultiply(tPos, 22000/20000)
+		local roidPos = vmultiply(tPos, 19000/20000)
+		local playerRot = {0,-360 * k/maxPlayers + 90,0}
+		easyPatch(patchPos, 100, my_seed_1)
+		addSquadron("Player" .. playerNum .. "Asteroid1", "meg_asteroid_mikali", roidPos, playerNum, playerRot, 1, 0)
+	end
+
+	-- ring 2
+	coordRing[1][3] = {}
+	--ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0,0,0,}, coordRing, { 60000,  60000, 0, 0, {0,360,}, 0,}, plane_pitch, my_seed_1)
+	for k, tPos in coordRing[1][3] do
+		local playerNum = k - 1
+		local patchPos = vmultiply(tPos, 62000/60000)
+		local roidPos = vmultiply(tPos, 58000/60000)
+		local playerRot = {0,-360 * k/maxPlayers + 90,0}
+		easyPatch(patchPos, 100, my_seed_1)
+		addPoint("StartPos" .. playerNum, tPos, playerRot)
+		addSquadron("Player" .. playerNum .. "Asteroid2", "meg_asteroid_mikali", roidPos, playerNum, playerRot, 1, 0)
+--		addCloud("polySurface1", "cloud_text_" .. k, tPos, {1, 1, 1, 1}, 0, 4096)
+	end
+
+	-- ring 3
+	coordRing[1][3] = {}
+	--ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0,0,0,}, coordRing, { 100000,  100000, 0, 0, {0,360,}, 0,}, plane_pitch, my_seed_1)
+	for k, tPos in coordRing[1][3] do
+		local playerNum = k - 1
+		local patchPos = vmultiply(tPos, 102000/100000)
+		local roidPos = vmultiply(tPos, 98000/100000)
+		local playerRot = {0,-360 * k/maxPlayers + 90,0}
+		easyPatch(patchPos, 100, my_seed_1)
+		addSquadron("Player" .. playerNum .. "Asteroid3", "meg_asteroid_mikali", roidPos, playerNum, playerRot, 1, 0)
+	end
+
+	-- polar patches
+	--ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
+	ringAdd({0,0,0,}, polarRing, { 30000,  30000, 0, 0, {0,360,}, 0,}, vaddV(plane_pitch,{0,0,90,}), my_seed_1)
+
+	-- spiral arms
+	--spiralAdd(<tPos>, <tDst>, {<sLay>, <nRad>, <nArm>, <nRot>, <nAng>, <nHgh>, <nWid>, <nThk>, <tTim>, <iMod>,}, <tRot>, <tSeed>)
+	spiralAdd({0,0,0,},  dustSpiral, {"Nautilus", 15000, 2, 2, 60, 0, 15000, 0, {0,1,}, 1,}, plane_pitch, my_seed_1)
+	spiralAdd({0,0,0,}, pebbleRing1, {"Nautilus", 15000, 2, 2, 60, 0, 15000, 0, {0,1,}, 1,}, plane_pitch, my_seed_1)
+	spiralAdd({0,0,0,}, pebbleRing2, {"Nautilus", 15000, 6, 2, 60, 0, 15000, 0, {0,1,}, 1,}, plane_pitch, my_seed_1)
+
+	-- center sphere
+	--shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)
+	--If <sLay> is "Ellipsoid", then <fA> equals the length of axis 1, <fB> equals the length of axis 2, <fC> equals the length of axis 3, <fD> equals the thickness, and <fE> is zero.
+	shapeAdd({0,0,0,}, centerSphere, {"Ellipsoid", 6000, 6000, 6000, 6000, 0,}, {0,0,0,}, my_seed_1)
+	addSquadron("BentusMain", "meg_bentus_ruined", {0,0,0,}, -1, {0,0,0,}, 0, 0)
+
+	--If <sLay> is "Cylinder", then <fA> equals the length of axis 1, <fB> equals the length of axis 2, <fC> equals the length of axis 3, <fD> equals the thickness, and <fE> is zero.
+--	shapeAdd({0,0,0,}, pebbleRing2, {"Ellipsoid", 1000000, 0, 0, 0, 0,}, vaddV(plane_pitch,{0,0,90,}), my_seed_1)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -09457685}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0,0,0, 1)
+	setSensorsManagerCameraDistances(10000, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

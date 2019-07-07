@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <author>RODOH</author>
+            <authoring_tool>RODOH Apr 16 2015 17:44:57</authoring_tool>
+        </contributor>
+        <unit meter="0.010000" name="centimeter" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="IMG[steel_hull_texture_DIFF]-image" name="IMG[steel_hull_texture_DIFF]_FMT[DXT5]">
+            <init_from>steel_hull_texture_DIFF.TGA</init_from>
+        </image>
+        <image id="IMG[steel_hull_texture_TEAM]-image" name="IMG[steel_hull_texture_TEAM]_FMT[DXT5]">
+            <init_from>steel_hull_texture_TEAM.TGA</init_from>
+        </image>
+    </library_images>
+    <library_materials>
+        <material id="MAT[cube1_auv]_SHD[ship]" name="MAT[cube1_auv]_SHD[ship]">
+            <instance_effect url="#MAT[cube1_auv]_SHD[ship]-fx" />
+        </material>
+    </library_materials>
+    <library_effects>
+        <effect id="MAT[cube1_auv]_SHD[ship]-fx" name="MAT[cube1_auv]_SHD[ship]">
+            <profile_COMMON>
+                <technique sid="standard">
+                    <phong>
+                        <emission>
+                            <color sid="emission">0.000000 0.000000 0.000000 1.000000</color>
+                        </emission>
+                        <ambient>
+                            <color sid="ambient">1.000000 1.000000 1.000000 1.000000</color>
+                        </ambient>
+                        <diffuse>
+                            <texture texture="IMG[steel_hull_texture_DIFF]-image">
+                                <extra>
+                                    <technique profile="MAYA">
+                                        <wrapU sid="wrapU0">TRUE</wrapU>
+                                        <wrapV sid="wrapV0">TRUE</wrapV>
+                                        <blend_mode>ADD</blend_mode>
+                                    </technique>
+                                </extra>
+                            </texture>
+                        </diffuse>
+                        <specular>
+                            <color sid="specular">0.000000 0.000000 0.000000 1.000000</color>
+                        </specular>
+                        <shininess>
+                            <float sid="shininess">1.071773</float>
+                        </shininess>
+                        <reflective>
+                            <color sid="reflective">0.000000 0.000000 0.000000 1.000000</color>
+                        </reflective>
+                        <reflectivity>
+                            <float sid="reflectivity">1.000000</float>
+                        </reflectivity>
+                        <transparent opaque="RGB_ZERO">
+                            <color sid="transparent">1.000000 1.000000 1.000000 1.000000</color>
+                        </transparent>
+                        <transparency>
+                            <float sid="transparency">0.000000</float>
+                        </transparency>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_geometries>
+        <geometry id="MULT[Root_mesh]_LOD[0]-lib" name="MULT[Root_mesh]_LOD[0]Mesh">
+            <mesh>
+                <source id="MULT[Root_mesh]_LOD[0]-POSITION">
+                    <float_array id="MULT[Root_mesh]_LOD[0]-POSITION-array" count="36"> -2016.000000 -32.000000 2016.000000 2016.000000 -32.000000 2016.000000 2048.000000 0.000000 2048.000000 -2048.000000 0.000000 2048.000000 -2016.000000 -32.000000 -2016.000000 2016.000000 -32.000000 -2016.000000 -2016.000000 32.000000 2016.000000 2016.000000 32.000000 2016.000000 2016.000000 32.000000 -2016.000000 -2016.000000 32.000000 -2016.000000 -2048.000000 0.000000 -2048.000000 2048.000000 0.000000 -2048.000000</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[0]-POSITION-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="MULT[Root_mesh]_LOD[0]-Normal0">
+                    <float_array id="MULT[Root_mesh]_LOD[0]-Normal0-array" count="36"> -0.270598 -0.923880 0.270598 0.270598 -0.923880 0.270598 0.707107 0.000000 0.707107 -0.707107 0.000000 0.707107 -0.270598 -0.923880 -0.270598 0.270598 -0.923880 -0.270598 -0.270598 0.923880 0.270598 0.270598 0.923880 0.270598 0.270598 0.923880 -0.270598 -0.270598 0.923880 -0.270598 -0.707107 0.000000 -0.707107 0.707107 0.000000 -0.707107</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[0]-Normal0-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="MULT[Root_mesh]_LOD[0]-UV0">
+                    <float_array id="MULT[Root_mesh]_LOD[0]-UV0-array" count="46"> 0.000000 0.450000 0.500000 0.450000 0.500000 0.425000 0.000000 0.425000 0.500000 1.000000 0.500000 0.500000 0.000000 0.500000 0.000000 1.000000 0.000000 0.400000 0.500000 0.400000 1.000000 1.000000 1.000000 0.500000 0.000000 0.300000 0.000000 0.325000 0.500000 0.325000 0.500000 0.300000 0.000000 0.475000 0.500000 0.475000 0.500000 0.375000 0.000000 0.375000 0.000000 0.350000 0.500000 0.350000 0.000000 0.500000</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[0]-UV0-array" count="23" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="MULT[Root_mesh]_LOD[0]-VERTEX">
+                    <input semantic="POSITION" source="#MULT[Root_mesh]_LOD[0]-POSITION" />
+                </vertices>
+                <triangles count="20" material="MAT[cube1_auv]_SHD[ship]">
+                    <input semantic="VERTEX" offset="0" source="#MULT[Root_mesh]_LOD[0]-VERTEX" />
+                    <input semantic="NORMAL" offset="1" source="#MULT[Root_mesh]_LOD[0]-Normal0" />
+                    <input semantic="TEXCOORD" offset="2" set="0" source="#MULT[Root_mesh]_LOD[0]-UV0" />
+                    <p>0 0 0 1 1 1 2 2 2 0 0 0 2 2 2 3 3 3 0 0 4 4 4 5 5 5 6 0 0 4 5 5 6 1 1 7 6 6 8 3 3 3 2 2 2 6 6 8 2 2 2 7 7 9 7 7 10 8 8 11 9 9 5 7 7 10 9 9 5 6 6 4 9 9 12 10 10 13 3 3 14 9 9 12 3 3 14 6 6 15 8 8 0 11 11 16 10 10 17 8 8 0 10 10 17 9 9 1 5 5 9 11 11 18 2 2 19 5 5 9 2 2 19 1 1 8 3 3 14 10 10 13 4 4 20 3 3 14 4 4 20 0 0 21 2 2 19 11 11 18 8 8 21 2 2 19 8 8 21 7 7 20 10 10 17 11 11 16 5 5 22 10 10 17 5 5 22 4 4 5 </p>
+                </triangles>
+            </mesh>
+        </geometry>
+        <geometry id="MULT[Root_mesh]_LOD[1]-lib" name="MULT[Root_mesh]_LOD[1]Mesh">
+            <mesh>
+                <source id="MULT[Root_mesh]_LOD[1]-POSITION">
+                    <float_array id="MULT[Root_mesh]_LOD[1]-POSITION-array" count="36"> -2016.000000 -32.000000 2016.000000 2016.000000 -32.000000 2016.000000 2048.000000 0.000000 2048.000000 -2048.000000 0.000000 2048.000000 -2016.000000 -32.000000 -2016.000000 2016.000000 -32.000000 -2016.000000 -2016.000000 32.000000 2016.000000 2016.000000 32.000000 2016.000000 2016.000000 32.000000 -2016.000000 -2016.000000 32.000000 -2016.000000 -2048.000000 0.000000 -2048.000000 2048.000000 0.000000 -2048.000000</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[1]-POSITION-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="MULT[Root_mesh]_LOD[1]-Normal0">
+                    <float_array id="MULT[Root_mesh]_LOD[1]-Normal0-array" count="36"> -0.270598 -0.923880 0.270598 0.270598 -0.923880 0.270598 0.707107 0.000000 0.707107 -0.707107 0.000000 0.707107 -0.270598 -0.923880 -0.270598 0.270598 -0.923880 -0.270598 -0.270598 0.923880 0.270598 0.270598 0.923880 0.270598 0.270598 0.923880 -0.270598 -0.270598 0.923880 -0.270598 -0.707107 0.000000 -0.707107 0.707107 0.000000 -0.707107</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[1]-Normal0-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="MULT[Root_mesh]_LOD[1]-UV0">
+                    <float_array id="MULT[Root_mesh]_LOD[1]-UV0-array" count="46"> 0.000000 0.450000 0.500000 0.450000 0.500000 0.425000 0.000000 0.425000 0.500000 1.000000 0.500000 0.500000 0.000000 0.500000 0.000000 1.000000 0.000000 0.400000 0.500000 0.400000 1.000000 1.000000 1.000000 0.500000 0.000000 0.300000 0.000000 0.325000 0.500000 0.325000 0.500000 0.300000 0.000000 0.475000 0.500000 0.475000 0.500000 0.375000 0.000000 0.375000 0.000000 0.350000 0.500000 0.350000 0.000000 0.500000</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[1]-UV0-array" count="23" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="MULT[Root_mesh]_LOD[1]-VERTEX">
+                    <input semantic="POSITION" source="#MULT[Root_mesh]_LOD[1]-POSITION" />
+                </vertices>
+                <triangles count="20" material="MAT[cube1_auv]_SHD[ship]">
+                    <input semantic="VERTEX" offset="0" source="#MULT[Root_mesh]_LOD[1]-VERTEX" />
+                    <input semantic="NORMAL" offset="1" source="#MULT[Root_mesh]_LOD[1]-Normal0" />
+                    <input semantic="TEXCOORD" offset="2" set="0" source="#MULT[Root_mesh]_LOD[1]-UV0" />
+                    <p>0 0 0 1 1 1 2 2 2 0 0 0 2 2 2 3 3 3 0 0 4 4 4 5 5 5 6 0 0 4 5 5 6 1 1 7 6 6 8 3 3 3 2 2 2 6 6 8 2 2 2 7 7 9 7 7 10 8 8 11 9 9 5 7 7 10 9 9 5 6 6 4 9 9 12 10 10 13 3 3 14 9 9 12 3 3 14 6 6 15 8 8 0 11 11 16 10 10 17 8 8 0 10 10 17 9 9 1 5 5 9 11 11 18 2 2 19 5 5 9 2 2 19 1 1 8 3 3 14 10 10 13 4 4 20 3 3 14 4 4 20 0 0 21 2 2 19 11 11 18 8 8 21 2 2 19 8 8 21 7 7 20 10 10 17 11 11 16 5 5 22 10 10 17 5 5 22 4 4 5 </p>
+                </triangles>
+            </mesh>
+        </geometry>
+        <geometry id="MULT[Root_mesh]_LOD[2]-lib" name="MULT[Root_mesh]_LOD[2]Mesh">
+            <mesh>
+                <source id="MULT[Root_mesh]_LOD[2]-POSITION">
+                    <float_array id="MULT[Root_mesh]_LOD[2]-POSITION-array" count="36"> -2016.000000 -32.000000 2016.000000 2016.000000 -32.000000 2016.000000 2048.000000 0.000000 2048.000000 -2048.000000 0.000000 2048.000000 -2016.000000 -32.000000 -2016.000000 2016.000000 -32.000000 -2016.000000 -2016.000000 32.000000 2016.000000 2016.000000 32.000000 2016.000000 2016.000000 32.000000 -2016.000000 -2016.000000 32.000000 -2016.000000 -2048.000000 0.000000 -2048.000000 2048.000000 0.000000 -2048.000000</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[2]-POSITION-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="MULT[Root_mesh]_LOD[2]-Normal0">
+                    <float_array id="MULT[Root_mesh]_LOD[2]-Normal0-array" count="36"> -0.270598 -0.923880 0.270598 0.270598 -0.923880 0.270598 0.707107 0.000000 0.707107 -0.707107 0.000000 0.707107 -0.270598 -0.923880 -0.270598 0.270598 -0.923880 -0.270598 -0.270598 0.923880 0.270598 0.270598 0.923880 0.270598 0.270598 0.923880 -0.270598 -0.270598 0.923880 -0.270598 -0.707107 0.000000 -0.707107 0.707107 0.000000 -0.707107</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[2]-Normal0-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="MULT[Root_mesh]_LOD[2]-UV0">
+                    <float_array id="MULT[Root_mesh]_LOD[2]-UV0-array" count="46"> 0.000000 0.450000 0.500000 0.450000 0.500000 0.425000 0.000000 0.425000 0.500000 1.000000 0.500000 0.500000 0.000000 0.500000 0.000000 1.000000 0.000000 0.400000 0.500000 0.400000 1.000000 1.000000 1.000000 0.500000 0.000000 0.300000 0.000000 0.325000 0.500000 0.325000 0.500000 0.300000 0.000000 0.475000 0.500000 0.475000 0.500000 0.375000 0.000000 0.375000 0.000000 0.350000 0.500000 0.350000 0.000000 0.500000</float_array>
+                    <technique_common>
+                        <accessor source="#MULT[Root_mesh]_LOD[2]-UV0-array" count="23" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="MULT[Root_mesh]_LOD[2]-VERTEX">
+                    <input semantic="POSITION" source="#MULT[Root_mesh]_LOD[2]-POSITION" />
+                </vertices>
+                <triangles count="20" material="MAT[cube1_auv]_SHD[ship]">
+                    <input semantic="VERTEX" offset="0" source="#MULT[Root_mesh]_LOD[2]-VERTEX" />
+                    <input semantic="NORMAL" offset="1" source="#MULT[Root_mesh]_LOD[2]-Normal0" />
+                    <input semantic="TEXCOORD" offset="2" set="0" source="#MULT[Root_mesh]_LOD[2]-UV0" />
+                    <p>0 0 0 1 1 1 2 2 2 0 0 0 2 2 2 3 3 3 0 0 4 4 4 5 5 5 6 0 0 4 5 5 6 1 1 7 6 6 8 3 3 3 2 2 2 6 6 8 2 2 2 7 7 9 7 7 10 8 8 11 9 9 5 7 7 10 9 9 5 6 6 4 9 9 12 10 10 13 3 3 14 9 9 12 3 3 14 6 6 15 8 8 0 11 11 16 10 10 17 8 8 0 10 10 17 9 9 1 5 5 9 11 11 18 2 2 19 5 5 9 2 2 19 1 1 8 3 3 14 10 10 13 4 4 20 3 3 14 4 4 20 0 0 21 2 2 19 11 11 18 8 8 21 2 2 19 8 8 21 7 7 20 10 10 17 11 11 16 5 5 22 10 10 17 5 5 22 4 4 5 </p>
+                </triangles>
+            </mesh>
+        </geometry>
+        <geometry id="COL[Root]-lib" name="COL[Root]Mesh">
+            <mesh>
+                <source id="COL[Root]-POSITION">
+                    <float_array id="COL[Root]-POSITION-array" count="36"> -2016.000000 -32.000000 2016.000000 2016.000000 -32.000000 2016.000000 2048.000000 0.000000 2048.000000 -2016.000000 32.000000 2016.000000 2016.000000 32.000000 2016.000000 -2016.000000 32.000000 -2016.000000 -2048.000000 0.000000 2048.000000 2016.000000 32.000000 -2016.000000 -2048.000000 0.000000 -2048.000000 2016.000000 -32.000000 -2016.000000 -2016.000000 -32.000000 -2016.000000 2048.000000 0.000000 -2048.000000</float_array>
+                    <technique_common>
+                        <accessor source="#COL[Root]-POSITION-array" count="12" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="COL[Root]-VERTEX">
+                    <input semantic="POSITION" source="#COL[Root]-POSITION" />
+                </vertices>
+                <triangles count="20">
+                    <input semantic="VERTEX" offset="0" source="#COL[Root]-VERTEX" />
+                    <p>8 9 10 2 7 4 6 10 0 9 2 1 7 8 5 5 6 3 3 2 4 0 1 2 8 11 9 2 11 7 6 8 10 9 11 2 7 11 8 5 8 6 3 6 2 0 2 6 4 5 3 4 7 5 0 9 1 0 10 9 </p>
+                </triangles>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_animations />
+    <library_visual_scenes>
+        <visual_scene id="box_4096_64_4096" name="box_4096_64_4096">
+            <node name="ROOT_COL" id="ROOT_COL" sid="ROOT_COL">
+                <translate sid="translate">-10240.000000 0.000000 0.000000</translate>
+                <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                <extra>
+                    <technique profile="FCOLLADA">
+                        <visibility>1.000000</visibility>
+                    </technique>
+                </extra>
+                <node name="COL[Root]" id="COL[Root]" sid="COL[Root]">
+                    <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                    <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                    <rotate sid="rotateY">0 1 0 -0.000000</rotate>
+                    <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                    <instance_geometry url="#COL[Root]-lib" />
+                    <extra>
+                        <technique profile="FCOLLADA">
+                            <visibility>1.000000</visibility>
+                        </technique>
+                    </extra>
+                </node>
+            </node>
+            <node name="ROOT_INFO" id="ROOT_INFO" sid="ROOT_INFO">
+                <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                <extra>
+                    <technique profile="FCOLLADA">
+                        <visibility>1.000000</visibility>
+                    </technique>
+                </extra>
+                <node name="UVSets[1]" id="UVSets[1]" sid="UVSets[1]">
+                    <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                    <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                    <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                    <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                    <extra>
+                        <technique profile="FCOLLADA">
+                            <visibility>1.000000</visibility>
+                        </technique>
+                    </extra>
+                </node>
+                <node name="Class[MultiMesh]_Version[512]" id="Class[MultiMesh]_Version[512]" sid="Class[MultiMesh]_Version[512]">
+                    <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                    <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                    <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                    <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                    <extra>
+                        <technique profile="FCOLLADA">
+                            <visibility>1.000000</visibility>
+                        </technique>
+                    </extra>
+                </node>
+            </node>
+            <node name="ROOT_LOD[0]" id="ROOT_LOD[0]" sid="ROOT_LOD[0]">
+                <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                <extra>
+                    <technique profile="FCOLLADA">
+                        <visibility>1.000000</visibility>
+                    </technique>
+                </extra>
+                <node name="MULT[Root_mesh]_LOD[0]" id="MULT[Root_mesh]_LOD[0]" sid="MULT[Root_mesh]_LOD[0]">
+                    <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                    <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                    <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                    <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                    <instance_geometry url="#MULT[Root_mesh]_LOD[0]-lib">
+                        <bind_material>
+                            <technique_common>
+                                <instance_material symbol="MAT[cube1_auv]_SHD[ship]" target="#MAT[cube1_auv]_SHD[ship]" />
+                            </technique_common>
+                        </bind_material>
+                    </instance_geometry>
+                    <extra>
+                        <technique profile="FCOLLADA">
+                            <visibility>1.000000</visibility>
+                        </technique>
+                    </extra>
+                </node>
+            </node>
+            <node name="ROOT_LOD[1]" id="ROOT_LOD[1]" sid="ROOT_LOD[1]">
+                <translate sid="translate">6144.000000 0.000000 0.000000</translate>
+                <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                <extra>
+                    <technique profile="FCOLLADA">
+                        <visibility>1.000000</visibility>
+                    </technique>
+                </extra>
+                <node name="MULT[Root_mesh]_LOD[1]" id="MULT[Root_mesh]_LOD[1]" sid="MULT[Root_mesh]_LOD[1]">
+                    <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                    <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                    <rotate sid="rotateY">0 1 0 -0.000000</rotate>
+                    <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                    <instance_geometry url="#MULT[Root_mesh]_LOD[1]-lib">
+                        <bind_material>
+                            <technique_common>
+                                <instance_material symbol="MAT[cube1_auv]_SHD[ship]" target="#MAT[cube1_auv]_SHD[ship]" />
+                            </technique_common>
+                        </bind_material>
+                    </instance_geometry>
+                    <extra>
+                        <technique profile="FCOLLADA">
+                            <visibility>1.000000</visibility>
+                        </technique>
+                    </extra>
+                </node>
+            </node>
+            <node name="ROOT_LOD[2]" id="ROOT_LOD[2]" sid="ROOT_LOD[2]">
+                <translate sid="translate">12288.000000 0.000000 0.000000</translate>
+                <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                <rotate sid="rotateY">0 1 0 0.000000</rotate>
+                <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                <extra>
+                    <technique profile="FCOLLADA">
+                        <visibility>1.000000</visibility>
+                    </technique>
+                </extra>
+                <node name="MULT[Root_mesh]_LOD[2]" id="MULT[Root_mesh]_LOD[2]" sid="MULT[Root_mesh]_LOD[2]">
+                    <translate sid="translate">0.000000 0.000000 0.000000</translate>
+                    <rotate sid="rotateZ">0 0 1 0.000000</rotate>
+                    <rotate sid="rotateY">0 1 0 -0.000000</rotate>
+                    <rotate sid="rotateX">1 0 0 0.000000</rotate>
+                    <instance_geometry url="#MULT[Root_mesh]_LOD[2]-lib">
+                        <bind_material>
+                            <technique_common>
+                                <instance_material symbol="MAT[cube1_auv]_SHD[ship]" target="#MAT[cube1_auv]_SHD[ship]" />
+                            </technique_common>
+                        </bind_material>
+                    </instance_geometry>
+                    <extra>
+                        <technique profile="FCOLLADA">
+                            <visibility>1.000000</visibility>
+                        </technique>
+                    </extra>
+                </node>
+            </node>
+            <extra>
+                <technique profile="MAX3D">
+                    <frame_rate>30.000000</frame_rate>
+                </technique>
+                <technique profile="FCOLLADA">
+                    <start_time>0.000000</start_time>
+                    <end_time>0.0333333</end_time>
+                </technique>
+            </extra>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#box_4096_64_4096" />
+    </scene>
+</COLLADA>
