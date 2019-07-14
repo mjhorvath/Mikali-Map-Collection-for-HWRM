@@ -9,6 +9,14 @@ There is also a HTML reference for the map functions, but you will need to downl
 
 * [HWR_MapFunctions_reference.html](HWR_MapFunctions_reference.html)
 
+Previews of the map thumbnails can be found here:
+
+* http://isometricland.net/homeworld/homeworld.php
+
+The Steam Workshop page for this mod is here:
+
+* https://steamcommunity.com/sharedfiles/filedetails/?id=399477672
+
 The older version of this mod for Homeworld 2 Classic is located here:
 
 * https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-2-Classic
