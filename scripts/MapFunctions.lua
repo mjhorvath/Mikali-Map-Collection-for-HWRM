@@ -1681,27 +1681,28 @@ function makeCone(tPar, tSeed)
 end
 
 function makeToroid(tPar, tSeed)
-	local H, M = srandomSet2(tSeed, tPar[4] - tPar[5], tPar[4], tPar[6] - tPar[5], tPar[6])
+	local L, W, H, M = tPar[2], tPar[3], srandomSet2(tSeed, tPar[4] - tPar[5], tPar[4], tPar[6] - tPar[5], tPar[6])
 	local v, o = srandomSet(tSeed, 360, 360)
-	return {(tPar[2] + M * cos(v)) * cos(o), H * sin(v), (tPar[3] + M * cos(v)) * sin(o),}
+	return {(L + M * cos(v)) * cos(o), H * sin(v), (W + M * cos(v)) * sin(o),}
 end
 
 function makeHelicoid(tPar, tSeed)
-	local L, W = srandomSet2(tSeed, tPar[2] - tPar[5], tPar[2], tPar[3] - tPar[5], tPar[3])
+	local L, W, h, r = srandomSet2(tSeed, tPar[2] - tPar[5], tPar[2], tPar[3] - tPar[5], tPar[3]), tPar[4], tPar[6]
 	local t = srandom(tSeed)
-	return {L * cos(t * tPar[6] * 360), tPar[4] * (2 * t - 1), W * sin(t * tPar[6] *  360),}
+	return {L * cos(t * r * 360), h * (2 * t - 1), W * sin(t * r *  360),}
 end
 
 function makeParaboloid(tPar, tSeed)
 	local L, W, h = srandomSet2(tSeed, tPar[2] - tPar[5], tPar[2], tPar[3] - tPar[5], tPar[3], -tPar[4], tPar[4])
-	local v = srandom3(tSeed, 360)
-	return {L * sqrt(h/1000) * cos(v), h, W * sqrt(h/1000) * sin(v),}
+	local v, u = srandom3(tSeed, 360), 1000
+	return {L * sqrt(h/u) * cos(v), h, W * sqrt(h/u) * sin(v),}
 end
 
 function makeHyperboloid(tPar, tSeed)
 	local L, W, H = srandomSet2(tSeed, tPar[2] - tPar[5], tPar[2], tPar[3] - tPar[5], tPar[3], tPar[4] - tPar[5], tPar[4])
 	local t, v, p = srandom(tSeed), srandom3(tSeed, 360), srandomSign(tSeed)
-	return {L * sqrt(1 + (t * p)^2) * cos(v), H * (t * p), W * sqrt(1 + (t * p)^2) * sin(v),}
+	local u = t * p
+	return {L * sqrt(1 + u^2) * cos(v), H * u, W * sqrt(1 + u^2) * sin(v),}
 end
 
 function makeAstroid(tPar, tSeed)
