@@ -27,13 +27,6 @@ archive and copy the "DataMikaliMaps" folder to your "Homeworld Remastered"
 directory, then add "-moddatapath DataMikaliMaps -overrideBigFile -luatrace" to 
 your Desktop shortcut's "Target" field.
 
-PLAYING THE GAME
-
-You need to select the correct Game Type in the Skirmish/Multiplayer setup 
-screen in order for the maps to become accessible. This is because the mod 
-alters some game files in addition to adding new levels. I can't guarantee the 
-results if you skip this step.
-
 
 ================================================================================
 
