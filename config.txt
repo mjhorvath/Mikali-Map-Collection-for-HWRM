@@ -10,7 +10,7 @@
 // Steam Workshop.  The description text is limited to 8,000 characters total in length.
 
 // title of the MOD that appears on the Steam Workshop (limited to 128 characters)
-Title: [HWRM] Mikali's Multiplayer Map Collection 1.24.0
+Title: [HWRM] Mikali's Multiplayer Map Collection 1.25.0
 
 // tags must be individual words separated by spaces.
 Tags: HomeworldRM multiplayer maps functions
@@ -35,6 +35,9 @@ WorkshopID: 399477672
 Description:
 A collection of my multiplayer maps, as well as demonstrations of my custom map-making functions. These maps will only work in Homeworld Remastered.
 
+The GitHub repo for this project is located here:
+https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
+
 The ModDB page with instructions is located here:
 http://www.moddb.com/mods/mikalis-multiplayer-map-collection
 
@@ -44,7 +47,4 @@ http://forums.relicnews.com/showthread.php?48818
 My homepage with even more mods and tools can be found here:
 http://isometricland.net/homeworld/homeworld.php
 
-You need to select the correct Game Type in the Skirmish/Multiplayer setup 
-screen in order for the maps to become accessible. This is because the mod 
-alters some game files in addition to adding new levels. I can't guarantee the 
-results if you skip this step.
+License: Attribution 4.0 International (CC BY 4.0)

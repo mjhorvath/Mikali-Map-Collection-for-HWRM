@@ -4,7 +4,7 @@
 <title>Map Functions Reference</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <style>
-body {max-width:60em;margin:auto;}
+body {max-width:60em;margin:auto;padding:1em;}
 tr {vertical-align:middle;}
 h4 {margin-bottom:1em;margin-top:2em;}
 ul {margin-bottom:1em;margin-top:1em;}
@@ -13,8 +13,8 @@ ul {margin-bottom:1em;margin-top:1em;}
 <body>
 <a name="top"></a>
 <h3>HWR Map Functions Reference</h3>
-<p>Created by Mikali.</p>
-<p>Note that this reference may be out of date. If you are having problems, check the descriptions for the functions themselves in the &quot;MapFunctions.lua&quot; source code.</p>
+<p>Created by Michael Horvath.</p>
+<p>Note that this reference may be out-of-date. If you are having problems, check the descriptions of the functions inside &quot;data\scripts\MapFunctions.lua&quot; as these are probably the most current.</p>
 <h4>&quot;DetermChunk&quot; functions (these go in the &quot;DetermChunk&quot; portion of your level file):</h4>
 <ul>
 <li><a href="#easyPatch">easyPatch</a>: Creates a resource patch with minimal effort.</li>
@@ -72,7 +72,7 @@ ul {margin-bottom:1em;margin-top:1em;}
 <li>vrand3</li>
 <li>svrand3</li>
 </ul>
-<h4>Vector functions (modeled after the functions found in the POV-Ray raytracer):</h4>
+<h4>Vector functions (modeled after functions found in the POV-Ray raytracer):</h4>
 <ul>
 <li>vnormalize: Returns the normalized form of a vector.</li>
 <li>vlength: Returns the length of a vector.</li>
@@ -88,10 +88,10 @@ ul {margin-bottom:1em;margin-top:1em;}
 <li>vmultiplyV: Multiplies the components of the first vector by the components of the second vector, then returns the resulting vector.</li>
 <li>vdivide: Divides each vector component by some amount, then returns the resulting vector.</li>
 <li>vdivideV: Divides the components of the first vector by the components of the second vector, then returns the resulting vector.</li>
-<li>vpower: Raises each vector component to the some power, then returns the new vector.</li>
-<li>vpowerV: Raises the components of the first vector to the power specified by the components the second vector, then returns the new vector.</li>
+<li>vpower: Raises each vector component to some power, then returns the new vector.</li>
+<li>vpowerV: Raises the components of the first vector to the power specified by the components of the second vector, then returns a new vector.</li>
 <li>vsum: Returns the sum of all the vector's components.</li>
-<li>vstr: Returns a vector converted into a string.</li>
+<li>vstr: Returns a vector converted into a string for printing.</li>
 <li>vrotate: Rotates a vector around the origin by the specified Euler angles, then returns the resulting vector.</li>
 <li>vanglesXY: Returns an array containing the vector's Euler angles, relative to the z-axis.</li>
 <li>vaxis_rotate: Rotates the first vector around the second vector by some amount, then returns the resulting vector.</li>

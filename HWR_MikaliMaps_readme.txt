@@ -1,9 +1,11 @@
 Title:		Mikali's Multiplayer Map Collection
-Version:	1.24.0
+Version:	1.25.0
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2016/07/11
-Homepage:	http://isometricland.net/homeworld/homeworld.php
+Updated:	2020/05/25
+License:	Attribution 4.0 International (CC BY 4.0)
+Website:	http://isometricland.net/homeworld/homeworld.php
+GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
 ModDB:		http://www.moddb.com/mods/mikalis-multiplayer-map-collection
 Steam:		http://steamcommunity.com/sharedfiles/filedetails/?id=399477672
 Discussion:	http://forums.relicnews.com/showthread.php?t=48818
@@ -179,7 +181,8 @@ CREDITS
 
 CHANGE LOG
 
-Next version
+1.25.0 - 2020/05/25
+• Removed the custom gamerule. Maps should be accessible from most mods now.
 • Updated a few things in "utilfunc.lua".
 
 1.24.0 - 2016/07/11
