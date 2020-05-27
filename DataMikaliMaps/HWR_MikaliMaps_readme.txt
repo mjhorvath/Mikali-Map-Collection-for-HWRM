@@ -19,17 +19,17 @@ DESCRIPTION
 A collection of multiplayer maps, as well as a demonstration of my map-making 
 functions. These maps will only work in Homeworld Remastered.
 
-The latest version of the mod can be found on GitHub:
+The very latest version of the mod can always be found on GitHub.
 
-https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
 
 INSTALLATION
 
 If you have the Steam version of the game, installation is done by subscribing 
-to the mod on Steam Workshop. For the GOG.com or ModDB version, extract the ZIP  
-archive and copy the "DataMikaliMaps" folder to your "Homeworld Remastered" 
-directory, then add "-moddatapath DataMikaliMaps -overrideBigFile -luatrace" to 
-your shortcut's "Target" field.
+to the mod on Steam Workshop. For the GOG.com version of the game, you must 
+download the mod from ModDB or GitHub, then extract the ZIP archive and copy 
+the "DataMikaliMaps" folder to your "Homeworld Remastered" directory. Finally, 
+you must add "-moddatapath DataMikaliMaps -overrideBigFile -luatrace" to your 
+shortcut's "Target" field.
 
 
 ================================================================================
