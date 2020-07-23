@@ -1,8 +1,8 @@
 Title: HWR Map Functions
-Version: 1.22.0
+Version: 1.23.0
 Author: Mikali
 Created: 2004/10/07
-Updated: 2016/07/11
+Updated: 2020/07/22
 Homepage: http://isometricland.net/homeworld/homeworld.php
 Discussion:
 http://forums.relicnews.com/showthread.php?t=48818
@@ -125,7 +125,11 @@ two types:
    • strangeAdd: Creates a strange attractor, such as the Clifford or Lorenz 
      attractors.
    • spiralAdd: Creates a Nautilus (equiangular) or Archimedes spiral.
-   • blobAdd: Creates a network of metaballs, or blobs.
+   • blobAdd1: Creates a network of metaballs, or blobs. Uses distributions.
+   • blobAdd2: Creates a network of metaballs, or blobs. Does not use 
+     distributions.
+   • blobAdd3: Generates a regular 3D grid that is projected onto the surfaces 
+     of one or more metaballs.
    • flokalAdd: Creates a kaleidoscopic bubble and swirl pattern kind of like a 
      doily.
    • stitchAdd: Generates a triangle made of cross-hatched line segments, like 
@@ -366,8 +370,10 @@ CREDITS
 
 CHANGE LOG
 
-Next version --- 
+1.23.0 --- 2020/07/22
 • Tweaks to debug texts.
+• Renamed "blobAdd" to "blobAdd1".
+• Tweaked the "blobAdd1", "blobAdd2" and "blobAdd3" functions.
 
 1.22.0 --- 2016/07/11
 • Reverted to the better PRNG function from versions 1.19.0 and earlier. 

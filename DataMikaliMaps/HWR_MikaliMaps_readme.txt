@@ -1,8 +1,8 @@
 Title:		Mikali's Multiplayer Map Collection
-Version:	1.24.1
+Version:	1.26.0
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/07/15
+Updated:	2020/07/22
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -79,6 +79,9 @@ A heightmap based on the function for an electromagnetic field. Teams are top
 vs. bottom.
 
 (4P) METABALL MADNESS *
+A 4-player map created using the blob and metaball functions. Teams are random.
+
+(4P) METABALLS II *
 A 4-player map created using the blob and metaball functions. Teams are random.
 
 (4P) PLASMA GLOBE
@@ -178,7 +181,11 @@ CREDITS
 
 CHANGE LOG
 
-1.24.1 - 2020/05/25
+1.26.0 - 2020/07/22
+• Tweaked the "Metaball Madness" map.
+• Added "Metaballs II" which is a similar map to "Metaball Madness", but larger.
+
+1.25.0 - 2020/05/25
 • Removed the custom gamerule. Maps should be accessible from most mods now.
 • Updated a few things in "utilfunc.lua".
 

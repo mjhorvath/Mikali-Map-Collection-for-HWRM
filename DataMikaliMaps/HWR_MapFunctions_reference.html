@@ -21,7 +21,9 @@ ul {margin-bottom:1em;margin-top:1em;}
 <li><a href="#shapeAdd">shapeAdd</a>: Creates one of several available mathematical shapes.</li>
 <li><a href="#harmonographAdd">harmonographAdd</a>: Creates a squiggly curving tube. The shape is similar to that produced by a harmonograph, except in three dimensions.</li>
 <li><a href="#branchAdd">branchAdd</a>: Creates a branching tree using either straight sections or curved splines.</li>
-<li><a href="#blobAdd">blobAdd</a>: Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields.</li>
+<li><a href="#blobAdd1">blobAdd1</a>: Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields. Uses distributions.</li>
+<li><a href="#blobAdd2">blobAdd2</a>: Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields. Does not use distributions.</li>
+<li><a href="#blobAdd3">blobAdd3</a>: Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields. Creates a regular three-dimensional grid.</li>
 <li><a href="#fieldAdd">fieldAdd</a>: Similar to blobAdd, except it produces a heightmap based on the field strength instead of blobs.</li>
 <li><a href="#heightmapAdd">heightmapAdd</a>: Creates a matrix of dots based on heightmap data.</li>
 <li><a href="#flokalAdd">flokalAdd</a>: Creates a kaleidoscopic bubble and swirl pattern kind of like a doily.</li>
@@ -36,6 +38,7 @@ ul {margin-bottom:1em;margin-top:1em;}
 <h4>&quot;NonDetermChunk&quot; functions (these go in the &quot;NonDetermChunk&quot; portion of your level file):</h4>
 <ul>
 <li><a href="#randomBackground">randomBackground</a>: Randomly selects the level background.</li>
+<li><a href="#randomBattleMusic">randomBattleMusic</a>: Randomly selects the level battle music.</li>
 <li><a href="#randomMusic">randomMusic</a>: Randomly selects the level music.</li>
 </ul>
 <h4>Other functions:</h4>
@@ -394,13 +397,13 @@ ul {margin-bottom:1em;margin-top:1em;}
 </p>
 <hr />
 <p>
-<a name="blobAdd"></a><a href="#top">Top</a>
+<a name="blobAdd1"></a><a href="#top">Top</a>
 </p>
 <p>
 <table>
-<tr><td>Name:</td>		<td colspan="3">blobAdd</td></tr>
-<tr><td>Description:</td>	<td colspan="3">Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields.</td></tr>
-<tr><td>Syntax:</td>	<td colspan="3">blobAdd([tPos], [tDst], {[tBlobs], [fThrsh1], [fThrsh2], [tScale],}, [tRot], [tSeed])</td></tr>
+<tr><td>Name:</td>		<td colspan="3">blobAdd1</td></tr>
+<tr><td>Description:</td>	<td colspan="3">Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields. Uses distributions.</td></tr>
+<tr><td>Syntax:</td>	<td colspan="3">blobAdd1([tPos], [tDst], {[tBlobs], [fThrsh1], [fThrsh2], [tScale],}, [tRot], [tSeed])</td></tr>
 <tr><td>Arguments:</td>	<td>[tPos]:</td>	<td colspan="2">a table containing the shape's center coordinates.</td></tr>
 <tr><td></td>		<td>[tDst]:</td>	<td colspan="2">the distribution table used to populate the shape.</td></tr>
 <tr><td></td>		<td>[tPar]:</td>	<td colspan="2">a table containing the following four parameters:</td></tr>
@@ -411,6 +414,26 @@ ul {margin-bottom:1em;margin-top:1em;}
 <tr><td></td>		<td>[tRot]:</td>	<td colspan="2">a table containing the X, Y and Z rotation angles (degrees) for the entire object.</td></tr>
 <tr><td></td>		<td>[tSeed]:</td>	<td colspan="2">the seed for the random number functions.</td></tr>
 <tr><td colspan="5">See "Method 1" at <a href="http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm">http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm</a> for math formula info.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="blobAdd2"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr><td>Name:</td>		<td colspan="3">blobAdd2</td></tr>
+<tr><td>Description:</td>	<td colspan="3">Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields. Does not use distributions.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="blobAdd3"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr><td>Name:</td>		<td colspan="3">blobAdd3</td></tr>
+<tr><td>Description:</td>	<td colspan="3">Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields. Creates a regular three-dimensional grid.</td></tr>
 </table>
 </p>
 <hr />
@@ -646,6 +669,16 @@ ul {margin-bottom:1em;margin-top:1em;}
 <tr><td></td>			<td>[tTab]:</td>	<td>(optional) a table containing the names of the custom backgrounds.</td></tr>
 <tr><td></td>			<td>[iLen]:</td>	<td>(optional) the length of [tTab].</td></tr>
 <tr><td>Note:</td>		<td colspan="2">This function must be called from within the &quot;NonDetermChunk&quot; portion of a &quot;.level&quot; file.</td></tr>
+</table>
+</p>
+<hr />
+<p>
+<a name="randomBattleMusic"></a><a href="#top">Top</a>
+</p>
+<p>
+<table>
+<tr><td>Name:</td>		<td colspan="2">randomBattleMusic</td></tr>
+<tr><td>Description:</td>	<td colspan="2">Randomly selects the level battle music.</td></tr>
 </table>
 </p>
 <hr />

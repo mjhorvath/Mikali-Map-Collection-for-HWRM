@@ -1,10 +1,10 @@
--- (4P) Metaball Madness v2.0.3 by Mikali
--- Created: 2013/08/22
+-- (4P) Metaballs II v1.0.0 by Mikali
+-- Created: 2020/07/22
 -- Updated: 2020/07/22
--- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Website: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
 
-levelDesc = "<c=FF4800>Metaball Madness 2.0.3</c>"
+levelDesc = "<c=FF4800>Metaballs II 1.0.0</c>"
 maxPlayers = 4
 player = {}
 
@@ -17,26 +17,16 @@ function DetermChunk()
 	local cloud_color = {srandom(my_seed_1),srandom(my_seed_1),srandom(my_seed_1),1}
 	local blob_scale = {1,1/2,1}
 
-	setWorldBoundsInner({0, 0, 0}, {40000, 40000, 40000})
+	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000})
 
 --	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
-
-	local threeRings =
-	{
-		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{128, "Asteroid", "Asteroid_1", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{ 64, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{ 32, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{ 16, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
---		{  8, "Asteroid", "Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0,},
-	}
 
 	local BlobArea_1 = {}
 	local max_blobs = 4
 	local i = 1
 	while (i <= max_blobs) do
-		local u, v, r = srandom(my_seed_1, 360), srandom(my_seed_1, 180), srandom(my_seed_1, 10000) + 10000
---		local radius = srandom(my_seed_1, 10000) + 10000
+		local u, v, r = srandom(my_seed_1, 360), srandom(my_seed_1, 180), srandom(my_seed_1, 20000) + 20000
+--		local radius = srandom(my_seed_1, 20000) + 20000
 		local radius = r
 		local tCoo =
 		{
@@ -65,10 +55,10 @@ function DetermChunk()
 		end
 	end
 
-	--blobAdd1(<tPos>, <tDst>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
-	blobAdd1({0,0,0}, threeRings, {BlobArea_1, 4, 4.1, blob_scale}, {0,0,0}, my_seed_1)
+	--blobAdd2(<tPos>, <xNil>, <tPar>, <tRot>, <tSeed>)
+	blobAdd2({0,0,0}, nil, {BlobArea_1, 128, 4, 8, blob_scale}, {0,0,0}, my_seed_1)
 	--blobAdd3(<tPos>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <iPoints>, <fFieldSize>,}, <tRot>)
-	blobAdd3({0,0,0}, nil, {BlobArea_1, 4, 4.1, 100, 80000, blob_scale}, {0,0,0})
+	blobAdd3({0,0,0}, nil, {BlobArea_1, 4, 4.01, 128, 80000, blob_scale}, {0,0,0})
 end
 
 function NonDetermChunk()

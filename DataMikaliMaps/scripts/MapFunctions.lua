@@ -1,9 +1,9 @@
 --  Title: MapFunctions
---  Version: 1.22.0
---  Author: Mikali
+--  Version: 1.23.0
+--  Authors: Mikali
 --  Created: 2004/10/07
---  Updated: 2016/07/11
---  Homepage: http//isometricland.net/homeworld/homeworld.php
+--  Updated: 2020/07/22
+--  Website: http//isometricland.net/homeworld/homeworld.php
 --  Discussion:
 --  http://forums.relicnews.com/showthread.php?t=48818
 --  http://forums.relicnews.com/showthread.php?t=82964 (old thread)
@@ -468,9 +468,9 @@ function spline2Add(tPos, tDst, tPar, tRot, tSeed)
 end
 
 --------------------------------------------------------------------------------
---  Name:		blobAdd
+--  Name:		blobAdd1
 --  Description:	Creates a network of metaballs, or blobs, based on the formula for electromagnetic fields.
---  Syntax:		blobAdd(<tPos>, <tDst>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
+--  Syntax:		blobAdd1(<tPos>, <tDst>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
 --  Arguments:
 --	<tPos>: a table containing the shape's center coordinates.
 --	<tDst>: the distribution table used to populate the shape.
@@ -487,13 +487,13 @@ end
 --	   and then testing whether they're inside the blob or not. 
 --	   Unfortunately, the function is an implicit isosurface.
 --	2. Negative field strength/radius doesn't work here like it does in 
---	   "fieldAdd". Nor does it make sense to I think.
+--	   "fieldAdd". Nor would it make sense I think.
 --	3. Should this function use the "fieldCalc" function to calculate 
 --	   field strength?
 --	4. See Method 1 at: http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm
 --------------------------------------------------------------------------------
 
-function blobAdd(tPos, tDst, tPar, tRot, tSeed)
+function blobAdd1(tPos, tDst, tPar, tRot, tSeed)
 	local tBlobs = tPar[1]
 	local Blob_threshold_1 = tPar[2]
 	local Blob_threshold_2 = tPar[3]
@@ -503,10 +503,10 @@ function blobAdd(tPos, tDst, tPar, tRot, tSeed)
 	local Blob_min = {0,0,0,}
 	local Blob_max = {0,0,0,}
 	for j, jBlob in tBlobs do
-		local Blob_vector = jBlob[1]
+		local Blob_location = jBlob[1]
 		local Blob_radius = jBlob[2]
-		Blob_min = {min(Blob_min[1], Blob_vector[1] - Blob_radius), min(Blob_min[2], Blob_vector[2] - Blob_radius), min(Blob_min[3], Blob_vector[3] - Blob_radius),}
-		Blob_max = {max(Blob_max[1], Blob_vector[1] + Blob_radius), max(Blob_max[2], Blob_vector[2] + Blob_radius), max(Blob_max[3], Blob_vector[3] + Blob_radius),}
+		Blob_min = {min(Blob_min[1], Blob_location[1] - Blob_radius), min(Blob_min[2], Blob_location[2] - Blob_radius), min(Blob_min[3], Blob_location[3] - Blob_radius),}
+		Blob_max = {max(Blob_max[1], Blob_location[1] + Blob_radius), max(Blob_max[2], Blob_location[2] + Blob_radius), max(Blob_max[3], Blob_location[3] + Blob_radius),}
 	end
 
 	for i, tTab in tDst do
@@ -520,16 +520,16 @@ function blobAdd(tPos, tDst, tPar, tRot, tSeed)
 			-- get the field strength at that point
 			local Actual_strength = 0
 			for j, jBlob in tBlobs do
-				local Blob_vector = jBlob[1]
+				local Blob_location = jBlob[1]
 				local Blob_radius = jBlob[2]
-				Actual_strength = Actual_strength + (Blob_radius / sqrt((Vector_new[1] - Blob_vector[1])^2 + (Vector_new[2] - Blob_vector[2])^2 + (Vector_new[3] - Blob_vector[3])^2))
+				Actual_strength = Actual_strength + (Blob_radius / sqrt((Vector_new[1] - Blob_location[1])^2 + (Vector_new[2] - Blob_location[2])^2 + (Vector_new[3] - Blob_location[3])^2))
 			end
 
-			if ((Actual_strength > Blob_threshold_1) and (Actual_strength < Blob_threshold_2)) then
+			if ((Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2)) then
 				-- the field strength, normalized to between 0 and 1
 				local Strength_ratio = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
 				-- points should be denser where the strength is greater
---				if (Strength_ratio > sqrt(srandom3(tSeed))) then
+--				if (Strength_ratio < sqrt(srandom3(tSeed))) then
 					-- scale all coordinates by this amount to make the blobs look flatter and better
 					Vector_new = vmultiplyV(Vector_new, Blob_scale)
 					appendShape(tPos, i, tTab, jCount, Vector_new, tRot)
@@ -540,8 +540,7 @@ function blobAdd(tPos, tDst, tPar, tRot, tSeed)
 	end
 end
 
--- old version not using distributions
--- the type of resource generated depends on the strength of the field
+-- the type of resource generated depends on the strength of the field plus some randomization
 function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 	local tBlobs = tPar[1]
 	local Point_number = tPar[2]
@@ -554,10 +553,10 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 	local Blob_min = {0,0,0,}
 	local Blob_max = {0,0,0,}
 	for j, jBlob in tBlobs do
-		local Blob_vector = jBlob[1]
+		local Blob_location = jBlob[1]
 		local Blob_radius = jBlob[2]
-		Blob_min = {min(Blob_min[1], Blob_vector[1] - Blob_radius), min(Blob_min[2], Blob_vector[2] - Blob_radius), min(Blob_min[3], Blob_vector[3] - Blob_radius),}
-		Blob_max = {max(Blob_max[1], Blob_vector[1] + Blob_radius), max(Blob_max[2], Blob_vector[2] + Blob_radius), max(Blob_max[3], Blob_vector[3] + Blob_radius),}
+		Blob_min = {min(Blob_min[1], Blob_location[1] - Blob_radius), min(Blob_min[2], Blob_location[2] - Blob_radius), min(Blob_min[3], Blob_location[3] - Blob_radius),}
+		Blob_max = {max(Blob_max[1], Blob_location[1] + Blob_radius), max(Blob_max[2], Blob_location[2] + Blob_radius), max(Blob_max[3], Blob_location[3] + Blob_radius),}
 	end
 
 	local Point_padding = 500		-- put in tPar?
@@ -567,36 +566,36 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 	while (Point_count <= Point_number) do
 		-- generate a new point somewhere within the blob's bounding box
 		local Vector_new = {srandom3(tSeed, Blob_min[1], Blob_max[1]), srandom3(tSeed, Blob_min[2], Blob_max[2]), srandom3(tSeed, Blob_min[3], Blob_max[3]),}
---		local Vector_new = {random3(Blob_min[1], Blob_max[1]), random3(Blob_min[2], Blob_max[2]), random3(Blob_min[3], Blob_max[3]),}
 
 		-- get the field strength at that point
 		local Actual_strength = 0
 		for j, jBlob in tBlobs do
-			local Blob_vector = jBlob[1]
+			local Blob_location = jBlob[1]
 			local Blob_radius = jBlob[2]
-			Actual_strength = Actual_strength + (Blob_radius / sqrt((Vector_new[1] - Blob_vector[1])^2 + (Vector_new[2] - Blob_vector[2])^2 + (Vector_new[3] - Blob_vector[3])^2))
+			Actual_strength = Actual_strength + (Blob_radius / sqrt((Vector_new[1] - Blob_location[1])^2 + (Vector_new[2] - Blob_location[2])^2 + (Vector_new[3] - Blob_location[3])^2))
 		end
 
-		if (Actual_strength > Blob_threshold_1) then
+		if (Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2) then
 			-- the field strength, normalized to between 0 and 1
-			local Strength_ratio = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
-			local Random_ratio = Strength_ratio * srandom3(tSeed)
+			local Normalized_strength = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
+			local Size_ratio = Normalized_strength * srandom3(tSeed)
+			local Distance_ratio = Normalized_strength
+
 			-- points should be denser where the strength is greater
-			if (Random_ratio > sqrt(srandom3(tSeed))) then
+			if (Distance_ratio >= sqrt(srandom3(tSeed))) then
 				-- the point's radius, points should be larger where the strength is greater
-				local Radius_new = min(Point_maxradius * Random_ratio, Point_maxradius)
+				local Radius_new = Point_maxradius * Distance_ratio
+				local Pass_bool = 1
 
 				-- scale all coordinates by this amount to make the blobs look flatter and better
 				Vector_new = vmultiplyV(Vector_new, Blob_scale)
 
 				-- make sure the asteroids are not too close to each other (TOO SLOW!!!)
-				local Pass_bool = 1
-
 				local Point_count_sub = 1
 				while (Point_count_sub < Point_count) do
-					local Vector_old = Point_list[Point_count_sub][1]
+					local Location_old = Point_list[Point_count_sub][1]
 					local Radius_old = Point_list[Point_count_sub][2]
-					local Distance = vdistance(Vector_old, Vector_new)
+					local Distance = vdistance(Location_old, Vector_new)
 					local Radius_all = max(Radius_old, Radius_new, Point_padding)
 					if (Distance <= Radius_all) then
 						Pass_bool = 0
@@ -608,10 +607,10 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 				-- make sure no points are equal
 --				local Point_count_sub = 1
 --				while (Point_count_sub < Point_count) do
---					local Vector_old = Point_list[Point_count_sub][1]
---					if (veq(Vector_old, Vector_new) == 1) then
+--					local Location_old = Point_list[Point_count_sub][1]
+--					if (veq(Location_old, Vector_new) == 1) then
 --						Pass_bool = 0
---						print("\tPoint_count = " .. Point_count .. "\n\tVector_old = " .. vstr(Vector_old) .. "\tPoint_count_sub = " .. Point_count_sub .. "\n\tVector_new = " .. vstr(Vector_new))
+--						print("\tPoint_count = " .. Point_count .. "\n\tLocation_old = " .. vstr(Location_old) .. "\tPoint_count_sub = " .. Point_count_sub .. "\n\tVector_new = " .. vstr(Vector_new))
 --						break
 --					end
 --					Point_count_sub = Point_count_sub + 1
@@ -621,18 +620,17 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 					-- the square roots here may not be necessary
 					-- raising the threshold might achieve the same
 					-- but the test map looks good with them
-					if (Random_ratio <= sqrt(2/10)) then
-						--appendShape(tPos, i, tPar, j, tCoo, tRot)
+					if (Size_ratio <= sqrt(2/10)) then		--0.45
+						--appendShape(<tPos>, <i>, <tPar>, <j>, <tCoo>, <tRot>)
 						--addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
-	--					appendShape(tPos, 1, {1, "Asteroid", "Asteroid_1", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
-						appendShape(tPos, 1, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
-					elseif (Random_ratio <= sqrt(4/10)) then
+						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_1", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
+					elseif (Size_ratio <= sqrt(4/10)) then	--0.63
 						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
-					elseif (Random_ratio <= sqrt(6/10)) then
+					elseif (Size_ratio <= sqrt(6/10)) then	--0.77
 						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
-					elseif (Random_ratio <= sqrt(8/10)) then
+					elseif (Size_ratio <= sqrt(8/10)) then	--0.89
 						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
-					elseif (Random_ratio <= sqrt(10/10)) then
+					elseif (Size_ratio <= sqrt(10/10)) then	--1.00
 						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
 					end
 					--print("Point_count = " .. Point_count .. "\nVector_new = " .. vstr(Vector_new))
@@ -644,13 +642,29 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 	end
 end
 
--- Uses a 3D grid of pebbles instead of distributions, similar to fieldAdd.
-function blobAdd3(tPos, tPar, tRot)
+--------------------------------------------------------------------------------
+--  Name:		blobAdd3
+--  Description:	Generates a regular 3D grid of pebbles that is projected onto one or more metaballs. Uses a 3D grid of pebbles instead of distributions, similar to fieldAdd.
+--  Syntax:		blobAdd3(<tPos>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <iPoints>, <fFieldSize>,}, <tRot>)
+--  Arguments:
+--	<tPos>: a table containing the shape's center coordinates.
+--	<xNil>: null spacer since this function does not use distributions.
+--	<tPar>: a table containing the following four parameters:
+--		<tBlobs>: a table containing the location coordinates and strength of each blob.
+--		<fThrsh1>: threshold 1 in units of field strength.
+--		<fThrsh2>: threshold 2 in units of field strength.
+--  	<iPoints>: the number of points in each cardinal direction.
+--  	<fFieldSize>: the size of the entire field in X, Y, Z dimensions.
+--		<tScale>: scale the entire shape by these amounts in the X, Y, Z directions.
+--	<tRot>: a table containing the X, Y and Z rotation angles (degrees) for the entire object.
+
+function blobAdd3(tPos, xNil, tPar, tRot)
 	local tBlobs = tPar[1]
 	local Blob_threshold_1 = tPar[2]
 	local Blob_threshold_2 = tPar[3]
-	local Point_number = tPar[4]
+	local Point_number = tPar[4]		-- there may be an engine limit on the number of objects to display
 	local field_size = tPar[5]
+	local Blob_scale = tPar[6]
 	local Point_distance = field_size/Point_number
 	for x = 1, Point_number do
 		local cooX = x * Point_distance - field_size/2
@@ -660,13 +674,13 @@ function blobAdd3(tPos, tPar, tRot)
 				local cooZ = z * Point_distance - field_size/2
 				local Actual_strength = 0				-- get the field strength at that point
 				for j, jBlob in tBlobs do
-					local Blob_vector = jBlob[1]
+					local Blob_location = jBlob[1]
 					local Blob_radius = jBlob[2]
-					Actual_strength = Actual_strength + (Blob_radius / sqrt((cooX - Blob_vector[1])^2 + (cooY - Blob_vector[2])^2 + (cooZ - Blob_vector[3])^2))
+					Actual_strength = Actual_strength + (Blob_radius / sqrt((cooX - Blob_location[1])^2 + (cooY - Blob_location[2])^2 + (cooZ - Blob_location[3])^2))
 				end
-				if ((Actual_strength > Blob_threshold_1) and (Actual_strength < Blob_threshold_2)) then
+				if ((Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2)) then
 					-- appendShape(<tPos>, <i>, <tPar>, <j>, <tCoo>, <tRot>)
-					appendShape(tPos, 1, {1, "Pebble", "Pebble_1", {0,0,0}, 100, 0, 0, 0, 0}, 1, {cooX, cooY, cooZ}, tRot)
+					appendShape(tPos, 1, {1, "Pebble", "Pebble_1", {0,0,0}, 100, 0, 0, 0, 0}, 1, vmultiplyV({cooX,cooY,cooZ}, Blob_scale), tRot)
 				end
 			end
 		end
@@ -725,9 +739,9 @@ function fieldCalc(tBlobs, tVector, minThrsh, maxThrsh)
 	-- get the field strength at that point
 	local Actual_strength = 0
 	for j, jBlob in tBlobs do
-		local Blob_vector = jBlob[1]
+		local Blob_location = jBlob[1]
 		local Blob_radius = jBlob[2]
-		Actual_strength = Actual_strength + Blob_radius / sqrt((tVector[1] - Blob_vector[1])^2 + (tVector[2] - Blob_vector[2])^2 + (tVector[3] - Blob_vector[3])^2)
+		Actual_strength = Actual_strength + Blob_radius / sqrt((tVector[1] - Blob_location[1])^2 + (tVector[2] - Blob_location[2])^2 + (tVector[3] - Blob_location[3])^2)
 	end
 	return max(min(Actual_strength, maxThrsh), minThrsh)
 end
