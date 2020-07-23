@@ -1,0 +1,85 @@
+-- (6P) Metaballs II v1.1.0 by Mikali
+-- Created: 2020/07/22
+-- Updated: 2020/07/23
+-- Website: http://isometricland.net/homeworld/homeworld.php
+-- Teams: FFA
+
+levelDesc = "<c=FF4800>Metaballs II 1.1.0</c>"
+max_size = 50000
+max_blobs = 6
+maxPlayers = max_blobs
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	local my_seed_1 = {seed = -random(235)}
+	local blob_scale = {1,1/2,1}
+	local BlobArea_1 = {}
+	local min_y = 0
+
+	setWorldBoundsInner({0, 0, 0}, {max_size, max_size, max_size})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	local i = 1
+	while (i <= max_blobs) do
+		local u, v, r = srandom(my_seed_1, 360), srandom(my_seed_1, 180), srandom(my_seed_1, max_size/4) + max_size/4
+--		local radius = srandom(my_seed_1, max_size/4) + max_size/4
+		local radius = r
+		local tCoo =
+		{
+			r * cos(u) * sin(v),
+			r * cos(v),
+			r * sin(u) * sin(v),
+		}
+
+		-- need to also make sure blobs don't contain/overlap other blobs too much
+		local too_close = false
+		for j = 2, i do
+			local old_coo = BlobArea_1[j-1][1]
+			local old_rad = BlobArea_1[j-1][2]
+			local distance = vdistance(tCoo, old_coo)
+			if (distance <= radius) then
+				too_close = true
+				break
+			end
+		end
+
+		if (too_close == false) then
+			BlobArea_1[i] = {tCoo,radius,}
+			min_y = min(min_y, tCoo[2] - radius)
+			i = i + 1
+		end
+	end
+
+	local adjust_y = vmultiplyV({0,-min_y,0}, blob_scale)
+	for i = 1, max_blobs do
+		local tCoo = BlobArea_1[i][1]
+		local radius = BlobArea_1[i][2]
+		local rotate_amt = {0,srandom(my_seed_1, 360),0}
+		local translate_amt = vaddV(vmultiplyV(tCoo, blob_scale), adjust_y)
+		addPoint("StartPos"..(i-1), translate_amt, rotate_amt)
+	end
+
+	-- Need to figure out why the thresholds can't be as low as 1 or 0.
+	--blobAdd2(<tPos>, <xNil>, {<tBlobs>, <iAmount>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
+	blobAdd2(adjust_y, nil, {BlobArea_1, 48 * maxPlayers, 4, 8, blob_scale}, {0,0,0}, my_seed_1)
+	--blobAdd3(<tPos>, <xNil>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <iPoints>, <fFieldSize>, <tScale>,}, <tRot>)
+	blobAdd3(adjust_y, nil, {BlobArea_1, 4, 4.01, 128, max_size * 2, blob_scale}, {0,0,0})
+end
+
+function NonDetermChunk()
+	local my_seed_1 = {seed = -1209843743}
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(max_size/5, max_size)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
+
+dofilepath("data:scripts/MapFunctions.lua")

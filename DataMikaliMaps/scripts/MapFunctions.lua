@@ -578,11 +578,11 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 		if (Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2) then
 			-- the field strength, normalized to between 0 and 1
 			local Normalized_strength = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
-			local Size_ratio = Normalized_strength * srandom3(tSeed)
+			local Size_ratio = Normalized_strength * 1/2 + srandom3(tSeed) * 1/2
 			local Distance_ratio = Normalized_strength
 
 			-- points should be denser where the strength is greater
-			if (Distance_ratio >= sqrt(srandom3(tSeed))) then
+--			if (Distance_ratio >= sqrt(srandom3(tSeed))) then
 				-- the point's radius, points should be larger where the strength is greater
 				local Radius_new = Point_maxradius * Distance_ratio
 				local Pass_bool = 1
@@ -637,7 +637,7 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 					Point_list[Point_count] = {Vector_new, Radius_new}
 					Point_count = Point_count + 1
 				end
-			end
+--			end
 		end
 	end
 end

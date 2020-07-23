@@ -1,8 +1,8 @@
 Title:		Mikali's Multiplayer Map Collection
-Version:	1.26.0
+Version:	1.26.1
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/07/22
+Updated:	2020/07/23
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -180,6 +180,9 @@ CREDITS
 
 
 CHANGE LOG
+
+1.26.1 - 2020/07/23
+• Tweaked the "Metaball Madness" and "Metaballs II" maps.
 
 1.26.0 - 2020/07/22
 • Tweaked the "Metaball Madness" map.

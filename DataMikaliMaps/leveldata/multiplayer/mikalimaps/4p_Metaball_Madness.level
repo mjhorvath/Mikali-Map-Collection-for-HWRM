@@ -67,7 +67,7 @@ function DetermChunk()
 
 	--blobAdd1(<tPos>, <tDst>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
 	blobAdd1({0,0,0}, threeRings, {BlobArea_1, 4, 4.1, blob_scale}, {0,0,0}, my_seed_1)
-	--blobAdd3(<tPos>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <iPoints>, <fFieldSize>,}, <tRot>)
+	--blobAdd3(<tPos>, <xNil>, {<tBlobs>, <fThrsh1>, <fThrsh2>, <iPoints>, <fFieldSize>, <tScale>,}, <tRot>)
 	blobAdd3({0,0,0}, nil, {BlobArea_1, 4, 4.1, 100, 80000, blob_scale}, {0,0,0})
 end
 
