@@ -1,8 +1,8 @@
 --  Title: MapFunctions
---  Version: 1.23.0
+--  Version: 1.23.2
 --  Authors: Mikali
 --  Created: 2004/10/07
---  Updated: 2020/07/22
+--  Updated: 2020/07/24
 --  Website: http//isometricland.net/homeworld/homeworld.php
 --  Discussion:
 --  http://forums.relicnews.com/showthread.php?t=48818
@@ -579,6 +579,7 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 			-- the field strength, normalized to between 0 and 1
 			local Normalized_strength = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
 			local Size_ratio = Normalized_strength * 1/2 + srandom3(tSeed) * 1/2
+--			local Size_ratio = Normalized_strength
 			local Distance_ratio = Normalized_strength
 
 			-- points should be denser where the strength is greater
@@ -657,6 +658,10 @@ end
 --  	<fFieldSize>: the size of the entire field in X, Y, Z dimensions.
 --		<tScale>: scale the entire shape by these amounts in the X, Y, Z directions.
 --	<tRot>: a table containing the X, Y and Z rotation angles (degrees) for the entire object.
+--  Notes:
+--  1. I could create another version of this script that plots points randomly 
+--     until a certain predetermined number of them have been plotted. However, 
+--     this could increase parse/load times considerably.
 
 function blobAdd3(tPos, xNil, tPar, tRot)
 	local tBlobs = tPar[1]
@@ -672,6 +677,7 @@ function blobAdd3(tPos, xNil, tPar, tRot)
 			local cooY = y * Point_distance - field_size/2
 			for z = 1, Point_number do
 				local cooZ = z * Point_distance - field_size/2
+				local tCoo = vmultiplyV({cooX,cooY,cooZ}, Blob_scale)
 				local Actual_strength = 0				-- get the field strength at that point
 				for j, jBlob in tBlobs do
 					local Blob_location = jBlob[1]
@@ -680,7 +686,7 @@ function blobAdd3(tPos, xNil, tPar, tRot)
 				end
 				if ((Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2)) then
 					-- appendShape(<tPos>, <i>, <tPar>, <j>, <tCoo>, <tRot>)
-					appendShape(tPos, 1, {1, "Pebble", "Pebble_1", {0,0,0}, 100, 0, 0, 0, 0}, 1, vmultiplyV({cooX,cooY,cooZ}, Blob_scale), tRot)
+					appendShape(tPos, 1, {1, "Pebble", "Pebble_1", {0,0,0}, 100, 0, 0, 0, 0}, 1, tCoo, tRot)
 				end
 			end
 		end

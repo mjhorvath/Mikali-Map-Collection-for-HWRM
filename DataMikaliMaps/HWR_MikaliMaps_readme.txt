@@ -1,8 +1,8 @@
-Title:		Mikali's Multiplayer Map Collection
-Version:	1.26.1
+Caption:	Mikali's Multiplayer Map Collection
+Version:	1.26.2
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/07/23
+Updated:	2020/07/24
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -81,9 +81,6 @@ vs. bottom.
 (4P) METABALL MADNESS *
 A 4-player map created using the blob and metaball functions. Teams are random.
 
-(4P) METABALLS II *
-A 4-player map created using the blob and metaball functions. Teams are random.
-
 (4P) PLASMA GLOBE
 A 4-player map in the shape of a plasma globe using the "branchAdd" function. 
 Teams are top vs. bottom.
@@ -131,6 +128,9 @@ A 6-player map in the shape of a Klein Bottle. Teams are top vs. bottom.
 
 (6P) MENGER SPONGE
 A stack of blocks with nooks and crannies. Teams are odds vs. evens.
+
+(6P) METABALLS II *
+A 6-player map created using the blob and metaball functions. Teams are random.
 
 (8P) ANDROMEDA
 A very large 6-player map in the shape of a double-armed spiral. Teams are top 
@@ -180,6 +180,9 @@ CREDITS
 
 
 CHANGE LOG
+
+1.26.2 - 2020/07/24
+• Tweaked the "Metaball Madness" and "Metaballs II" maps.
 
 1.26.1 - 2020/07/23
 • Tweaked the "Metaball Madness" and "Metaballs II" maps.

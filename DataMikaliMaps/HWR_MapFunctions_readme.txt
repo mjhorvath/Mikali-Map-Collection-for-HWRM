@@ -1,9 +1,9 @@
 Title: HWR Map Functions
-Version: 1.23.1
-Author: Mikali
+Version: 1.23.2
+Authors: Mikali
 Created: 2004/10/07
-Updated: 2020/07/23
-Homepage: http://isometricland.net/homeworld/homeworld.php
+Updated: 2020/07/24
+Website: http://isometricland.net/homeworld/homeworld.php
 Discussion:
 http://forums.relicnews.com/showthread.php?t=48818
 http://forums.relicnews.com/showthread.php?t=82964 (old thread)
