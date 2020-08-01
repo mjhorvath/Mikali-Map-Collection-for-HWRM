@@ -196,6 +196,7 @@ CHANGE LOG
 • Starting positions in "Spline Crazy" are now located directly within the 
   spline band.
 • Easy Patches have been removed from "Spline Crazy".
+• Moved the "source" folder over to the GitHub repo *only*.
 
 1.26.2 - 2020/07/24
 • Tweaked the "Metaball Madness" and "Metaballs II" maps.
