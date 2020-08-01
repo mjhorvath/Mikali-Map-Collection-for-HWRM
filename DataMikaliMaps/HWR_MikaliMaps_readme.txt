@@ -16,10 +16,10 @@ Discussion:	http://forums.relicnews.com/showthread.php?t=48818
 
 DESCRIPTION
 
-A collection of multiplayer maps, as well as a demonstration of my map-making 
-functions. These maps will only work in Homeworld Remastered.
+A collection of multiplayer maps demonstrating my custom map-making functions. 
+These maps will only work with Homeworld Remastered.
 
-The very latest version of the mod can always be found on GitHub.
+The very latest uncompressed version of the mod can always be found on GitHub.
 
 
 INSTALLATION
@@ -37,10 +37,12 @@ DataMikaliMaps -overrideBigFile -luatrace" to your shortcut's "Target" field.
 
 CONTENTS
 
-Maps marked with an asterix (*) are not multiplayer safe. They will cause 
-desyncs in human vs human multiplayer battles, unfortunately. They work fine in 
-skirmish however. These maps are also marked with a pair of dice in the level 
-thumbnail images.
+Maps marked with a single asterisk (*) are not multiplayer safe. They will 
+cause desyncs in human vs human multiplayer battles. They work fine in skirmish 
+however. These maps are also marked with a pair of dice in the level thumbnail 
+images. Maps marked with two asterisks (**) feature radioactive clouds (usually 
+in the center of the map) that can destroy your ships if you fly into them. 
+These maps are marked with a yellow triangle in the level thumbnail images.
 
 (2P) BLOCK MAZE *
 A 3D cube with randomized internal walls. Navigate the passageways to assault 
@@ -49,7 +51,7 @@ your foe.
 (2P) GO AROUND
 A two-player map with a large vertical barrier separating players.
 
-(2P) RESOURCE GALLERY
+(2P) RESOURCE GALLERY **
 This map is intended to be used as a guide for map-makers. Arranged in rows and 
 columns are natural terrain, such as asteroids and clouds.
 
@@ -74,18 +76,18 @@ don't leave your collectors in a room undefended!
 A 2D maze of passageways. Try and sneak around the outside as well. Teams are 
 top vs. bottom.
 
+(4P) METABALL MADNESS *
+A 4-player map created using the blob and metaball functions. Teams are random.
+
+(4P) PLASMA GLOBE *
+A 4-player map in the shape of a plasma globe using the "branchAdd" function. 
+Teams are top vs. bottom.
+
 (4P) SCALAR FIELD
 A heightmap based on the function for an electromagnetic field. Teams are top 
 vs. bottom.
 
-(4P) METABALL MADNESS *
-A 4-player map created using the blob and metaball functions. Teams are random.
-
-(4P) PLASMA GLOBE
-A 4-player map in the shape of a plasma globe using the "branchAdd" function. 
-Teams are top vs. bottom.
-
-(4P) SPIRAL GALAXY
+(4P) SPIRAL GALAXY **
 A 4-player map shaped like a spiral with a radioactive cloud in the middle. 
 Teams are top vs. bottom.
 
@@ -98,7 +100,7 @@ A 4-player map. Teams are top vs. bottom.
 (4P) TORA! TORA! TORA!
 A 4-player map shaped like a torus. Teams are top vs. bottom.
 
-(5P) ELECTROMAGNETIC DOILY
+(5P) ELECTROMAGNETIC DOILY **
 A 5-player map with a kaleidoscopic bubble and swirl pattern kind of like a 
 doily. Teams are FFA.
 
@@ -132,11 +134,14 @@ A stack of blocks with nooks and crannies. Teams are odds vs. evens.
 (6P) METABALLS II *
 A 6-player map created using the blob and metaball functions. Teams are random.
 
+(6p) VORONOI STEPPES
+A 6-player map that looks like broken tiles.
+
 (8P) ANDROMEDA
 A very large 6-player map in the shape of a double-armed spiral. Teams are top 
 vs. bottom.
 
-(8P) BENTUS MELTDOWN *
+(8P) BENTUS MELTDOWN * **
 A large random 6-player map in the shape of concentric elliptical rings. Teams 
 are random. Radioactive wreckage lie at the map's center.
 

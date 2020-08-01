@@ -35,13 +35,10 @@ WorkshopID: 399477672
 Description:
 A collection of multiplayer maps created to demonstrate my custom map-making functions.
 
-The GitHub repo for this project is located here:
+Documentation can be found at this project's GitHub repository, located here:
 https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
 
-The ModDB page with instructions is located here:
-http://www.moddb.com/mods/mikalis-multiplayer-map-collection
-
-The discussion thread for this mod is located here:
+An old discussion thread for this mod is located here:
 http://forums.relicnews.com/showthread.php?48818
 
 My homepage with even more mods and tools can be found here:
