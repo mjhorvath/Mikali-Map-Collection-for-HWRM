@@ -1,6 +1,6 @@
--- (8P) Andromeda v1.6.3 by Mikali
+-- (8P) Andromeda v1.6.4 by Mikali
 -- Created: 2004/10/29
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 -- Positions: fixed
@@ -19,7 +19,7 @@
 -- could place some radiation clouds in the center. But I made enough maps like 
 -- that already.
 
-levelDesc = "<c=FF4800>Andromeda 1.6.3</c>"
+levelDesc = "<c=FF4800>Andromeda 1.6.4</c>"
 maxPlayers = 8
 player = {}
 
@@ -78,7 +78,7 @@ function DetermChunk()
 	local rockRing =
 	{
 		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{1, "Asteroid", "Asteroid_5", {0,0,0,}, 100,0,0, 0, 0},
+		{1, "Asteroid", "Asteroid_M_5", {0,0,0,}, 100,0,0, 0, 0},
 	}
 	local dustSpiral =
 	{

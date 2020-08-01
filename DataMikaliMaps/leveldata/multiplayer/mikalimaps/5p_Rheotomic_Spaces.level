@@ -1,10 +1,10 @@
--- (5P) Rheotomic Spaces v1.0.9 by Mikali
+-- (5P) Rheotomic Spaces v1.0.10 by Mikali
 -- Created: 2013/09/22
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
 
-levelDesc = "<c=FF4800>Rheotomic Spaces 1.0.9</c>"
+levelDesc = "<c=FF4800>Rheotomic Spaces 1.0.10</c>"
 maxPlayers = 5
 player = {}
 
@@ -154,7 +154,7 @@ function DetermChunk()
 
 	for i, iCount in asteroids_table do
 		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
-		addAsteroid("Asteroid_4", fix_coords(iCount), 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_4", fix_coords(iCount), 100, 0, 0, 0, 0)
 	end
 
 	for i, iCount in clouds_table do
@@ -172,7 +172,7 @@ function DetermChunk()
 	for i = 1, iMax do
 		local r, u = 1000, i * uStep
 		local x, z = r * cos(u), r * sin(u)
-		addAsteroid("Asteroid_5", {x,0,z,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", {x,0,z,}, 100, 0, 0, 0, 0)
 	end
 end
 

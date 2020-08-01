@@ -1,10 +1,10 @@
--- (2P) Resource Gallery v1.3.2 by Mikali
+-- (2P) Resource Gallery v1.3.3 by Mikali
 -- Created: 2004/01/21
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Gallery - Resources 1.3.2</c>"
+levelDesc = "<c=FF4800>Gallery - Resources 1.3.3</c>"
 maxPlayers = 2
 player = {}
 
@@ -13,25 +13,32 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
+	print("Start DetermChunk")
+
 	setWorldBoundsInner({0, 0, 0}, {100000, 50000, 100000})
 
 	addPoint("StartPos0", {0,      0, 0}, {0, 0, 0})
 	addPoint("StartPos1", {0, 100000, 0}, {0, 0, 0})
 
 --	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
---	addCloud("cloud", "cloud_text_1", {0,      0, 0}, {1, 1, 1, 1}, 0, 4096)
---	addCloud("cloud", "cloud_text_2", {0, 100000, 0}, {1, 1, 1, 1}, 0, 4096)
 
-	-- Clouds & Pebbles
+	-- Pebbles
+	print("Pebbles")
 	addPebble("Pebble_0",             {-15000, 0,-15000}, 0, 0, 0)
 	addPebble("Pebble_1",             {-10000, 0,-15000}, 0, 0, 0)
 	addPebble("Pebble_2",             { -5000, 0,-15000}, 0, 0, 0)
+
+	-- Clouds
+	print("Clouds")
 	addCloud("cloud", "Cloud_0",      {     0, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
 	addCloud("cloud", "Cloud_NoRes",  {  5000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
 	addCloud("cloud", "Cloud_NoRes2", { 10000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
 	addCloud("cloud", "Cloud_NoRes3", { 15000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
+--	addCloud("cloud", "cloud_text_1", {0,      0, 0}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+--	addCloud("cloud", "cloud_text_2", {0, 100000, 0}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
 
 	-- Dust Clouds
+	print("Dust Clouds")
 	addDustCloud("dustcloud", "DustCloud_0",              {-35000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
 	addDustCloud("dustcloud", "DustCloud_NoRes",          {-30000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
 	addDustCloud("dustcloud", "DustCloud_NoRes_M05",      {-25000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
@@ -41,14 +48,23 @@ function DetermChunk()
 	addDustCloud("dustcloud", "DustCloud_NoRes3",         { -5000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
 	addDustCloud("dustcloud", "DustCloud_NoRes3_M05",     {     0, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
 	addDustCloud("dustcloud", "DustCloud_Teal",           {  5000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
---	addDustCloud("dustcloud", "DustCloud0",               { 10000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
---	addDustCloud("dustcloud", "DustCloud1",               { 15000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
---	addDustCloud("dustcloud", "DustCloud2",               { 20000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
---	addDustCloud("dustcloud", "DustCloud3",               { 25000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
---	addDustCloud("dustcloud", "GasCloud0",                { 30000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
---	addDustCloud("dustcloud", "GasCloud1",                { 35000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
+	addDustCloud("dustcloud", "dustcloud0_hw1",           { 10000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
+	addDustCloud("dustcloud", "dustcloud1_hw1",           { 15000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
+	addDustCloud("dustcloud", "dustcloud2_hw1",           { 20000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
+	addDustCloud("dustcloud", "dustcloud3_hw1",           { 25000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)
+--	addDustCloud("dustcloud", "dustcloud0",               { 30000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addDustCloud("dustcloud", "dustcloud1",               { 35000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addDustCloud("dustcloud", "dustcloud2",               { 40000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addDustCloud("dustcloud", "dustcloud3",               { 45000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addDustCloud("dustcloud", "GasCloud0",                { 50000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addDustCloud("dustcloud", "GasCloud1",                { 55000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+	addDustCloud("dustcloud", "dustcloud_m_0",            { 60000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
+	addDustCloud("dustcloud", "dustcloud_m_1",            { 65000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
+	addDustCloud("dustcloud", "dustcloud_m_2",            { 70000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
+	addDustCloud("dustcloud", "dustcloud_m_3",            { 75000, 0,-10000}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
 
 	-- Harvestable Dust Clouds
+	print("Harvestable Dust Clouds")
 	addDustCloudWithResources("cloud", "DustCloud_0",              {-35000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addDustCloudWithResources("cloud", "DustCloud_NoRes",          {-30000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addDustCloudWithResources("cloud", "DustCloud_NoRes_M05",      {-25000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
@@ -58,14 +74,23 @@ function DetermChunk()
 	addDustCloudWithResources("cloud", "DustCloud_NoRes3",         { -5000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addDustCloudWithResources("cloud", "DustCloud_NoRes3_M05",     {     0, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addDustCloudWithResources("cloud", "DustCloud_Teal",           {  5000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
---	addDustCloudWithResources("cloud", "DustCloud0",               { 10000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
---	addDustCloudWithResources("cloud", "DustCloud1",               { 15000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
---	addDustCloudWithResources("cloud", "DustCloud2",               { 20000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
---	addDustCloudWithResources("cloud", "DustCloud3",               { 25000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
---	addDustCloudWithResources("cloud", "GasCloud0",                { 30000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
---	addDustCloudWithResources("cloud", "GasCloud1",                { 35000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
---
+	addDustCloudWithResources("cloud", "dustcloud0_hw1",           { 10000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+	addDustCloudWithResources("cloud", "dustcloud1_hw1",           { 15000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+	addDustCloudWithResources("cloud", "dustcloud2_hw1",           { 20000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+	addDustCloudWithResources("cloud", "dustcloud3_hw1",           { 25000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+--	addDustCloudWithResources("cloud", "dustcloud0",               { 30000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+--	addDustCloudWithResources("cloud", "dustcloud1",               { 35000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+--	addDustCloudWithResources("cloud", "dustcloud2",               { 40000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+--	addDustCloudWithResources("cloud", "dustcloud3",               { 45000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+--	addDustCloudWithResources("cloud", "GasCloud0",                { 50000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+--	addDustCloudWithResources("cloud", "GasCloud1",                { 55000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+	addDustCloudWithResources("cloud", "dustcloud_m_0",            { 60000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- MikaliMaps only
+	addDustCloudWithResources("cloud", "dustcloud_m_1",            { 65000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- MikaliMaps only
+	addDustCloudWithResources("cloud", "dustcloud_m_2",            { 70000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- MikaliMaps only
+	addDustCloudWithResources("cloud", "dustcloud_m_3",            { 75000, 0, -5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- MikaliMaps only
+
 	-- Nebulae
+	print("Nebulae")
 	addNebula("nebula", "M05_DustCloud_Nebula",        {-35000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
 	addNebula("nebula", "M05_NebualDustCloud_NoRes",   {-30000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
 	addNebula("nebula", "M05_NebualDustCloud_NoRes2",  {-25000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
@@ -77,13 +102,15 @@ function DetermChunk()
 	addNebula("nebula", "MP_Bentusi_Radiation",        {  5000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
 	addNebula("nebula", "Nebula_0",                    { 10000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
 	addNebula("nebula", "Nebula_Hiding",               { 15000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
---	addNebula("nebula", "nebula0",                     { 20000, 0,     0}, {1, 1, 1, 1}, 0, 2500)		-- HW1R only
-	addNebula("nebula", "Nebula01_Cream",              { 25000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Nebula01_Teal",               { 30000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Radiation",                   { 35000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Nebula01_Cream",              { 20000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Nebula01_Teal",               { 25000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Radiation",                   { 30000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
+--	addNebula("nebula", "nebula0",                     { 35000, 0,     0}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addNebula("nebula", "nebula_m_0",                  { 40000, 0,     0}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
 
 	-- Harvestable Nebulae
-	-- I think tendrils only work with "nebula0"
+	-- I think tendrils only work with "nebula_m_0"
+	print("Harvestable Nebulae")
 	addNebulaWithResources("nebula", "M05_DustCloud_Nebula",        {-35000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addNebulaWithResources("nebula", "M05_NebualDustCloud_NoRes",   {-30000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addNebulaWithResources("nebula", "M05_NebualDustCloud_NoRes2",  {-25000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
@@ -95,32 +122,40 @@ function DetermChunk()
 	addNebulaWithResources("nebula", "MP_Bentusi_Radiation",        {  5000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addNebulaWithResources("nebula", "Nebula_0",                    { 10000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
 	addNebulaWithResources("nebula", "Nebula_Hiding",               { 15000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
---	addNebulaWithResources("nebula", "nebula0",                     { 20000, 0,     0}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1R only
-	addNebulaWithResources("nebula", "Nebula01_Cream",              { 25000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
-	addNebulaWithResources("nebula", "Nebula01_Teal",               { 30000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
-	addNebulaWithResources("nebula", "Radiation",                   { 35000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+	addNebulaWithResources("nebula", "Nebula01_Cream",              { 20000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+	addNebulaWithResources("nebula", "Nebula01_Teal",               { 25000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+	addNebulaWithResources("nebula", "Radiation",                   { 30000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)
+--	addNebulaWithResources("nebula", "nebula0",                     { 35000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- HW1RM only
+--	addNebulaWithResources("nebula", "nebula_m_0",                  { 40000, 0,  5000}, 100, {1, 1, 1, 1}, 0, 2500, 1)		-- MikaliMaps only
 
 	-- Asteroids
+	print("Asteroids")
 	addAsteroid("Asteroid_1",           {-45000, 0, 10000}, 100, 0, 0, 0, 0)
 	addAsteroid("Asteroid_2",           {-40000, 0, 10000}, 100, 0, 0, 0, 0)
 	addAsteroid("Asteroid_3",           {-35000, 0, 10000}, 100, 0, 0, 0, 0)
 	addAsteroid("Asteroid_4",           {-30000, 0, 10000}, 100, 0, 0, 0, 0)
-	addAsteroid("asteroid_4_piece01",   {-25000, 0, 10000}, 100, 0, 0, 0, 0)
-	addAsteroid("asteroid_4_piece02",   {-20000, 0, 10000}, 100, 0, 0, 0, 0)
-	addAsteroid("asteroid_4_piece03",   {-15000, 0, 10000}, 100, 0, 0, 0, 0)
-	addAsteroid("Asteroid_5",           {-10000, 0, 10000}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_5",           {-25000, 0, 10000}, 100, 0, 0, 0, 0)
+	addAsteroid("asteroid_4_piece01",   {-20000, 0, 10000}, 100, 0, 0, 0, 0)
+	addAsteroid("asteroid_4_piece02",   {-15000, 0, 10000}, 100, 0, 0, 0, 0)
+	addAsteroid("asteroid_4_piece03",   {-10000, 0, 10000}, 100, 0, 0, 0, 0)
 	addAsteroid("asteroid_5_piece01",   { -5000, 0, 10000}, 100, 0, 0, 0, 0)
 	addAsteroid("asteroid_5_piece02",   {     0, 0, 10000}, 100, 0, 0, 0, 0)
 	addAsteroid("asteroid_5_piece03",   {  5000, 0, 10000}, 100, 0, 0, 0, 0)
---	addAsteroid("asteroid0",            { 10000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
---	addAsteroid("asteroid1",            { 15000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
---	addAsteroid("asteroid2",            { 20000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
---	addAsteroid("asteroid3",            { 25000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
---	addAsteroid("asteroid4",            { 30000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
---	addAsteroid("m06_killer_asteroid3", { 35000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
---	addAsteroid("m06_killer_asteroid4", { 40000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1R only
+--	addAsteroid("asteroid0",            { 10000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+--	addAsteroid("asteroid1",            { 15000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+--	addAsteroid("asteroid2",            { 20000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+--	addAsteroid("asteroid3",            { 25000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+--	addAsteroid("asteroid4",            { 30000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+--	addAsteroid("m06_killer_asteroid3", { 35000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+--	addAsteroid("m06_killer_asteroid4", { 40000, 0, 10000}, 100, 0, 0, 0, 0)		-- HW1RM only
+	addAsteroid("asteroid_m_1",         { 45000, 0, 10000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
+	addAsteroid("asteroid_m_2",         { 50000, 0, 10000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
+	addAsteroid("asteroid_m_3",         { 55000, 0, 10000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
+	addAsteroid("asteroid_m_4",         { 60000, 0, 10000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
+	addAsteroid("asteroid_m_5",         { 65000, 0, 10000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
 
 	-- Salvage
+	print("Salvage")
 	addSalvage("container",          {-50000, 0, 15000}, 100, 0, 0, 0, 0)
 	addSalvage("headshotpebble",     {-45000, 0, 15000}, 100, 0, 0, 0, 0)
 	addSalvage("headshotpebble0",    {-40000, 0, 15000}, 100, 0, 0, 0, 0)
@@ -142,6 +177,10 @@ function DetermChunk()
 	addSalvage("Slv_Chunk_Sml08",    { 40000, 0, 15000}, 100, 0, 0, 0, 0)
 	addSalvage("staticcontainer",    { 45000, 0, 15000}, 100, 0, 0, 0, 0)
 	addSalvage("staticcontainerlow", { 50000, 0, 15000}, 100, 0, 0, 0, 0)
+	addSalvage("hwccrystal_1",       { 55000, 0, 15000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
+	addSalvage("hwccrystal_2",       { 60000, 0, 15000}, 100, 0, 0, 0, 0)		-- MikaliMaps only
+
+	print("End DetermChunk")
 end
 
 function NonDetermChunk()

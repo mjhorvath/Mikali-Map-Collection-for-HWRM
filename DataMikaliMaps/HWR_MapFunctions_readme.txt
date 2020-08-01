@@ -2,7 +2,7 @@ Title: HWR Map Functions
 Version: 1.23.2
 Authors: Mikali
 Created: 2004/10/07
-Updated: 2020/07/24
+Updated: 2020/08/01
 Website: http://isometricland.net/homeworld/homeworld.php
 Discussion:
 http://forums.relicnews.com/showthread.php?t=48818
@@ -369,6 +369,9 @@ CREDITS
 
 
 CHANGE LOG
+
+1.23.2 --- 2020/08/01
+• Tweaks to "appendShape".
 
 1.23.1 --- 2020/07/23
 • Tweaked the "blobAdd1", "blobAdd2" and "blobAdd3" functions.

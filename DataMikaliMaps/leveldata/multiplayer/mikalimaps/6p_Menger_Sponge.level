@@ -1,10 +1,10 @@
--- (6P) Menger Sponge 1.1.2 by Mikali
+-- (6P) Menger Sponge 1.1.3 by Mikali
 -- Created: 2010/12/28
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Odds vs. Evens
 
-levelDesc = "<c=FF4800>Menger Sponge 1.1.2</c>"
+levelDesc = "<c=FF4800>Menger Sponge 1.1.3</c>"
 maxPlayers = 6
 player = {}
 
@@ -15,6 +15,7 @@ end
 coords = {}
 ccount = 1
 basedm = 4096
+offset = basedm/2
 levels = 2
 noaxes = 3
 modobj = "box_4096_4096_4096"
@@ -79,7 +80,7 @@ function plot_shape(coo)
 		if (coo[5] == 1) then
 			addSquadron("none", modobj, newPos, -1, {0,0,0,}, 1, 0)
 		else
-			addAsteroid("Asteroid_5", newPos, 100, 0, 0, 0, 0)
+			addAsteroid("Asteroid_M_5", newPos, 100, 0, 0, 0, 0)
 		end
 	end
 end
@@ -96,12 +97,19 @@ function check_duplicates(in_coo)
 end
 
 function DetermChunk()
-	addPoint("StartPos0", {-basedm*3, 0, 0,}, {0, 0, 0,})
-	addPoint("StartPos1", { basedm*3, 0, 0,}, {0, 0, 0,})
-	addPoint("StartPos2", { 0,-basedm*3, 0,}, {0, 0, 0,})
-	addPoint("StartPos3", { 0, basedm*3, 0,}, {0, 0, 0,})
-	addPoint("StartPos4", { 0, 0,-basedm*3,}, {0, 0, 0,})
-	addPoint("StartPos5", { 0, 0, basedm*3,}, {0, 0, 0,})
+	addAsteroid("Asteroid_M_5", {-basedm*3, 0, 0,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", { basedm*3, 0, 0,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", { 0,-basedm*3, 0,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", { 0, basedm*3, 0,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", { 0, 0,-basedm*3,}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", { 0, 0, basedm*3,}, 100, 0, 0, 0, 0)
+
+	addPoint("StartPos0", {-(basedm*3+offset), 0, 0,}, {0, 0, 0,})
+	addPoint("StartPos1", { (basedm*3+offset), 0, 0,}, {0, 0, 0,})
+	addPoint("StartPos2", { 0,-(basedm*3+offset), 0,}, {0, 0, 0,})
+	addPoint("StartPos3", { 0, (basedm*3+offset), 0,}, {0, 0, 0,})
+	addPoint("StartPos4", { 0, 0,-(basedm*3+offset),}, {0, 0, 0,})
+	addPoint("StartPos5", { 0, 0, (basedm*3+offset),}, {0, 0, 0,})
 
 --	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
 --	addCloud("polySurface1", "cloud_text_1", {-basedm*3, 0, 0,}, {1, 1, 1, 1}, 0, 4096)

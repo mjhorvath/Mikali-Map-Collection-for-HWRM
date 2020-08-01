@@ -1,0 +1,10 @@
+= -$SHIP_NAME=hwccrystal_1
+= -$PATH_NAME=D:\Working\Homeworld\projects\new_hods\salvage\hwccrystal_1
+= -log
+= -dump
+= -echo=-- Scan Path: $[SHIP_NAME]$[CR]
+= -$CONVERT_IN=$[PATH_NAME]\$[SHIP_NAME]_01.hod
+= -$CONVERT_OUT=$[PATH_NAME]\$[SHIP_NAME]_01.dae
+= -do=convert
+= -action=null
+= -wait

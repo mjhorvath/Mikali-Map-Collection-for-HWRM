@@ -1,8 +1,11 @@
 -- (4P) Metaball Madness v2.0.4 by Mikali
 -- Created: 2013/08/22
--- Updated: 2020/07/24
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
+-- Notes:
+-- 1. Need to also ensure that harvestable resources are not placed too closely 
+--    to one another.
 
 levelDesc = "<c=FF4800>Metaball Madness 2.0.4</c>"
 max_blobs = 4
@@ -25,11 +28,11 @@ function DetermChunk()
 	local threeRings =
 	{
 		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{128, "Asteroid", "Asteroid_1", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{ 64, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{ 32, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{ 16, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  8, "Asteroid", "Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{128, "Asteroid", "Asteroid_M_1", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 64, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 32, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{ 16, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		{  8, "Asteroid", "Asteroid_M_5", {0,0,0,}, 100, 0, 0, 0, 0,},
 	}
 
 	local BlobArea_1 = {}
@@ -45,7 +48,7 @@ function DetermChunk()
 			r * sin(u) * sin(v),
 		}
 
-		-- need to also make sure blobs don't contain/overlap other blobs too much
+		-- make sure blobs don't overlap other blobs too much
 		local too_close = false
 		for j = 2, i do
 			local old_coo = BlobArea_1[j-1][1]

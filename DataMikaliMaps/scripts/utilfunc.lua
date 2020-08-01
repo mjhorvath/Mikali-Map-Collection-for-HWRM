@@ -1,3 +1,7 @@
+-- Updated: 2020-07-30 by Mikali
+-- Should check if a function with that name has already been defined before attempting to define again.
+
+
 --------------------------------------------------------------------------------
 -- Random number functions.
 --
@@ -50,7 +54,7 @@ function random3(fVal1, fVal2)
 	end
 end
 
--- For each argument, returns a random float value between 0 and the argument.
+-- For each argument (max=5), returns a random float value between 0 and the argument.
 function randomSet(...)
 	local v = {}
 	for i = 1, getn(arg) do
@@ -69,7 +73,7 @@ function randomSet(...)
 	end
 end
 
--- For every two arguments, returns a random float value between the former argument and the latter argument.
+-- For every two arguments (max=10), returns a random float value between the former argument and the latter argument.
 function randomSet2(...)
 	local v = {}
 	for i = 2, getn(arg), 2 do
@@ -729,36 +733,4 @@ function tcomp(tTable1, tTable2)
 		end
 	end
 	return same
-end
-
-
---------------------------------------------------------------------------------
--- Other stuff.
---
-
--- Converts a decimal value into a fraction.
-function decimal_to_fraction(fNumber)
-	local fullNumber = floor(fNumber)
-	local iNumerator = fNumber - fullNumber
-	local iDenominator = 1
-	while (iNumerator ~= floor(iNumerator)) do
-		iNumerator = iNumerator * 10
-		iDenominator = iDenominator * 10
-	end
-	iNumerator = floor(iNumerator)
-	for i = 2, floor(sqrt(iNumerator)) do
-		while ((mod(iNumerator, i) == 0) and (mod(iDenominator, i) == 0)) do
-			iNumerator = iNumerator / i
-			iDenominator = iDenominator / i
-		end
-	end
-	iNumerator = iNumerator + fullNumber * iDenominator
---	print(fNumber .. " = " .. iNumerator .. "/" .. iDenominator)
-	return iNumerator, iDenominator
-end
-
-function debug_print(sMessage)
-	if (debug_text == true) then
-		print(sMessage)
-	end
 end

@@ -1,10 +1,10 @@
--- (4P) Strange Attractor v1.0.12 by Mikali
+-- (4P) Strange Attractor v1.0.13 by Mikali
 -- Created: 2013/08/28
--- Updated: 2016/07/11
+-- Updated: 2020/08/01
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: random
 
-levelDesc = "<c=FF4800>Strange Attractor 1.0.12</c>"
+levelDesc = "<c=FF4800>Strange Attractor 1.0.13</c>"
 maxPlayers = 4
 player = {}
 
@@ -31,18 +31,18 @@ function DetermChunk()
 
 	local attractor_1 =
 	{
---		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
 		{480, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
 	}
 	local attractor_2 =
 	{
---		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{48, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{48, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
 	}
 	local attractor_3 =
 	{
---		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{24, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{24, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
 	}
 
 	--interesting values
@@ -59,7 +59,7 @@ function DetermChunk()
 	midBox_2 = {4127.0673828125, -21608.53125, 3700.149169921875, }
 	midBox_sub = vsubtractV(midBox_1, midBox_2)
 
---	strangeAdd(<tPos>, <tDst>, <tPar>, <tRot>, <tSeed>)
+	-- strangeAdd(<tPos>, <tDst>, <tPar>, <tRot>, <tSeed>)
 	strangeAdd({0,0,0,}, attractor_1, { -0.459425687789917,-0.2355418205261231, 0.7747428417205811, 0.9928891658782959,30000,}, {0,0,0,}, my_seed_1)
 	strangeAdd({0,0,0,}, attractor_1, {-0.2925504446029663, 0.1102938652038574,-0.7010101079940796, 0.4304940700531006,30000,}, {0,0,0,}, my_seed_1)
 	strangeAdd({0,0,0,}, attractor_2, { -0.459425687789917,-0.2355418205261231, 0.7747428417205811, 0.9928891658782959,30000,}, {0,0,0,}, my_seed_1)

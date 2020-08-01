@@ -1,0 +1,9 @@
+= -$SHIP_NAME=asteroid_2_swap
+= -$PATH_NAME=asteroid_2_swap
+= -log
+= -echo=-- Scan Path: $[SHIP_NAME]$[CR]
+= -$CONVERT_IN=C:\Program Files (x86)\Steam\steamapps\common\Homeworld\HomeworldRM\DataMikaliMaps\resource\asteroid\$[PATH_NAME]\$[SHIP_NAME]_01.hod
+= -$CONVERT_OUT=C:\Program Files (x86)\Steam\steamapps\common\Homeworld\HomeworldRM\DataMikaliMaps\resource\asteroid\$[PATH_NAME]\$[SHIP_NAME]_01.dae
+= -do=convert
+= -action=null
+= -wait

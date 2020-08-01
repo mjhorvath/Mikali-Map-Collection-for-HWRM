@@ -10,7 +10,7 @@
 // Steam Workshop.  The description text is limited to 8,000 characters total in length.
 
 // title of the MOD that appears on the Steam Workshop (limited to 128 characters)
-Title: [HWRM] Mikali's Multiplayer Map Collection 1.26.2
+Title: [HWRM] Mikali's Multiplayer Map Collection 1.27.0
 
 // tags must be individual words separated by spaces.
 Tags: HomeworldRM multiplayer maps functions
@@ -33,7 +33,7 @@ WorkshopID: 399477672
 
 // description that will appear on the Steam Workshop for this item
 Description:
-A collection of my multiplayer maps, as well as demonstrations of my custom map-making functions. These maps will only work in Homeworld Remastered.
+A collection of multiplayer maps created to demonstrate my custom map-making functions.
 
 The GitHub repo for this project is located here:
 https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered

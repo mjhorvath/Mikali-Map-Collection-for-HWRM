@@ -1,10 +1,10 @@
--- (5P) Electromagnetic Doily v1.2.11 by Mikali
+-- (5P) Electromagnetic Doily v1.2.12 by Mikali
 -- Created: 2013/09/05
--- Updated: 2016/07/11
+-- Updated: 2020/08/01
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: any
 
-levelDesc = "<c=FF4800>Electromagnetic Doily 1.2.11</c>"
+levelDesc = "<c=FF4800>Electromagnetic Doily 1.2.12</c>"
 maxPlayers = 5
 player = {}
 
@@ -29,19 +29,19 @@ function DetermChunk()
 	-- bInside = are the curved lines inside or outside of the reference shape? or, are the charges inside or outside the reference shape?
 	-- fScale = scale the whole shape by this amount in all directions
 
-	--flokalAdd(<tPos>, <tRes>, {<iNx>, <iNy>, <iXmin>, <iSx>, <iSy>, <iSym>, <fEcc>, <bInside>, <fScale>}, <tRot>, <xNull>)
-	flokalAdd({0,    0,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
-	flokalAdd({0,-4000,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
-	flokalAdd({0,-8000,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 1/4,}, {0,0,0,}, nil)
---	flokalAdd({0,0,0,}, {1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,}, {3, 3, 2, 1, 1, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
---	flokalAdd({0,0,0,}, {1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,}, {3, 3, 2, 1, 1, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
+	-- flokalAdd(<tPos>, <tRes>, {<iNx>, <iNy>, <iXmin>, <iSx>, <iSy>, <iSym>, <fEcc>, <bInside>, <fScale>}, <tRot>, <xNull>)
+	flokalAdd({0,     0,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
+	flokalAdd({0, -5000,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
+	flokalAdd({0,-10000,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 1/4,}, {0,0,0,}, nil)
+--	flokalAdd({0,0,0,}, {1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,}, {3, 3, 2, 1, 1, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
+--	flokalAdd({0,0,0,}, {1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,}, {3, 3, 2, 1, 1, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
 
 	for i = 0, maxPlayers - 1 do
 		addPoint("StartPos" .. i, vrotate({0, 0, 20000 * 5/4,}, {0, i * 72 + 18, 0,}), {0, i * 72 + 18, 0,})
 --		addCloud("polySurface1", "cloud_text_" .. (i+1), vrotate({0, 0, 20000 * 5/4,}, {0, i * 72 + 18, 0,}), {1, 1, 1, 1}, 0, 4096)
-		easyPatch(vrotate({0,      0, 20000 * 4/4,}, {0, i * 72 + 18, 0,}), 100, my_seed_1)
-		easyPatch(vrotate({0, -4000, 20000 * 3/4,}, {0, i * 72 - 18, 0,}), 100, my_seed_1)
-		addAsteroid("Asteroid_5", vrotate({0, -8000, 20000 * 1/4,}, {0, i * 72 + 18, 0,}), 100, 0, 0, 0, 0)
+		easyPatch(vrotate({0,     0, 20000 * 4/4,}, {0, i * 72 + 18, 0,}), 100, my_seed_1)
+		easyPatch(vrotate({0, -5000, 20000 * 3/4,}, {0, i * 72 - 18, 0,}), 100, my_seed_1)
+		addAsteroid("Asteroid_M_5", vrotate({0, -10000, 20000 * 1/4,}, {0, i * 72 + 18, 0,}), 100, 0, 0, 0, 0)
 	end
 
 	local centerSphere =

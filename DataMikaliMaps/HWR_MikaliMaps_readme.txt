@@ -1,8 +1,8 @@
 Caption:	Mikali's Multiplayer Map Collection
-Version:	1.26.2
+Version:	1.27.0
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/07/24
+Updated:	2020/08/01
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -25,11 +25,11 @@ The very latest version of the mod can always be found on GitHub.
 INSTALLATION
 
 If you have the Steam version of the game, installation is done by subscribing 
-to the mod on Steam Workshop. For the GOG.com version of the game, you must 
-download the mod from ModDB or GitHub, then extract the ZIP archive and copy 
-the "DataMikaliMaps" folder to your "Homeworld Remastered" directory. Finally, 
-you must add "-moddatapath DataMikaliMaps -overrideBigFile -luatrace" to your 
-shortcut's "Target" field.
+to the mod on Steam Workshop. For the GOG.com version of the game and/or the 
+GitHub version of the mod, you must download the mod from ModDB or GitHub, then 
+extract the ZIP archive and copy the "DataMikaliMaps" folder to your "Homeworld 
+Remastered" or "HomeworldRM" directory. Finally, you must add "-moddatapath 
+DataMikaliMaps -overrideBigFile -luatrace" to your shortcut's "Target" field.
 
 
 ================================================================================
@@ -165,7 +165,7 @@ CREDITS
 • Lorenzo Donati at Stack Overflow for the new pseudo random number generator.
 • Daniel Piker for his Rheotomic Surfaces tool for Rhino3D and Grasshopper.
 • The developers of Rhino3D and Grasshopper.
-• The POV-Ray team. I copied their naming scheme for most of the vector 
+• The POV-Ray team. I copied their naming scheme for most of the utility vector 
   functions.
 • Dan Rollins for his HexMaze script on Experts Exchange.
 • Jon Mark Perry at Stack Exchange for his help with the hexagon maps.
@@ -173,13 +173,29 @@ CREDITS
 • Pouk, for giving me the idea for the hexagon maps in the first place.
 • LuaBit v0.4 - http://luaforge.net/projects/bit/
 • EatThePath for helping me get the mod working with GearBox's HWRM update.
-• Thanks to pandorazero for converting the old HODs to the new format.
+• Thanks to sastrei for helping me with the new HOD format.
 
 
 ================================================================================
 
 
 CHANGE LOG
+
+1.27.0 - 2020/08/01
+• Tweaked the "Metaball Madness" and "Metaballs II" maps.
+• Renamed custom asteroids, clouds, etc. so as not to conflict with the default 
+  asteroids.
+• Updated crystal HODs to 2.0-patch format.
+• Updated "2p_Gallery_Resources.level".
+• "Asteroids_m_1" and "Asteroid_m_2" are now harvestable thanks to sastrei. As 
+  a consequence the affected maps need their resources rebalanced.
+• Rebalanced RUs in "Spline Crazy", "Chicken Scratch", "The Squid" and 
+  "Plasma_Globe".
+• "Electromagnetic Doily" levels sink a bit lower now.
+• Added a few more RUs to "Menger Sponge".
+• Starting positions in "Spline Crazy" are now located directly within the 
+  spline band.
+• Easy Patches have been removed from "Spline Crazy".
 
 1.26.2 - 2020/07/24
 • Tweaked the "Metaball Madness" and "Metaballs II" maps.
@@ -192,7 +208,7 @@ CHANGE LOG
 • Added "Metaballs II" which is a similar map to "Metaball Madness", but larger.
 
 1.25.0 - 2020/05/25
-• Removed the custom gamerule. Maps should be accessible from most mods now.
+• Removed the custom gamerule. Maps should be compatible with most mods now.
 • Updated a few things in "utilfunc.lua".
 
 1.24.0 - 2016/07/11
@@ -521,7 +537,7 @@ CHANGE LOG
 ================================================================================
 
 
-KNOWN ISSUES/NOTES/TO DO
+TO DO LIST
 
 • I'm tempted to place some salvage debris in the center area of Andromeda. 
   Alternately, I could place some radiation clouds in the center. But there may 
@@ -532,3 +548,28 @@ KNOWN ISSUES/NOTES/TO DO
   extra large as a deterrent.
 • Should probably rename the panel objects to "panel_x_y_z" and reserve the 
   title "box" for the cube-shaped objects.
+• Should harvestable asteroids and clouds disappear after being depleted?
+• Since "asteroid_m_1" and "asteroid_m_1" are now harvestable and provide 
+  additional RUs, all affected maps need to be rebalanced.
+• Maps that possibly have too many RUs include: "Scalar Field" and 
+  "Strange Attractor".
+• "The Squash" should be turned into a 4-player map.
+• "Rheotomic Spaces" is overall just a crappy map.
+• "Curve Stitch" isn't great either, but could be improved without much work.
+• "Have a Ball" is kind of boring. I could remake it in the shape of a 
+  basketball.
+• "Klein Bottle" is unexciting as well. I would like to remove the Easy Patches 
+  and replace them with something else. Dunno what.
+• Not sure if the hyperspace inhibitor asteroids in "Andromeda" should have the 
+  hardpoints with the little subsystems stuck on them. Keep in mind that the 
+  ability to rebuild these little subsystems may require changes to the build 
+  and research scripts of every race, including races created by other modders. 
+  (Not 100% sure.)
+• "Bentus Meltdown" has too many Easy Patches and too few clouds in the rings.
+• In "Chicken Scratch" maybe replace the asteroids and pebbles with pink nebula 
+  chunks like in HW1C.
+• Clouds obscure asteroids too much. Asteroids become hard to see.
+• The larger asteroids should maybe also be represented by pixels in sensors 
+  manager since the 3D models are hard to make out.
+• Should maybe check and make sure the spline endpoints aren't too close to one 
+  another in "Spline Crazy".

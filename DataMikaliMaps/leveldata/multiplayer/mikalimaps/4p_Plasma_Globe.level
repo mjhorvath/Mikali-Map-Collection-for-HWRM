@@ -1,10 +1,10 @@
--- (4P) Plasma Globe v1.0.11 by Mikali
+-- (4P) Plasma Globe v1.0.12 by Mikali
 -- Created: 2013/09/15
--- Updated: 2016/07/11
+-- Updated: 2020/08/01
 -- Homepage: http://isometricland.net
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Plasma Globe 1.0.11</c>"
+levelDesc = "<c=FF4800>Plasma Globe 1.0.12</c>"
 maxPlayers = 4
 player = {}
 
@@ -22,6 +22,7 @@ function DetermChunk()
 	local my_seed_5 = {seed = -12345}
 	local my_seed_6 = {seed = -12345}
 	local CenterRadius = 1000
+	local OuterRadius = 50000
 
 	setWorldBoundsInner({0, 0, 0,}, {50000, 50000, 50000,})
 
@@ -40,29 +41,29 @@ function DetermChunk()
 	local threeRings =
 	{
 --		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{128, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{ 32, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
 --		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{  4, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  2, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  2, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  1, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
 --		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
 		{  1, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
 	}
 	local centerBall =
 	{
 --		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{128, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{ 32, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
 --		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{  4, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  2, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  2, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  1, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
 --		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
 		{  1, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
 	}
 	local outerBall =
 	{
 --		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{16384, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{8192, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
 	}
 
 	--branchAdd(<tPos>, <tDst>, {<tDiv>, <tInt>, <tFrq>, <tBeg>, <tEnd>, <tRad>, <tLen>, <tThk>, <tAng>, <iMod>,}, <tRot>, <tSeed>, ...)
@@ -87,7 +88,7 @@ function DetermChunk()
 --	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
 --	branchAdd({0,0,0,}, threeRings, {{2,3,}, {2,3,}, {2,3,}, {2,3,}, {2,3,}, {500,500,}, {5000,5000,}, {500,500,}, {0,30,}, 1,}, {srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),srandomSign(my_seed_1) * srandom(my_seed_1,360),}, my_seed_1)
 
-	shapeAdd({0,0,0,}, outerBall, {"Ellipsoid", 50000, 50000, 50000, 0}, {0,0,0,}, my_seed_1)
+	shapeAdd({0,0,0,}, outerBall, {"Ellipsoid", OuterRadius, OuterRadius, OuterRadius, 0}, {0,0,0,}, my_seed_1)
 	shapeAdd({0,0,0,}, centerBall, {"Ellipsoid", CenterRadius, CenterRadius, CenterRadius, CenterRadius}, {0,0,0,}, my_seed_1)
 end
 

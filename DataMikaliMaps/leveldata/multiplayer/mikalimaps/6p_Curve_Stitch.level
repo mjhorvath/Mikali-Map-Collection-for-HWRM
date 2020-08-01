@@ -1,10 +1,10 @@
--- (6P) Curve Stitch v1.0.14 by Mikali
+-- (6P) Curve Stitch v1.0.15 by Mikali
 -- Created: 2013/09/05
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
-levelDesc = "<c=FF4800>Curve Stitch 1.0.14</c>"
+levelDesc = "<c=FF4800>Curve Stitch 1.0.15</c>"
 maxPlayers = 6
 player = {}
 
@@ -36,10 +36,10 @@ function DetermChunk()
 --	addCloud("polySurface1", "cloud_text_5", {0, dim,  0}, {1, 1, 1, 1}, 0, 4096)
 --	addCloud("polySurface1", "cloud_text_6", { dim, 0, 0}, {1, 1, 1, 1}, 0, 4096)
 
---	addAsteroid("Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {dim,0,0,}, 100, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {0,dim,0,}, 100, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {0,0,dim,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,0,0,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {dim,0,0,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,dim,0,}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,0,dim,}, 100, 0, 0, 0, 0)
 
 	easyPatch({ 0, dim2, dim2,}, 100, my_seed_1)
 	easyPatch({ 0,-dim2, dim2,}, 100, my_seed_1)

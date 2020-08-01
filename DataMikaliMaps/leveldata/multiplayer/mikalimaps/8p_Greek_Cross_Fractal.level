@@ -1,10 +1,10 @@
--- (8P) Greek Cross Fractal 1.2.1 by Mikali
+-- (8P) Greek Cross Fractal 1.2.2 by Mikali
 -- Created: 2010/12/28
--- Updated: 2015/09/18
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>Greek Cross Fractal 1.2.1</c>"
+levelDesc = "<c=FF4800>Greek Cross Fractal 1.2.2</c>"
 maxPlayers = 8
 player = {}
 
@@ -322,14 +322,14 @@ function DetermChunk()
 		elseif (i == 4) then
 			zmulti = 5
 		end
-		addAsteroid("Asteroid_5", {-basedm*xmulti,-basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", { basedm*xmulti,-basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", {-basedm*xmulti, basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", { basedm*xmulti, basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", {-basedm*xmulti,-basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", { basedm*xmulti,-basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", {-basedm*xmulti, basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
-		addAsteroid("Asteroid_5", { basedm*xmulti, basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", {-basedm*xmulti,-basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", { basedm*xmulti,-basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", {-basedm*xmulti, basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", { basedm*xmulti, basedm*ymulti,-basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", {-basedm*xmulti,-basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", { basedm*xmulti,-basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", {-basedm*xmulti, basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", { basedm*xmulti, basedm*ymulti, basedm*zmulti,}, 100, 0, 0, 0, 0)
 	end
 
 	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000,})

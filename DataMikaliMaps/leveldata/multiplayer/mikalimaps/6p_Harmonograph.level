@@ -1,10 +1,10 @@
--- (6P) Harmonograph v1.2.9 by Mikali
+-- (6P) Harmonograph v1.2.10 by Mikali
 -- Created: 2013/08/26
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Harmonograph 1.2.9</c>"
+levelDesc = "<c=FF4800>Harmonograph 1.2.10</c>"
 maxPlayers = 6
 player = {}
 
@@ -53,9 +53,9 @@ function DetermChunk()
 	local threeRings =
 	{
 		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{199, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{103, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
---		{27, "Asteroid", "Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{199, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{103, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		{27, "Asteroid", "Asteroid_M_5", {0,0,0,}, 100, 0, 0, 0, 0,},
 		--addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
 --		{maxPlayers, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {1, 1, 1, 1}, 0, srandom(my_seed_1) * 5000 + 5000,}
 	}

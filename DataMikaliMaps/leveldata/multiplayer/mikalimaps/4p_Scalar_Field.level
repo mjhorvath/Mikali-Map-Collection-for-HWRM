@@ -1,10 +1,10 @@
--- (4P) Scalar Field v1.0.11 by Mikali
+-- (4P) Scalar Field v1.0.12 by Mikali
 -- Created: 2013/09/19
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
-levelDesc = "<c=FF4800>Scalar Field 1.0.11</c>"
+levelDesc = "<c=FF4800>Scalar Field 1.0.12</c>"
 maxPlayers = 4
 player = {}
 
@@ -65,7 +65,7 @@ function DetermChunk()
 		--globeAdd(<tPos>, <tDst>, {<fRad>, <iLat>, <iLon>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <xNil>, <tSeed>)
 --		globeAdd(tCoo, pebbleRing1, {r, 12, 12, 0, 0, {0, 360,}, 0,}, nil, my_seed_1)
 		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
-		addAsteroid("Asteroid_5", vaddV(tCoo, {0,plane_height,0,}), 100, 0, 0, 0, 0)
+		addAsteroid("Asteroid_M_5", vaddV(tCoo, {0,plane_height,0,}), 100, 0, 0, 0, 0)
 	end
 
 	--fieldAdd(<tPos>, <tDst>, {<tBlobs>, <fFieldSize>, <fStepHeight>,}, <tRot>, <tSeed>)

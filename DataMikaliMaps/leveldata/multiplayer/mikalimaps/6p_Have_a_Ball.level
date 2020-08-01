@@ -1,10 +1,10 @@
--- (6P) Have a Ball v1.3.18 by Mikali
+-- (6P) Have a Ball v1.3.19 by Mikali
 -- Created: 2004/03/18
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: odds vs. evens
 
-levelDesc = "<c=FF4800>Have a Ball 1.3.18</c>"
+levelDesc = "<c=FF4800>Have a Ball 1.3.19</c>"
 maxPlayers = 6
 player = {}
 
@@ -44,8 +44,8 @@ function DetermChunk()
 	}
 	local deadroidRing =
 	{
---		{0,   "Asteroid",   "Asteroid_3", {0,0,0,}, 0, 0, 0, 0, 0,},
-		{128,   "Asteroid",   "Asteroid_2", {0,0,0,}, 0, 0, 0, 0, 0,},
+--		{0,   "Asteroid",   "Asteroid_M_3", {0,0,0,}, 0, 0, 0, 0, 0,},
+		{128,   "Asteroid",   "Asteroid_M_2", {0,0,0,}, 0, 0, 0, 0, 0,},
 	}
 
 --	addSquadron("Squadron1", "Hgn_Carrier", {0, 100, 0,}, 0, {0, 0, 0,}, 0, 0)

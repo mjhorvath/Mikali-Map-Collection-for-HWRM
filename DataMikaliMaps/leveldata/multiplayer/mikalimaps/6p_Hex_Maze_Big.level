@@ -1,13 +1,13 @@
--- (6P) Hex Maze Big 1.0.3 by Mikali
+-- (6P) Hex Maze Big 1.0.4 by Mikali
 -- Created: 2015/03/24
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 -- Based on HexMaze, version 1.0, by Dan Rollins at Experts Exchange.
 -- http://www.experts-exchange.com/Programming/Languages/Scripting/JavaScript/A_7849-Hex-Maze.html
 -- Thanks also to Jon Mark Perry at Stack Exchange, as well as crufty.
 
-levelDesc = "<c=FF4800>Hex Maze Big 1.0.3</c>"
+levelDesc = "<c=FF4800>Hex Maze Big 1.0.4</c>"
 maxPlayers = 6
 player = {}
 
@@ -100,7 +100,7 @@ function BuildMaze()
 			if (v ~= 0) then
 				if (mod(x-1,2) == 0) then
 					local trans = {coox, adjH, cooy}
-					addAsteroid("Asteroid_5", trans, 100, 0, 0, 0, 0)
+					addAsteroid("Asteroid_M_5", trans, 100, 0, 0, 0, 0)
 					if (bit.band(v, DOOR_N) == 0) then
 						panelN(trans)
 					end
@@ -121,7 +121,7 @@ function BuildMaze()
 					end
 				else
 					local trans = {coox, adjH, cooy + hexHigh/2}
-					addAsteroid("Asteroid_5", trans, 100, 0, 0, 0, 0)
+					addAsteroid("Asteroid_M_5", trans, 100, 0, 0, 0, 0)
 					if (bit.band(v, DOOR_N) == 0) then
 						panelN(trans)
 					end
@@ -522,9 +522,9 @@ function DetermChunk()
 --	addCloud("polySurface1", "cloud_text_5", vrotate({startRad,adjH,0}, {0,275,0}), {1, 1, 1, 1}, 0, 4096)
 --	addCloud("polySurface1", "cloud_text_6", vrotate({startRad,adjH,0}, {0,335,0}), {1, 1, 1, 1}, 0, 4096)
 
---	addAsteroid("Asteroid_5", {10000,0,0}, 100, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {0,10000,0}, 100, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {0,0,10000}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {10000,0,0}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,10000,0}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,0,10000}, 100, 0, 0, 0, 0)
 
 	makeHexagon()
 	combineTables()

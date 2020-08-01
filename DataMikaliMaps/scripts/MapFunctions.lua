@@ -2,7 +2,7 @@
 --  Version: 1.23.2
 --  Authors: Mikali
 --  Created: 2004/10/07
---  Updated: 2020/07/24
+--  Updated: 2020/08/01
 --  Website: http//isometricland.net/homeworld/homeworld.php
 --  Discussion:
 --  http://forums.relicnews.com/showthread.php?t=48818
@@ -16,6 +16,10 @@
 --    OpenProcessing.org.
 --  * Lorenzo Donati at Stack Overflow for the new pseudo random number 
 --    generator.
+--  Notes:
+--  * Unfortunately, strings are nearly always case-sensitive. For instance, 
+--    "Asteroid_1" and "asteroid_1" are two different things. "DustCloud" and 
+--    "dustcloud" are also not equivalent.
 
 
 --------------------------------------------------------------------------------
@@ -50,126 +54,122 @@ dofilepath("data:scripts/bit.lua")
 
 function appendShape(tPos, i, tPar, j, tCoo, tRot)
 	tCoo = vaddV(vrotate(tCoo, tRot), tPos)
+	local objNum = tPar[1]
 	local objType = tPar[2]
+	local objName = tPar[3]
 	if (objType == "Squadron") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
-		addSquadron(name, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8], tPar[9])
+		-- addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+		addSquadron(objName, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8], tPar[9])
 		iSquadrons = iSquadrons + 1
 	elseif (objType == "Asteroid") then
-		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
-		addAsteroid(tPar[3], vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7], tPar[8], tPar[9])
+		-- addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
+		addAsteroid(objName, vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7], tPar[8], tPar[9])
 		iAsteroids = iAsteroids + 1
 	elseif (objType == "Salvage") then
-		--addSalvage(<sChunkType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
-		addSalvage(tPar[3], vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7], tPar[8], tPar[9])
+		-- addSalvage(<sChunkType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
+		addSalvage(objName, vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7], tPar[8], tPar[9])
 		iSalvage = iSalvage + 1
 	elseif (objType == "Pebble") then
-		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		addPebble(tPar[3], vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7])
+		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		addPebble(objName, vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7])
 		iPebbles = iPebbles + 1
 	elseif (objType == "Cloud") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addCloud(<sCloudName>, <sCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
-		addCloud(name, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8])
+		-- addCloud(<sCloudName>, <sCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
+		addCloud(objName, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8])
 		iClouds = iClouds + 1
 	elseif (objType == "CloudText") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
 		local type = "cloud_text_" .. (iCloudTexts+1)
-		--addCloud(<sCloudName>, <sCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
-		addCloud(name, type, vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7])
+		-- addCloud(<sCloudName>, <sCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
+		addCloud(objName, type, vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7])
 		iCloudTexts = iCloudTexts + 1
 	elseif (objType == "DustCloud") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addDustCloud(<sDustCloudName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
-		addDustCloud(name, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8])
+		-- addDustCloud(<sDustCloudName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
+		addDustCloud(objName, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8])
 		iDustClouds = iDustClouds + 1
 	elseif (objType == "Nebula") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addNebula(<sNebulaName>, <sNebulaType>, <tPosition>, <tColor>, ?, <fRadius>)
-		addNebula(name, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8])
+		-- addNebula(<sNebulaName>, <sNebulaType>, <tPosition>, <tColor>, ?, <fRadius>)
+		addNebula(objName, tPar[4], vaddV(tCoo, tPar[5]), tPar[6], tPar[7], tPar[8])
 		iNebulas = iNebulas + 1
 	elseif (objType == "Point") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addPoint(<sPointName>, <tPosition>, <tRotation>)
-		addPoint(name, vaddV(tCoo, tPar[4]), tPar[5])
+		-- addPoint(<sPointName>, <tPosition>, <tRotation>)
+		addPoint(objName, vaddV(tCoo, tPar[4]), tPar[5])
 		iPoints = iPoints + 1
 	elseif (objType == "StartPoint") then
-		local name = "StartPos" .. iStartPoints
-		--addPoint(<sPointName>, <tPosition>, <tRotation>)
-		addPoint(name, vaddV(tCoo, tPar[4]), tPar[5])
+		objName = "StartPos" .. iStartPoints
+		-- addPoint(<sPointName>, <tPosition>, <tRotation>)
+		addPoint(objName, vaddV(tCoo, tPar[4]), tPar[5])
 		iStartPoints = iStartPoints + 1
 	elseif (objType == "Sphere") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addSphere(<sSphereName>, <tPosition>, <fRadius>)
-		addSphere(name, vaddV(tCoo, tPar[4]), tPar[5])
+		-- addSphere(<sSphereName>, <tPosition>, <fRadius>)
+		addSphere(objName, vaddV(tCoo, tPar[4]), tPar[5])
 		iSpheres = iSpheres + 1
 	elseif (objType == "Camera") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--addCamera(<sCameraName>, <tTarget>, <tPosition>)
-		addCamera(name, tPar[5], vaddV(tCoo, tPar[4]))
+		-- addCamera(<sCameraName>, <tTarget>, <tPosition>)
+		addCamera(objName, tPar[5], vaddV(tCoo, tPar[4]))
 		iCameras = iCameras + 1
 	elseif (objType == "DirLight") then
-		local name = tPar[3]
-		if (tPar[1] > 1) then
-			name = name .. "_" .. j
+		if (objNum > 1) then
+			objName = objName .. "_" .. j
 		end
-		--createDirLight(<sLightName>, <tPosition>, <tColor>)
-		createDirLight(name, vaddV(tCoo, tPar[4]), tPar[5])
-		--setLightSpecular (<sLightName>, <tSpecular>)
-		setLightSpecular(name, tPar[6])
+		-- createDirLight(<sLightName>, <tPosition>, <tColor>)
+		createDirLight(objName, vaddV(tCoo, tPar[4]), tPar[5])
+		-- setLightSpecular (<sLightName>, <tSpecular>)
+		setLightSpecular(objName, tPar[6])
 		iDirLights = iDirLights + 1
 	elseif (objType == "ReactiveSquadron") then
-		--addReactiveFleetSlot(<sSobGroupName>, <iPlayerIndex>, ?, <tPosition>, ?, ?, ?, <sShipType>)
+		-- addReactiveFleetSlot(<sSobGroupName>, <iPlayerIndex>, ?, <tPosition>, ?, ?, ?, <sShipType>)
 		addReactiveFleetSlot(tPar[5], tPar[6], tPar[7], vaddV(tCoo, tPar[4]), tPar[8], tPar[9], tPar[10], tPar[3])
 		iRvSquadrons = iRvSquadrons + 1
 	elseif (objType == "ReactiveAsteroid") then
-		--addReactiveFleetResourceSlot(<sResourceType>, <tPosition>, ?, ?, ?)
+		-- addReactiveFleetResourceSlot(<sResourceType>, <tPosition>, ?, ?, ?)
 		addReactiveFleetResourceSlot(tPar[3], vaddV(tCoo, tPar[4]), tPar[5], tPar[6], tPar[7])
 		iRvAsteroids = iRvAsteroids + 1
 	elseif (objType == "Coordinate") then
-		tinsert(tPar[3], tCoo)
+		-- do we want to capture and pass on the rotation vector here too?
+		-- addCoordinate(<tTableObj>, <tPosition>)
+		addCoordinate(tPar[3], tCoo)
 		print("MAP_TRACE: appendShape: adding a coordinate to the coordinate table")
 		print("MAP_TRACE: appendShape: coordinate table length = " .. getn(tPar[3]))
 	elseif (objType == "Function") then
+		local thisFunction = tPar[3]
 		if not (tPar[7]) then
 			tPar[7] = {0,0,0,}
 		end
-		if (tPar[3] == literalAdd) then
+		if (thisFunction == literalAdd) then
 			literalAdd(tPar[4], tPar[5], tPar[6], vaddV(tRot, tPar[7]))
 		else
-			tPar[3](vaddV(tCoo, tPar[4]), tPar[5], tPar[6], vaddV(tRot, tPar[7]))
+			thisFunction(vaddV(tCoo, tPar[4]), tPar[5], tPar[6], vaddV(tRot, tPar[7]))
 		end
 	else
 		print("MAP_TRACE: appendShape: object class not recognized")
 	end
 end
 
-function addCoordinate(tCoo, rTable)
+function addCoordinate(rTable, tCoo)
 	tinsert(rTable, tCoo)
 end
 
@@ -491,12 +491,14 @@ end
 --	3. Should this function use the "fieldCalc" function to calculate 
 --	   field strength?
 --	4. See Method 1 at: http://www.geogebra.org/en/upload/files/english/Michael_Horvath/Metaballs/geogebra_metaballs.htm
+--  5. This routine is used in "4p_Metaball_Madness.level".
 --------------------------------------------------------------------------------
 
 function blobAdd1(tPos, tDst, tPar, tRot, tSeed)
 	local tBlobs = tPar[1]
 	local Blob_threshold_1 = tPar[2]
 	local Blob_threshold_2 = tPar[3]
+	-- scale all coordinates by this amount to make the blobs look flatter and better
 	local Blob_scale = tPar[4]
 
 	-- calculate the bounding box enclosing the blobs
@@ -515,7 +517,6 @@ function blobAdd1(tPos, tDst, tPar, tRot, tSeed)
 		while (jCount <= jMax) do
 			-- generate a new point somewhere within the blob's bounding box
 			local Vector_new = {srandom3(tSeed, Blob_min[1], Blob_max[1]), srandom3(tSeed, Blob_min[2], Blob_max[2]), srandom3(tSeed, Blob_min[3], Blob_max[3]),}
-	--		local Vector_new = {random3(Blob_min[1], Blob_max[1]), random3(Blob_min[2], Blob_max[2]), random3(Blob_min[3], Blob_max[3]),}
 
 			-- get the field strength at that point
 			local Actual_strength = 0
@@ -527,21 +528,131 @@ function blobAdd1(tPos, tDst, tPar, tRot, tSeed)
 
 			if ((Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2)) then
 				-- the field strength, normalized to between 0 and 1
+				-- the size of the asteroid/object is not taken into account here
 				local Strength_ratio = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
 				-- points should be denser where the strength is greater
---				if (Strength_ratio < sqrt(srandom3(tSeed))) then
-					-- scale all coordinates by this amount to make the blobs look flatter and better
-					Vector_new = vmultiplyV(Vector_new, Blob_scale)
-					appendShape(tPos, i, tTab, jCount, Vector_new, tRot)
+				if (Strength_ratio < sqrt(srandom3(tSeed))) then
+					local tCoo = vmultiplyV(Vector_new, Blob_scale)
+					appendShape(tPos, i, tTab, jCount, tCoo, tRot)
 					jCount = jCount + 1
---				end
+				end
 			end
 		end
 	end
 end
 
--- the type of resource generated depends on the strength of the field plus some randomization
+
+--------------------------------------------------------------------------------
+--  Name:		blobAdd2
+--  The type of resource generated depends on the strength of the field plus some additional randomization
+--  blobAdd2(<tPos>, <xNil>, {<tBlobs>, <iAmount>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
+--  This routine is used in "6p_Metaballs_II.level".
+
 function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
+	local Blob_table = tPar[1]
+	local Point_number = tPar[2]
+	local Blob_threshold_1 = tPar[3]
+	local Blob_threshold_2 = tPar[4]
+	local Blob_scale = tPar[5]
+	local Point_padding = 500		-- put in tPar?
+	local Point_maxradius = 1000;	-- put in tPar?
+
+	-- calculate the bounding box enclosing the blobs
+	local Blob_min = {0,0,0,}
+	local Blob_max = {0,0,0,}
+	for j, jBlob in Blob_table do
+		local Blob_location = jBlob[1]
+		local Blob_radius = jBlob[2]
+		Blob_min = {min(Blob_min[1], Blob_location[1] - Blob_radius), min(Blob_min[2], Blob_location[2] - Blob_radius), min(Blob_min[3], Blob_location[3] - Blob_radius),}
+		Blob_max = {max(Blob_max[1], Blob_location[1] + Blob_radius), max(Blob_max[2], Blob_location[2] + Blob_radius), max(Blob_max[3], Blob_location[3] + Blob_radius),}
+	end
+
+	local Point_list = {}
+	local Point_count = 1
+	while (Point_count <= Point_number) do
+
+		-- start with a new field strength
+		local Target_strength = srandom3(tSeed, Blob_threshold_1, Blob_threshold_2)
+		-- generate a new point somewhere within the blob's bounding box
+		local Point_new = {srandom3(tSeed, Blob_min[1], Blob_max[1]), srandom3(tSeed, Blob_min[2], Blob_max[2]), srandom3(tSeed, Blob_min[3], Blob_max[3]),}
+
+		-- calculate the field strength at that point
+		local Actual_strength = 0
+		for j, jBlob in Blob_table do
+			local Blob_location = jBlob[1]
+			local Blob_radius = jBlob[2]
+			Actual_strength = Actual_strength + (Blob_radius / sqrt((Point_new[1] - Blob_location[1])^2 + (Point_new[2] - Blob_location[2])^2 + (Point_new[3] - Blob_location[3])^2))
+		end
+
+		-- what threshold should I use here?
+		if (abs(Actual_strength - Target_strength) <= 0.1) then
+			-- the field strength, normalized to between 0 and 1
+			local Target_adjust = Target_strength - Blob_threshold_1
+			local Threshold_adjust = Blob_threshold_2 - Blob_threshold_1
+			local Normalized_strength = Target_adjust/Threshold_adjust
+			-- determines which asteroid model gets chosen later on
+			-- squaring the strength value shouldn't be necessary, but it looks better
+			local Point_size = (Normalized_strength * 1/2 + srandom3(tSeed) * 1/2)^2
+--			local Point_size = Normalized_strength^2
+			-- scale all coordinates by this amount to make the blobs flatter and look better
+			local Point_scaled = vmultiplyV(Point_new, Blob_scale)
+			-- are the asteroids far enough apart from each other?
+			local Pass_bool = 1
+
+			-- make sure the asteroids are not placed too closely to each other
+			local Point_count_sub = 1
+			while (Point_count_sub < Point_count) do
+				local Point_old = Point_list[Point_count_sub][1]
+				local Distance = vdistance(Point_old, Point_new)
+				-- simply use Point_padding here instead?
+				-- should there be an element of randomness here too?
+--				local Radius_max = max(Point_padding, Point_maxradius * Point_size)
+				local Radius_max = Point_padding
+				if (Distance <= Radius_max) then
+					Pass_bool = 0
+					break
+				end
+				Point_count_sub = Point_count_sub + 1
+			end
+
+			if (Pass_bool == 1) then
+				-- the square roots here may not be necessary
+				-- raising the threshold might achieve the same thing
+				-- but the test map looks good with them
+				-- asteroid_1 and asteroid_2 (with underscores) require HOD files with functioning latch points
+				-- ditto for asteroid0 (without underscore)
+				-- asteroid1 through asteroid4 (without underscores) have resource values equal to 100 which are later modified in the level files
+				-- the resource value for asteroid_6 (with underscore) is zero, and I don't know yet if it has latch points
+				-- appendShape(<tPos>, <i>, <tPar>, <j>, <tCoo>, <tRot>)
+				-- addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
+				if (Point_size <= 2/10) then		--0.45
+					appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_1", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Point_scaled, tRot)
+				elseif (Point_size <= 4/10) then	--0.63
+					appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Point_scaled, tRot)
+				elseif (Point_size <= 6/10) then	--0.77
+					appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Point_scaled, tRot)
+				elseif (Point_size <= 8/10) then	--0.89
+					appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Point_scaled, tRot)
+				elseif (Point_size <= 10/10) then	--1.00
+					appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_5", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Point_scaled, tRot)
+				end
+				--print("Point_count = " .. Point_count .. "\nPoint_new = " .. vstr(Point_new))
+				Point_list[Point_count] = {Point_new, Point_size}
+				Point_count = Point_count + 1
+			end
+		end
+	end
+end
+
+
+--------------------------------------------------------------------------------
+--  Name:		blobAdd2
+--  The type of resource generated depends on the strength of the field plus some additional randomization
+--  blobAdd2(<tPos>, <xNil>, {<tBlobs>, <iAmount>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)
+--  This routine is used in "6p_Metaballs_II.level".
+--  Need to figure out why the thresholds can't be as low as 1 or 0.
+
+function blobAdd2_Old(tPos, xNil, tPar, tRot, tSeed)
 	local tBlobs = tPar[1]
 	local Point_number = tPar[2]
 	local Blob_threshold_1 = tPar[3]
@@ -560,7 +671,7 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 	end
 
 	local Point_padding = 500		-- put in tPar?
-	local Point_maxradius = 1000;
+	local Point_maxradius = 1000;	-- put in tPar?
 	local Point_list = {}
 	local Point_count = 1
 	while (Point_count <= Point_number) do
@@ -575,7 +686,7 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 			Actual_strength = Actual_strength + (Blob_radius / sqrt((Vector_new[1] - Blob_location[1])^2 + (Vector_new[2] - Blob_location[2])^2 + (Vector_new[3] - Blob_location[3])^2))
 		end
 
-		if (Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2) then
+		if ((Actual_strength >= Blob_threshold_1) and (Actual_strength <= Blob_threshold_2)) then
 			-- the field strength, normalized to between 0 and 1
 			local Normalized_strength = (Actual_strength - Blob_threshold_1)/(Blob_threshold_2 - Blob_threshold_1)
 			local Size_ratio = Normalized_strength * 1/2 + srandom3(tSeed) * 1/2
@@ -591,7 +702,7 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 				-- scale all coordinates by this amount to make the blobs look flatter and better
 				Vector_new = vmultiplyV(Vector_new, Blob_scale)
 
-				-- make sure the asteroids are not too close to each other (TOO SLOW!!!)
+				-- make sure the asteroids are not placed too closely to each other
 				local Point_count_sub = 1
 				while (Point_count_sub < Point_count) do
 					local Location_old = Point_list[Point_count_sub][1]
@@ -605,34 +716,22 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 					Point_count_sub = Point_count_sub + 1
 				end
 
-				-- make sure no points are equal
---				local Point_count_sub = 1
---				while (Point_count_sub < Point_count) do
---					local Location_old = Point_list[Point_count_sub][1]
---					if (veq(Location_old, Vector_new) == 1) then
---						Pass_bool = 0
---						print("\tPoint_count = " .. Point_count .. "\n\tLocation_old = " .. vstr(Location_old) .. "\tPoint_count_sub = " .. Point_count_sub .. "\n\tVector_new = " .. vstr(Vector_new))
---						break
---					end
---					Point_count_sub = Point_count_sub + 1
---				end
-
 				if (Pass_bool == 1) then
 					-- the square roots here may not be necessary
 					-- raising the threshold might achieve the same
 					-- but the test map looks good with them
+					-- appendShape(<tPos>, <i>, <tPar>, <j>, <tCoo>, <tRot>)
+					-- addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
 					if (Size_ratio <= sqrt(2/10)) then		--0.45
-						--appendShape(<tPos>, <i>, <tPar>, <j>, <tCoo>, <tRot>)
-						--addAsteroid(<sAsteroidType>, <tPosition>, <fRU%>, ?, ?, ?, ?)
-						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_1", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
+						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_1", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
 					elseif (Size_ratio <= sqrt(4/10)) then	--0.63
-						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_2", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
+						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
 					elseif (Size_ratio <= sqrt(6/10)) then	--0.77
-						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_3", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
+						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
 					elseif (Size_ratio <= sqrt(8/10)) then	--0.89
-						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
+						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
 					elseif (Size_ratio <= sqrt(10/10)) then	--1.00
-						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_5", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
+						appendShape(tPos, 1, {1, "Asteroid", "Asteroid_M_5", {0,0,0,}, 100, 0, 0, 0, 0,}, Point_count, Vector_new, tRot)
 					end
 					--print("Point_count = " .. Point_count .. "\nVector_new = " .. vstr(Vector_new))
 					Point_list[Point_count] = {Vector_new, Radius_new}
@@ -642,6 +741,7 @@ function blobAdd2(tPos, xNil, tPar, tRot, tSeed)
 		end
 	end
 end
+
 
 --------------------------------------------------------------------------------
 --  Name:		blobAdd3
@@ -659,9 +759,10 @@ end
 --		<tScale>: scale the entire shape by these amounts in the X, Y, Z directions.
 --	<tRot>: a table containing the X, Y and Z rotation angles (degrees) for the entire object.
 --  Notes:
---  1. I could create another version of this script that plots points randomly 
---     until a certain predetermined number of them have been plotted. However, 
---     this could increase parse/load times considerably.
+--  1. I could create another version of this script that plots randomly 
+--     positioned points until a certain predetermined number of points have 
+--     passed the check. However, this could increase parse/load times 
+--     considerably.
 
 function blobAdd3(tPos, xNil, tPar, tRot)
 	local tBlobs = tPar[1]
@@ -751,6 +852,7 @@ function fieldCalc(tBlobs, tVector, minThrsh, maxThrsh)
 	end
 	return max(min(Actual_strength, maxThrsh), minThrsh)
 end
+
 
 --------------------------------------------------------------------------------
 --  Name:		flokalAdd
@@ -1450,8 +1552,9 @@ function easyPatch(tPos, fRUs, tSeed)
 		tSeed = newseed(-977322)
 	end
 	local tCoo = {}
+	-- Does Asteroid_M_2 maybe grant too many RUs? Should I maybe switch back to stock version?
 	-- asteroid_type = {amount, inner radius, outer radius,}
-	local easyPatchDist = {Asteroid_4 = {1, 0, 0,}, Asteroid_3 = {4, 400, 800,}, Asteroid_2 = {5, 800, 1600,},}
+	local easyPatchDist = {Asteroid_M_4 = {1, 0, 0,}, Asteroid_M_3 = {4, 400, 800,}, Asteroid_2 = {5, 800, 1600,},}
 	for k, tTab in easyPatchDist do
 		for j = 1, tTab[1] do
 			local r = srandom3(tSeed, tTab[2], tTab[3])
@@ -1620,7 +1723,7 @@ end
 --	1. This function must be called from within the "NonDetermChunk" 
 --	   portion of a ".level" file.
 --	2. Since it is a NonDetermChunk function, it does not need to be seeded 
---         manually in order to avoid desyncs (I think).
+--     manually in order to avoid desyncs (I think).
 --------------------------------------------------------------------------------
 
 function randomBackground(tSeed, iMod, tTab)
@@ -1886,7 +1989,7 @@ end
 --
 
 function print_map_stats()
-	local total = iStartPoints + iPoints + iSpheres + iCameras + iSquadrons + iAsteroids + iSalvage + iPebbles + iClouds + iDustClouds + iNebulas + iDirLights + iRvAsteroids + iRvSquadrons
+	local iTotal = iStartPoints + iPoints + iSpheres + iCameras + iSquadrons + iAsteroids + iSalvage + iPebbles + iClouds + iDustClouds + iNebulas + iDirLights + iRvAsteroids + iRvSquadrons
 	print("Level loaded: " .. levelDesc)
 	print("Maxplayers: " .. maxPlayers)
 	print
@@ -1905,6 +2008,6 @@ function print_map_stats()
 		"\nMAP_TRACE:   iDirLights = " ..   iDirLights ..
 		"\nMAP_TRACE: iRvAsteroids = " .. iRvAsteroids ..
 		"\nMAP_TRACE: iRvSquadrons = " .. iRvSquadrons ..
-		"\nMAP_TRACE:        total = " ..        total
+		"\nMAP_TRACE:       iTotal = " ..       iTotal
 	)
 end

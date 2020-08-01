@@ -110,12 +110,16 @@ NewShipType.canHaveShadows=1
 NewShipType.ignoreRaceWhenDocking=1
 --addAbility(NewShipType,"CanBuildShips",1,"SubSystem_Vgr","SubSystemModule, SubSystemSensors");
 addAbility(NewShipType,"CanBeCaptured",100,0.1);
---addAbility(<rShip>, "DefenseFieldAbility", <bIsActive>, <bIsEngaged>, <fFieldRadius>, <fEnergyUsage>, <fEnergyCutoff>, <fEnergyCost>, <fEnergyRegen>, <fEnergyMinimum>, <sEffectName>)
+-- addAbility(<rShip>, "DefenseFieldAbility", <bIsActive>, <bIsEngaged>, <fFieldRadius>, <fEnergyUsage>, <fEnergyCutoff>, <fEnergyCost>, <fEnergyRegen>, <fEnergyMinimum>, <sEffectName>)
 addAbility(NewShipType,"DefenseFieldAbility",1,1,5000,200,200,0,0,0,"defensefield_sphere_spray");
---addAbility(<rShip>, "HyperspaceInhibitorAbility", <bIsActive>, <bInhibitorRadius>)
+-- addAbility(<rShip>, "HyperspaceInhibitorAbility", <bIsActive>, <bInhibitorRadius>)
 addAbility(NewShipType,"HyperspaceInhibitorAbility",1,10000);
 --LoadModel(NewShipType,1);
 LoadSharedModel(NewShipType,"Meg_Asteroid");
+--StartShipHardPointConfig(NewShipType, "Generic 1", "HardpointGeneric1", "System", "Innate", "Destroyable", "Vgr_HyperspaceInhibitor", "", "", "", "", "", "", "", "")
+--StartShipHardPointConfig(NewShipType, "Generic 2", "HardpointGeneric2", "System", "Innate", "Destroyable", "Vgr_HyperspaceInhibitor", "", "", "", "", "", "", "", "")
+--StartShipHardPointConfig(NewShipType, "Generic 3", "HardpointGeneric3", "System", "Innate", "Destroyable", "Vgr_HyperspaceInhibitor", "", "", "", "", "", "", "", "")
+--StartShipHardPointConfig(NewShipType, "Generic 4", "HardpointGeneric4", "System", "Innate", "Destroyable", "Vgr_HyperspaceInhibitor", "", "", "", "", "", "", "", "")
 NewShipType.sobDieTime=1
 NewShipType.sobSpecialDieTime=1
 NewShipType.specialDeathSpeed=40

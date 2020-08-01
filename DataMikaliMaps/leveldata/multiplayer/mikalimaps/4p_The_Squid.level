@@ -1,10 +1,10 @@
--- (4P) The Squid v1.2.1 by Mikali
+-- (4P) The Squid v1.2.2 by Mikali
 -- Created: 2005/09/05
--- Updated: 2016/07/11
+-- Updated: 2020/08/01
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>The Squid 1.2.1</c>"
+levelDesc = "<c=FF4800>The Squid 1.2.2</c>"
 maxPlayers = 4
 player = {}
 
@@ -34,26 +34,26 @@ function DetermChunk()
 --	addCloud("polySurface1", "cloud_text_3", {     0, 1000,  15000,}, {1, 1, 1, 1}, 0, 4096)
 --	addCloud("polySurface1", "cloud_text_4", { 15000, 1000,      0,}, {1, 1, 1, 1}, 0, 4096)
 
---	addAsteroid("Asteroid_5", { -5000, 1000, -15000,}, AstPerc, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {-20000, 1000,   5000,}, AstPerc, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", {  5000, 1000,  20000,}, AstPerc, 0, 0, 0, 0)
---	addAsteroid("Asteroid_5", { 20000, 1000,  -5000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", { -5000, 1000, -15000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {-20000, 1000,   5000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {  5000, 1000,  20000,}, AstPerc, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", { 20000, 1000,  -5000,}, AstPerc, 0, 0, 0, 0)
 
 	local PebbleDist_1 =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{512, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{256, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
 	}
 	local PebbleDist_2 =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{2048, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{1024, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
 	}
 	local AsteroidDist =
 	{
 		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{ 8, "Asteroid", "Asteroid_4", {0,0,0,}, AstPerc, 0, 0, 0, 0,},
-		{32, "Asteroid", "Asteroid_3", {0,0,0,}, AstPerc, 0, 0, 0, 0,},
+		{ 8, "Asteroid", "Asteroid_M_4", {0,0,0,}, AstPerc, 0, 0, 0, 0,},
+		{16, "Asteroid", "Asteroid_M_3", {0,0,0,}, AstPerc, 0, 0, 0, 0,},
 	}
 
 	--shapeAdd(<tPos>, <tDst>, {<sLay>, <fA>, <fB>, ...}, <tRot>, <tSeed>)

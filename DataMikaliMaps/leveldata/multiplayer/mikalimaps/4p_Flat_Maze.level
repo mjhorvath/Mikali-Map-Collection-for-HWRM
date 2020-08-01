@@ -1,10 +1,10 @@
--- (4P) Flat Maze v1.0.3 by Mikali
+-- (4P) Flat Maze v1.0.4 by Mikali
 -- Created: 2015/03/20
--- Updated: 2016/07/11
+-- Updated: 2020/07/31
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>Flat Maze 1.0.3</c>"
+levelDesc = "<c=FF4800>Flat Maze 1.0.4</c>"
 maxPlayers = 4
 player = {}
 
@@ -219,7 +219,7 @@ function createMaze(lenx, leny, lenz, cell_width)
 					panelZPos(cell_pos)
 				end
 				if (WALL_LEFT + WALL_RIGHT + WALL_ABOVE + WALL_BELOW + WALL_FRONT + WALL_BACK == 5) then
-					addAsteroid("Asteroid_5", cell_pos, 100, 0, 0, 0, 0)
+					addAsteroid("Asteroid_M_5", cell_pos, 100, 0, 0, 0, 0)
 				end
 			end
 		end
