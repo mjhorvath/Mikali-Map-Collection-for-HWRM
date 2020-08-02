@@ -1,0 +1,50 @@
+
+--Local_Desc - Description of this package
+--Package_Sym - Shared name for packages with the same catagory
+--Package_Desc - Description - may move to a 'package' desc file...
+
+Root = "DATA:\\LevelData\\Multiplayer\\mikalimaps"
+
+ExtFilter = "levels_dm,levels_mmmc,levels_dm_mmmc,levels_hw1,levels_dm_hw1,levels_hw2,levels_dm_hw2,rules_dm,rules_hw2,rules_dm_hw2,rules_hw1,rules_dm_hw1"
+
+--Tags - Set single tags for all levels...
+Tags = "dm,mmmc,dm_mmmc,hw1,dm_hw1,hw2,dm_hw2"
+
+--TagSets - Set groups of tags for all levels (defined in Scripts/Tags/*.tags) - makes bulk editing faster...
+--TagSets = "hw1"
+
+LevelList =
+{
+	{Tags = "2p",	Name = "2p_Block_Maze",			Desc = "<c=FF4800>Block Maze 1.1.3</c>",			MaxPlayers = 2,},
+	{Tags = "2p",	Name = "2p_Gallery_Resources",	Desc = "<c=FF4800>Gallery - Resources 1.3.3</c>",	MaxPlayers = 2,},
+	{Tags = "2p",	Name = "2p_Gallery_Ships",		Desc = "<c=FF4800>Gallery - Ships 1.1.2</c>",		MaxPlayers = 2,},
+	{Tags = "2p",	Name = "2p_Go_Around",			Desc = "<c=FF4800>Go Around 1.0.3</c>",				MaxPlayers = 2,},
+	{Tags = "2p",	Name = "2p_The_Squash",			Desc = "<c=FF4800>The Squash 1.1.10</c>",			MaxPlayers = 2,},
+	{Tags = "2p",	Name = "2p_Tutorial_M01",		Desc = "<c=FF4800>Tutorial Mission No.3 1.0.11</c>",	MaxPlayers = 2,},
+	{Tags = "2p",	Name = "2p_Veil_of_Fire",		Desc = "<c=FF4800>Veil of Fire 1.2.10</c>",			MaxPlayers = 2,},
+	{Tags = "3p",	Name = "3p_Hex_Maze_Small",		Desc = "<c=FF4800>Hex Maze Small 1.0.4</c>",		MaxPlayers = 3,},
+	{Tags = "4p",	Name = "4p_Flat_Maze",			Desc = "<c=FF4800>Flat Maze 1.0.4</c>",				MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_Metaball_Madness",	Desc = "<c=FF4800>Metaball Madness 2.0.4</c>",		MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_Plasma_Globe",		Desc = "<c=FF4800>Plasma Globe 1.0.12</c>",			MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_Scalar_Field",		Desc = "<c=FF4800>Scalar Field 1.0.12</c>",			MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_Spiral_Galaxy",		Desc = "<c=FF4800>Spiral Galaxy 1.5.14</c>",		MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_Strange_Attractor",	Desc = "<c=FF4800>Strange Attractor 1.0.13</c>",	MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_The_Squid",			Desc = "<c=FF4800>The Squid 1.1.12</c>",			MaxPlayers = 4,},
+	{Tags = "4p",	Name = "4p_Tora",				Desc = "<c=FF4800>Tora! Tora! Tora! 1.3.17</c>",	MaxPlayers = 4,},
+	{Tags = "5p",	Name = "5p_Electromagnetic_Doily",	Desc = "<c=FF4800>Electromagnetic Doily 1.2.12</c>",	MaxPlayers = 5,},
+	{Tags = "5p",	Name = "5p_Rheotomic_Spaces",	Desc = "<c=FF4800>Rheotomic Spaces 1.0.10</c>",		MaxPlayers = 5,},
+	{Tags = "6p",	Name = "6p_Curve_Stitch",		Desc = "<c=FF4800>Curve Stitch 1.0.15</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Gehenna",			Desc = "<c=FF4800>Gehenna 1.2.15</c>",				MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Harmonograph",		Desc = "<c=FF4800>Harmonograph 1.2.10</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Have_a_Ball",		Desc = "<c=FF4800>Have a Ball 1.3.19</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Hex_Maze_Big",		Desc = "<c=FF4800>Hex Maze Big 1.0.4</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Klein_Bottle",		Desc = "<c=FF4800>Klein Bottle 1.0.14</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Menger_Sponge",		Desc = "<c=FF4800>Menger Sponge 1.1.3</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Metaballs_II",		Desc = "<c=FF4800>Metaballs II 1.2.1</c>",			MaxPlayers = 6,},
+	{Tags = "6p",	Name = "6p_Voronoi_Steppes",	Desc = "<c=FF4800>Voronoi Steppes 1.0.9</c>",		MaxPlayers = 6,},
+	{Tags = "8p",	Name = "8p_Andromeda",			Desc = "<c=FF4800>Andromeda 1.6.4</c>",				MaxPlayers = 8,},
+	{Tags = "8p",	Name = "8p_Bentus_Meltdown",	Desc = "<c=FF4800>Bentus Meltdown 1.6.7</c>",		MaxPlayers = 8,},
+	{Tags = "8p",	Name = "8p_Chicken_Scratch",	Desc = "<c=FF4800>Chicken Scratch 1.2.7</c>",		MaxPlayers = 8,},
+	{Tags = "8p",	Name = "8p_Greek_Cross_Fractal",	Desc = "<c=FF4800>Greek Cross Fractal 1.2.2</c>",	MaxPlayers = 8,},
+	{Tags = "8p",	Name = "8p_Spline_Crazy",		Desc = "<c=FF4800>Spline Crazy 1.4.8</c>",			MaxPlayers = 8,},
+}

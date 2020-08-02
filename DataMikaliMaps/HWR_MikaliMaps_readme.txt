@@ -1,8 +1,8 @@
 Caption:	Mikali's Multiplayer Map Collection
-Version:	1.27.0
+Version:	1.27.1
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/08/01
+Updated:	2020/08/02
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -186,10 +186,13 @@ CREDITS
 
 CHANGE LOG
 
+1.27.1 - 2020/08/02
+• Tweaks to tags and filters to make the maps more compatible with other mods.
+
 1.27.0 - 2020/08/01
 • Tweaked the "Metaball Madness" and "Metaballs II" maps.
 • Renamed custom asteroids, clouds, etc. so as not to conflict with the default 
-  asteroids.
+  vanilla objects or objects created for other mods.
 • Updated crystal HODs to 2.0-patch format.
 • Updated "2p_Gallery_Resources.level".
 • "Asteroids_m_1" and "Asteroid_m_2" are now harvestable thanks to sastrei. As 
@@ -543,39 +546,44 @@ CHANGE LOG
 ================================================================================
 
 
-TO DO LIST
+TO DO LIST/NOTES
 
 • I'm tempted to place some salvage debris in the center area of Andromeda. 
   Alternately, I could place some radiation clouds in the center. But there may 
   be enough maps with radiation already.
-• There are still major issues on the maze maps with ships "cheating" when it 
-  comes to passing in between/above/below wall panels when it shouldn't be pos-
-  sible. I don't think these issues are solvable, except by making the panels 
-  extra large as a deterrent.
+• There are still major issues on the maze maps with ships "cheating". It 
+  shouldn't be possible to squeeze between adjacent panels when there are zero 
+  units of space separating them. I don't think these issues are solvable 
+  without having the game source code.
 • Should probably rename the panel objects to "panel_x_y_z" and reserve the 
   title "box" for the cube-shaped objects.
-• Should harvestable asteroids and clouds disappear after being depleted?
+• Should harvestable asteroids and clouds disappear after being depleted? Is 
+  this even possible?
 • Since "asteroid_m_1" and "asteroid_m_1" are now harvestable and provide 
   additional RUs, all affected maps need to be rebalanced.
-• Maps that possibly have too many RUs include: "Scalar Field" and 
-  "Strange Attractor".
+• Maps that possibly have too many RUs include: "Scalar Field", "Strange 
+  Attractor", and "Spline Crazy".
 • "The Squash" should be turned into a 4-player map.
 • "Rheotomic Spaces" is overall just a crappy map.
 • "Curve Stitch" isn't great either, but could be improved without much work.
-• "Have a Ball" is kind of boring. I could remake it in the shape of a 
-  basketball.
+• "Have a Ball" is very boring. I could remake it in the shape of a basketball, 
+  instead.
 • "Klein Bottle" is unexciting as well. I would like to remove the Easy Patches 
   and replace them with something else. Dunno what.
 • Not sure if the hyperspace inhibitor asteroids in "Andromeda" should have the 
-  hardpoints with the little subsystems stuck on them. Keep in mind that the 
-  ability to rebuild these little subsystems may require changes to the build 
-  and research scripts of every race, including races created by other modders. 
-  (Not 100% sure.)
+  hardpoints with the little subsystem nodules stuck to them. Keep in mind that 
+  the ability to rebuild these little subsystems may require changes to the 
+  build and research scripts of every race, including races created by other 
+  modders. (Not 100% sure, though.)
 • "Bentus Meltdown" has too many Easy Patches and too few clouds in the rings.
 • In "Chicken Scratch" maybe replace the asteroids and pebbles with pink nebula 
   chunks like in HW1C.
 • Clouds obscure asteroids too much. Asteroids become hard to see.
 • The larger asteroids should maybe also be represented by pixels in sensors 
   manager since the 3D models are hard to make out.
-• Should maybe check and make sure the spline endpoints aren't too close to one 
+• Should maybe make it so that the spline endpoints aren't too close to one 
   another in "Spline Crazy".
+• The map thumbnails were captured before I brighted the pebbles and asteroids, 
+  I believe. As a result, the thumbnails are very faint and hard to make out. I 
+  need to re-capture all of them at some point.
+• "Metaballs II" does not have a thumbnail yet.
