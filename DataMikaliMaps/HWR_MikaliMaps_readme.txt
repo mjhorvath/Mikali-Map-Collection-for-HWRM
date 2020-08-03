@@ -1,8 +1,8 @@
 Caption:	Mikali's Multiplayer Map Collection
-Version:	1.27.1
+Version:	1.27.2
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/08/02
+Updated:	2020/08/03
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -28,7 +28,7 @@ If you have the Steam version of the game, installation is done by subscribing
 to the mod on the Steam Workshop page, and then using the "Mods" section of the 
 game launcher to select which mods you want to activate.
 
-For the GOG.com version of the game--or if you want to view and modify the 
+For the GOG.com version of the game--or if you want to view or modify the 
 mods's source code--you must download the mod from GitHub, then copy the 
 "DataMikaliMaps" folder to your "Homeworld Remastered" or "HomeworldRM" 
 directory. Next, you must add the text "-moddatapath DataMikaliMaps 
@@ -201,6 +201,9 @@ CREDITS
 
 
 CHANGE LOG
+
+1.27.2 - 2020/08/02
+• Forgot to rename the pebbles earlier.
 
 1.27.1 - 2020/08/02
 • Tweaks to tags and filters to make the maps more compatible with other mods.

@@ -1,10 +1,10 @@
--- (6P) Klein Bottle v1.0.14 by Mikali
+-- (6P) Klein Bottle v1.0.15 by Mikali
 -- Created: 2006/01/02
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Klein Bottle 1.0.14</c>"
+levelDesc = "<c=FF4800>Klein Bottle 1.0.15</c>"
 maxPlayers = 6
 player = {}
 
@@ -23,7 +23,7 @@ function DetermChunk()
 
 	local PebDist =
 	{
-		{8192, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{8192, "Pebble", "pebble_m_0", {0,0,0,}, 0, 0, 0,},
 		{128, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
 	}
 	local StartDist =

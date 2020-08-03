@@ -1,10 +1,10 @@
--- (5P) Electromagnetic Doily v1.2.12 by Mikali
+-- (5P) Electromagnetic Doily v1.2.13 by Mikali
 -- Created: 2013/09/05
--- Updated: 2020/08/01
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: any
 
-levelDesc = "<c=FF4800>Electromagnetic Doily 1.2.12</c>"
+levelDesc = "<c=FF4800>Electromagnetic Doily 1.2.13</c>"
 maxPlayers = 5
 player = {}
 
@@ -30,9 +30,9 @@ function DetermChunk()
 	-- fScale = scale the whole shape by this amount in all directions
 
 	-- flokalAdd(<tPos>, <tRes>, {<iNx>, <iNy>, <iXmin>, <iSx>, <iSy>, <iSym>, <fEcc>, <bInside>, <fScale>}, <tRot>, <xNull>)
-	flokalAdd({0,     0,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
-	flokalAdd({0, -5000,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
-	flokalAdd({0,-10000,0,}, {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 1/4,}, {0,0,0,}, nil)
+	flokalAdd({0,     0,0,}, {1, "Pebble", "pebble_m_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
+	flokalAdd({0, -5000,0,}, {1, "Pebble", "pebble_m_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
+	flokalAdd({0,-10000,0,}, {1, "Pebble", "pebble_m_1", {0,0,0,}, 100, 0, 0, 0, 0,}, {16, 16, 12, 3, 3, maxPlayers, 256, 0, 20000 * 1/4,}, {0,0,0,}, nil)
 --	flokalAdd({0,0,0,}, {1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,}, {3, 3, 2, 1, 1, maxPlayers, 256, 0, 20000 * 4/4,}, {0,0,0,}, nil)
 --	flokalAdd({0,0,0,}, {1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,}, {3, 3, 2, 1, 1, maxPlayers, 256, 1, 20000 * 3/4,}, {0,36,0,}, nil)
 

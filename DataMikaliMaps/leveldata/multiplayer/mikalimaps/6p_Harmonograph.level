@@ -1,10 +1,10 @@
--- (6P) Harmonograph v1.2.10 by Mikali
+-- (6P) Harmonograph v1.2.11 by Mikali
 -- Created: 2013/08/26
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Harmonograph 1.2.10</c>"
+levelDesc = "<c=FF4800>Harmonograph 1.2.11</c>"
 maxPlayers = 6
 player = {}
 
@@ -62,7 +62,7 @@ function DetermChunk()
 	local prettyPebs =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{7883, "Pebble", "Pebble_1", {0,0,0,}, 0, 0, 0,},
+		{7883, "Pebble", "pebble_m_1", {0,0,0,}, 0, 0, 0,},
 	}
 	-- too many?
 	local patchEasy =

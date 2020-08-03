@@ -1,10 +1,10 @@
--- (2P) Resource Gallery v1.3.3 by Mikali
+-- (2P) Resource Gallery v1.3.4 by Mikali
 -- Created: 2004/01/21
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Gallery - Resources 1.3.3</c>"
+levelDesc = "<c=FF4800>Gallery - Resources 1.3.4</c>"
 maxPlayers = 2
 player = {}
 
@@ -24,18 +24,27 @@ function DetermChunk()
 
 	-- Pebbles
 	print("Pebbles")
-	addPebble("Pebble_0",             {-15000, 0,-15000}, 0, 0, 0)
-	addPebble("Pebble_1",             {-10000, 0,-15000}, 0, 0, 0)
-	addPebble("Pebble_2",             { -5000, 0,-15000}, 0, 0, 0)
+	addPebble("pebble_0",               {-15000, 0,-20000}, 0, 0, 0)
+	addPebble("pebble_1",               {-10000, 0,-20000}, 0, 0, 0)
+	addPebble("pebble_2",               { -5000, 0,-20000}, 0, 0, 0)
+	addPebble("pebble_m_0",             {     0, 0,-20000}, 0, 0, 0)
+	addPebble("pebble_m_1",             {  5000, 0,-20000}, 0, 0, 0)
+	addPebble("pebble_m_2",             { 10000, 0,-20000}, 0, 0, 0)
 
 	-- Clouds
 	print("Clouds")
-	addCloud("cloud", "Cloud_0",      {     0, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
-	addCloud("cloud", "Cloud_NoRes",  {  5000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
-	addCloud("cloud", "Cloud_NoRes2", { 10000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
-	addCloud("cloud", "Cloud_NoRes3", { 15000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
---	addCloud("cloud", "cloud_text_1", {0,      0, 0}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
---	addCloud("cloud", "cloud_text_2", {0, 100000, 0}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "Cloud_0",      {-15000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
+	addCloud("cloud", "Cloud_NoRes",  {-10000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
+	addCloud("cloud", "Cloud_NoRes2", { -5000, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
+	addCloud("cloud", "Cloud_NoRes3", {     0, 0,-15000}, {1, 1, 1, 1}, 0, 2500)
+	addCloud("cloud", "cloud_text_1", {  5000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_2", { 10000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_3", { 15000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_4", { 20000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_5", { 25000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_6", { 30000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_7", { 35000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
+	addCloud("cloud", "cloud_text_8", { 40000, 0,-15000}, {1, 1, 1, 1}, 0, 4096)		-- MikaliMaps only
 
 	-- Dust Clouds
 	print("Dust Clouds")
@@ -91,22 +100,22 @@ function DetermChunk()
 
 	-- Nebulae
 	print("Nebulae")
-	addNebula("nebula", "M05_DustCloud_Nebula",        {-35000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M05_NebualDustCloud_NoRes",   {-30000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M05_NebualDustCloud_NoRes2",  {-25000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M05_NebualDustCloud_NoRes3",  {-20000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M07_Foundry_Radiation",       {-15000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M08_NoDamage_Radiation",      {-10000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M11_Bentusi_Debris",          { -5000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "M11_Bentusi_Radiation",       {     0, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "MP_Bentusi_Radiation",        {  5000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Nebula_0",                    { 10000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Nebula_Hiding",               { 15000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Nebula01_Cream",              { 20000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Nebula01_Teal",               { 25000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
-	addNebula("nebula", "Radiation",                   { 30000, 0,     0}, {1, 1, 1, 1}, 0, 2500)
---	addNebula("nebula", "nebula0",                     { 35000, 0,     0}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
---	addNebula("nebula", "nebula_m_0",                  { 40000, 0,     0}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
+	addNebula("nebula", "M05_DustCloud_Nebula",        {-35000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M05_NebualDustCloud_NoRes",   {-30000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M05_NebualDustCloud_NoRes2",  {-25000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M05_NebualDustCloud_NoRes3",  {-20000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M07_Foundry_Radiation",       {-15000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M08_NoDamage_Radiation",      {-10000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M11_Bentusi_Debris",          { -5000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "M11_Bentusi_Radiation",       {     0, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "MP_Bentusi_Radiation",        {  5000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Nebula_0",                    { 10000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Nebula_Hiding",               { 15000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Nebula01_Cream",              { 20000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Nebula01_Teal",               { 25000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+	addNebula("nebula", "Radiation",                   { 30000, 0, 0}, {1, 1, 1, 1}, 0, 2500)
+--	addNebula("nebula", "nebula0",                     { 35000, 0, 0}, {1, 1, 1, 1}, 0, 2500)		-- HW1RM only
+--	addNebula("nebula", "nebula_m_0",                  { 40000, 0, 0}, {1, 1, 1, 1}, 0, 2500)		-- MikaliMaps only
 
 	-- Harvestable Nebulae
 	-- I think tendrils only work with "nebula_m_0"

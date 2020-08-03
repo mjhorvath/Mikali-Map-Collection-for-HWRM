@@ -1,10 +1,10 @@
--- (8P) Chicken Scratch v1.2.7 by Mikali
+-- (8P) Chicken Scratch v1.2.8 by Mikali
 -- Created: 2013/09/14
--- Updated: 2020/08/01
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Chicken Scratch 1.2.7</c>"
+levelDesc = "<c=FF4800>Chicken Scratch 1.2.8</c>"
 maxPlayers = 8
 player = {}
 
@@ -38,7 +38,7 @@ function DetermChunk()
 	local threeRings =
 	{
 		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{32, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{32, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
 		-- addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
 		{ 0, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{ 2, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},

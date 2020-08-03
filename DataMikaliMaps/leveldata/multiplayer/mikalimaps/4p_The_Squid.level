@@ -1,10 +1,10 @@
--- (4P) The Squid v1.2.2 by Mikali
+-- (4P) The Squid v1.2.3 by Mikali
 -- Created: 2005/09/05
--- Updated: 2020/08/01
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>The Squid 1.2.2</c>"
+levelDesc = "<c=FF4800>The Squid 1.2.3</c>"
 maxPlayers = 4
 player = {}
 
@@ -42,12 +42,12 @@ function DetermChunk()
 	local PebbleDist_1 =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{256, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{256, "Pebble", "pebble_m_0", {0,0,0,}, 0, 0, 0,},
 	}
 	local PebbleDist_2 =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{1024, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{1024, "Pebble", "pebble_m_0", {0,0,0,}, 0, 0, 0,},
 	}
 	local AsteroidDist =
 	{

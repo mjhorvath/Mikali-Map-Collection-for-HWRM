@@ -1,10 +1,10 @@
--- (6P) Voronoi Steppes v1.0.9 by Mikali
+-- (6P) Voronoi Steppes v1.0.10 by Mikali
 -- Created: 2006/01/02
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Voronoi Steppes 1.0.9</c>"
+levelDesc = "<c=FF4800>Voronoi Steppes 1.0.10</c>"
 maxPlayers = 6
 player = {}
 
@@ -144,7 +144,7 @@ function DetermChunk()
 	{
 		--addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
 		{4, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {1, 1, 1, 1}, 0, 5000,},
-		{128, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0,},
+		{128, "Pebble", "pebble_m_0", {0,0,0,}, 0, 0, 0,},
 		{2, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
 	}
 

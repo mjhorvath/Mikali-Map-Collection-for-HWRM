@@ -1,13 +1,13 @@
--- (8P) Spline Crazy v1.4.8 by Mikali
+-- (8P) Spline Crazy v1.4.9 by Mikali
 -- Created: 2013/09/17
--- Updated: 2020/08/01
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 -- Notes:
 --   1. Should maybe check and make sure the spline endpoints aren't too close 
 --      to one another.
 
-levelDesc = "<c=FF4800>Spline Crazy 1.4.8</c>"
+levelDesc = "<c=FF4800>Spline Crazy 1.4.9</c>"
 maxPlayers = 8
 player = {}
 
@@ -29,7 +29,7 @@ function DetermChunk()
 	local threeRings =
 	{
 		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{ 64, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{ 64, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
 		-- addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
 		{  8, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{  4, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},

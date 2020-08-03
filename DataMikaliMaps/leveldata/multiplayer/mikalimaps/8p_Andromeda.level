@@ -1,6 +1,6 @@
--- (8P) Andromeda v1.6.4 by Mikali
+-- (8P) Andromeda v1.6.5 by Mikali
 -- Created: 2004/10/29
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 -- Positions: fixed
@@ -19,7 +19,7 @@
 -- could place some radiation clouds in the center. But I made enough maps like 
 -- that already.
 
-levelDesc = "<c=FF4800>Andromeda 1.6.4</c>"
+levelDesc = "<c=FF4800>Andromeda 1.6.5</c>"
 maxPlayers = 8
 player = {}
 
@@ -66,14 +66,14 @@ function DetermChunk()
 	local pebbleRing1 =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{640, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0},
-		{320, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0},
+		{640, "Pebble", "pebble_m_0", {0,0,0,}, 0, 0, 0},
+		{320, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0},
 	}
 	local pebbleRing2 =
 	{
 		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{ 80, "Pebble", "Pebble_0", {0,0,0,}, 0, 0, 0},
-		{ 40, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0},
+		{ 80, "Pebble", "pebble_m_0", {0,0,0,}, 0, 0, 0},
+		{ 40, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0},
 	}
 	local rockRing =
 	{

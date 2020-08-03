@@ -1,10 +1,10 @@
--- (2P) The Squash v1.1.10 by Mikali
+-- (2P) The Squash v1.1.11 by Mikali
 -- Created: 2005/09/05
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>The Squash 1.1.10</c>"
+levelDesc = "<c=FF4800>The Squash 1.1.11</c>"
 maxPlayers = 2
 player = {}
 
@@ -28,7 +28,7 @@ function DetermChunk()
 
 	local PebbleDist =
 	{
-		Pebble = {4096, "Pebble", "Pebble_0", {0, 0, 0,}, 0, 0, 0,},
+		Pebble = {4096, "Pebble", "pebble_m_0", {0, 0, 0,}, 0, 0, 0,},
 	}
 	local AsteroidDist =
 	{

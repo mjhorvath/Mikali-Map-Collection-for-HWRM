@@ -1,10 +1,10 @@
--- (6P) Gehenna v1.2.15 by Mikali
+-- (6P) Gehenna v1.2.16 by Mikali
 -- Created: 2004/02/24
--- Updated: 2016/07/11
+-- Updated: 2016/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Gehenna 1.2.15</c>"
+levelDesc = "<c=FF4800>Gehenna 1.2.16</c>"
 maxPlayers = 6
 player = {}
 
@@ -30,9 +30,9 @@ local    Neb5_O = "Nebula5_OLD"
 local    Neb7_O = "Nebula7_OLD"
 local    Neb8_O = "Nebula8_OLD"
 local     Neb10 = "Nebula10"
-local      Peb0 = "Pebble_0"
-local      Peb1 = "Pebble_1"
-local      Peb2 = "Pebble_2"
+local      Peb0 = "pebble_m_0"
+local      Peb1 = "pebble_m_1"
+local      Peb2 = "pebble_m_2"
 local     Poly4 = "polySurface4"
 local     Poly5 = "polySurface5"
 local     Poly6 = "polySurface6"

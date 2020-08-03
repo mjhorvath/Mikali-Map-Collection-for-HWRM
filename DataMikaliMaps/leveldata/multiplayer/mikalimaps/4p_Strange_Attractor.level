@@ -1,10 +1,10 @@
--- (4P) Strange Attractor v1.0.13 by Mikali
+-- (4P) Strange Attractor v1.0.14 by Mikali
 -- Created: 2013/08/28
--- Updated: 2020/08/01
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: random
 
-levelDesc = "<c=FF4800>Strange Attractor 1.0.13</c>"
+levelDesc = "<c=FF4800>Strange Attractor 1.0.14</c>"
 maxPlayers = 4
 player = {}
 
@@ -32,7 +32,7 @@ function DetermChunk()
 	local attractor_1 =
 	{
 		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{480, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{480, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
 	}
 	local attractor_2 =
 	{

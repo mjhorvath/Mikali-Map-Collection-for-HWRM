@@ -1,10 +1,10 @@
--- (6P) Curve Stitch v1.0.15 by Mikali
+-- (6P) Curve Stitch v1.0.16 by Mikali
 -- Created: 2013/09/05
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
-levelDesc = "<c=FF4800>Curve Stitch 1.0.15</c>"
+levelDesc = "<c=FF4800>Curve Stitch 1.0.16</c>"
 maxPlayers = 6
 player = {}
 
@@ -17,7 +17,7 @@ function DetermChunk()
 	local n = 20
 	local dim = 10000
 	local dim2 = 9000
-	local dist = {1, "Pebble", "Pebble_1", {0,0,0,}, 100, 0, 0, 0, 0,}
+	local dist = {1, "Pebble", "pebble_m_1", {0,0,0,}, 100, 0, 0, 0, 0,}
 
 	setWorldBoundsInner({0, 0, 0}, {30000, 30000, 30000})
 

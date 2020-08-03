@@ -1,10 +1,10 @@
--- (4P) Plasma Globe v1.0.12 by Mikali
+-- (4P) Plasma Globe v1.0.13 by Mikali
 -- Created: 2013/09/15
--- Updated: 2020/08/01
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Plasma Globe 1.0.12</c>"
+levelDesc = "<c=FF4800>Plasma Globe 1.0.13</c>"
 maxPlayers = 4
 player = {}
 
@@ -41,7 +41,7 @@ function DetermChunk()
 	local threeRings =
 	{
 --		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{ 32, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{ 32, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
 --		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
 		{  2, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{  1, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
@@ -52,7 +52,7 @@ function DetermChunk()
 	local centerBall =
 	{
 --		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{ 32, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{ 32, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
 --		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
 		{  2, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{  1, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
@@ -63,7 +63,7 @@ function DetermChunk()
 	local outerBall =
 	{
 --		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{8192, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,},
+		{8192, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
 	}
 
 	--branchAdd(<tPos>, <tDst>, {<tDiv>, <tInt>, <tFrq>, <tBeg>, <tEnd>, <tRad>, <tLen>, <tThk>, <tAng>, <iMod>,}, <tRot>, <tSeed>, ...)

@@ -1,10 +1,10 @@
--- (4P) Scalar Field v1.0.12 by Mikali
+-- (4P) Scalar Field v1.0.13 by Mikali
 -- Created: 2013/09/19
--- Updated: 2020/07/31
+-- Updated: 2020/08/02
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
-levelDesc = "<c=FF4800>Scalar Field 1.0.12</c>"
+levelDesc = "<c=FF4800>Scalar Field 1.0.13</c>"
 maxPlayers = 4
 player = {}
 
@@ -43,7 +43,7 @@ function DetermChunk()
 		{8, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, cloud_color, 0, 20000,}
 	}
 	--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-	local pebble_grid = {16384, "Pebble", "Pebble_2", {0,0,0,}, 0, 0, 0,}
+	local pebble_grid = {16384, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,}
 
 	--addDustCloud(<sDustCloudName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
 --	addDustCloud("polySurface1", "DustCloud_NoRes", {0,plane_height,0,}, cloud_color, 0, 20000)

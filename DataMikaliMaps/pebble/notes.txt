@@ -1,1 +1,0 @@
-These resources all need to be renamed so they don't override the stock ones.
