@@ -25,11 +25,27 @@ The very latest uncompressed version of the mod can always be found on GitHub.
 INSTALLATION
 
 If you have the Steam version of the game, installation is done by subscribing 
-to the mod on Steam Workshop. For the GOG.com version of the game and/or the 
-GitHub version of the mod, you must download the mod from ModDB or GitHub, then 
-extract the ZIP archive and copy the "DataMikaliMaps" folder to your "Homeworld 
-Remastered" or "HomeworldRM" directory. Finally, you must add "-moddatapath 
-DataMikaliMaps -overrideBigFile -luatrace" to your shortcut's "Target" field.
+to the mod on the Steam Workshop page, and then using the "Mods" section of the 
+game launcher to select which mods you want to activate.
+
+For the GOG.com version of the game--or if you want to view and modify the 
+mods's source code--you must download the mod from GitHub, then copy the 
+"DataMikaliMaps" folder to your "Homeworld Remastered" or "HomeworldRM" 
+directory. Next, you must add the text "-moddatapath DataMikaliMaps 
+-overrideBigFile -luatrace" to the "Target" field of the game's desktop 
+shortcut in order to get the mod working.
+
+If you are not using the game launcher and are trying to load more than one mod 
+at the same time, simply append or prepend the name of each mod's data folder 
+after the "-moddatapath" command line parameter. For instance: "-moddatapath 
+DataPlayersPatch,DataMikaliMaps,DataTestMod". Multiple names should be 
+separated by a comma.
+
+Note that the PlayersPatch is listed before my mod, and the Test mod is listed 
+after it. The order in which mods are listed matters, and mods that are listed 
+to the right in the list override the data belonging to mods that are listed to 
+the left. Exactly which mod should appear first, and which mods should appear 
+afterward, varies from mod to mod.
 
 
 ================================================================================

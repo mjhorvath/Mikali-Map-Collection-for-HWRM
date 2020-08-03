@@ -9,11 +9,13 @@
 // appears after the "Description:" keyword will become part of the item description on
 // Steam Workshop.  The description text is limited to 8,000 characters total in length.
 
+// Path: HomeworldRM/DataMikaliMaps
+
 // title of the MOD that appears on the Steam Workshop (limited to 128 characters)
 Title: [HWRM] Mikali's Multiplayer Map Collection 1.27.1
 
 // tags must be individual words separated by spaces.
-Tags: HomeworldRM multiplayer maps functions
+Tags: HomeworldRM multiplayer maps functions shapes
 
 // gametype is the type of game this MOD is designed for and can be any of: "HW1Classic", "HW2Classic", or "HomeworldRM" (without the double quotes) separated by spaces
 GameType: HomeworldRM
@@ -34,14 +36,22 @@ WorkshopID: 399477672
 // description that will appear on the Steam Workshop for this item
 Description:
 A collection of multiplayer maps created to demonstrate my custom map-making functions.
-
-Documentation can be found at this project's GitHub repository, located here:
+____
+Additional documentation can be found at this project's GitHub repository, located here:
 https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
-
+____
 An old discussion thread for this mod is located here:
 http://forums.relicnews.com/showthread.php?48818
-
-My homepage with even more mods and tools can be found here:
+____
+My homepage with even more mods as well as tools can be found here:
 http://isometricland.net/homeworld/homeworld.php
+____
+If you have the Steam version of the game, installation is done by subscribing to the mod on the Steam Workshop page, and then using the "Mods" section of the game launcher to select which mods you want to activate.
 
+For the GOG.com version of the game--or if you want to view and modify the mods's source code--you must download the mod from GitHub, then copy the "DataMikaliMaps" folder to your "Homeworld Remastered" or "HomeworldRM" directory. Next, you must add the text "-moddatapath DataMikaliMaps -overrideBigFile -luatrace" to the "Target" field of the game's desktop shortcut in order to get the mod working.
+____
+If you are not using the game launcher and are trying to load more than one mod at the same time, simply append or prepend the name of each mod's data folder after the "-moddatapath" command line parameter. For instance: "-moddatapath DataPlayersPatch,DataMikaliMaps,DataTestMod". Multiple names should be separated by a comma.
+____
+Note that the PlayersPatch is listed before my mod, and the Test mod is listed after it. The order in which mods are listed matters, and mods that are listed to the right in the list override the data belonging to mods that are listed to the left. Exactly which mod should appear first, and which mods should appear afterward, varies from mod to mod.
+____
 License: Attribution 4.0 International (CC BY 4.0)
