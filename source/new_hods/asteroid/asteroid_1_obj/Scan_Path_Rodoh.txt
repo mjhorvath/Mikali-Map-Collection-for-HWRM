@@ -1,0 +1,10 @@
+= -$SHIP_NAME=asteroid_1_obj
+= -$PATH_NAME=asteroid_1_obj
+= -log
+= -dump
+= -echo=-- Scan Path: $[SHIP_NAME]$[CR]
+= -$CONVERT_IN=D:\GitHub\Mikali-Maps-for-Homeworld-Remastered\source\new_hods\asteroid\$[PATH_NAME]\$[SHIP_NAME].hod
+= -$CONVERT_OUT=D:\GitHub\Mikali-Maps-for-Homeworld-Remastered\source\new_hods\asteroid\$[PATH_NAME]\$[SHIP_NAME].dae
+= -do=convert
+= -action=null
+= -wait

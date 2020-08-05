@@ -1,5 +1,17 @@
--- Updated: 2020-07-30 by Mikali
--- Should check if a function with that name has already been defined before attempting to define again.
+-- Caption: Utility Functions for HWRM
+-- Authors: Mikali
+-- Created: A long time ago
+-- Updated: 2020-08-04
+-- License:	Attribution 4.0 International (CC BY 4.0)
+-- Should check first if functions with these names have already been defined before attempting to define again.
+
+
+--------------------------------------------------------------------------------
+-- Global variables.
+--
+
+true = 1
+false = nil
 
 
 --------------------------------------------------------------------------------
@@ -734,3 +746,28 @@ function tcomp(tTable1, tTable2)
 	end
 	return same
 end
+
+-- Returns a table's contents as parameters that can be passed on to a function.
+function unpack(t)
+  return t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8],t[9],t[10]
+end
+
+-- alternative with a larger parameter limit
+function unpack2(t, i)
+        i = i or 1
+        if (t[i] ~= nil) then
+                return t[i], unpack2(t, i + 1)
+        end
+end
+
+-- Lua 4 doesn't have ternary operators by default, so let's make this.
+function ternary(cond, T, F)
+    if cond then
+		return T
+	else
+		return F
+	end
+end
+
+
+dofilepath("data:scripts/bit.lua")

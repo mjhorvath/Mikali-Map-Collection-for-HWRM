@@ -1,10 +1,13 @@
--- (2P) Go Around v1.0.3 by Mikali
+-- (2P) Go Around v1.0.4 by Mikali
 -- Created: 2015/03/26
--- Updated: 2016/07/11
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: 1 vs. 1
 
-levelDesc = "<c=FF4800>Go Around 1.0.3</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Go Around 1.0.4</c>"
 maxPlayers = 2
 player = {}
 
@@ -49,5 +52,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

@@ -1,13 +1,13 @@
 --  Title: MapFunctions
---  Version: 1.23.2
+--  Version: 1.23.4
 --  Authors: Mikali
 --  Created: 2004/10/07
---  Updated: 2020/08/01
+--  Updated: 2020/08/04
 --  Website: http//isometricland.net/homeworld/homeworld.php
 --  Discussion:
---  http://forums.relicnews.com/showthread.php?t=48818
---  http://forums.relicnews.com/showthread.php?t=82964 (old thread)
---  http://forums.relicnews.com/showthread.php?t=40779 (old thread)
+--  * http://forums.relicnews.com/showthread.php?t=48818
+--  * http://forums.relicnews.com/showthread.php?t=82964 (old thread)
+--  * http://forums.relicnews.com/showthread.php?t=40779 (old thread)
 --  Credits:
 --  * MathWorld and Wikipedia for the parametric surface functions used in 
 --    "shapeAdd", "harmonographAdd" and elsewhere.
@@ -17,9 +17,11 @@
 --  * Lorenzo Donati at Stack Overflow for the new pseudo random number 
 --    generator.
 --  Notes:
---  * Unfortunately, strings are nearly always case-sensitive. For instance, 
---    "Asteroid_1" and "asteroid_1" are two different things. "DustCloud" and 
---    "dustcloud" are also not equivalent.
+--  * Unfortunately, strings in this mod are nearly always case-sensitive. For 
+--    instance, "Asteroid_1" and "asteroid_1" are two different things, and  
+--    "DustCloud" and "dustcloud" are also not the same. The game in general is 
+--    more flexible, however, and often allows you to use your own preferred 
+--    capitalization.
 
 
 --------------------------------------------------------------------------------
@@ -28,10 +30,9 @@
 
 -- incremental counters
 iStartPoints, iPoints, iSpheres, iCameras, iSquadrons, iAsteroids, iSalvage, iPebbles, iClouds, iCloudTexts, iDustClouds, iNebulas, iDirLights, iRvAsteroids, iRvSquadrons = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
 TWO_PI = 2 * PI
 
-dofilepath("data:scripts/utilfunc.lua")
-dofilepath("data:scripts/bit.lua")
 
 --------------------------------------------------------------------------------
 --  Name:		appendShape
@@ -50,6 +51,8 @@ dofilepath("data:scripts/bit.lua")
 --	   be good to modify all the other functions to copy this syntax as 
 --	   well.
 --	2. I should group <i> and <j> together as well.
+--  3. The harvestable dust clouds and nebulae used in the HW1 campaign haven't 
+--     been added yet.
 --------------------------------------------------------------------------------
 
 function appendShape(tPos, i, tPar, j, tCoo, tRot)

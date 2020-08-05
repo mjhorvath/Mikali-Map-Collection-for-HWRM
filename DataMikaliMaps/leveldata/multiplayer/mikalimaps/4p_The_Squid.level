@@ -1,10 +1,13 @@
--- (4P) The Squid v1.2.3 by Mikali
+-- (4P) The Squid v1.2.4 by Mikali
 -- Created: 2005/09/05
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>The Squid 1.2.3</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>The Squid 1.2.4</c>"
 maxPlayers = 4
 player = {}
 
@@ -76,5 +79,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

@@ -1,8 +1,8 @@
 Caption:	Mikali's Multiplayer Map Collection
-Version:	1.27.2
+Version:	1.27.4
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/08/03
+Updated:	2020/08/04
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -202,6 +202,19 @@ CREDITS
 
 CHANGE LOG
 
+1.27.3 - 2020/08/04
+• The harvestable dust clouds and nebulae now work properly in the "Gallery 
+  Resources" map.
+• Fixed "Asteroid_m_1" and "Asteroid_m_2" which were missing their textures.
+• Added a few functions to "utilfunc.lua".
+• Removed the crystals because they were not being used anywhere.
+• Made the dust clouds more visible in "Spiral Galaxy".
+• "MapFunctions.lua" and "utilfunc.lua" are now parsed at the beginning of each 
+  level file instead of the end.
+• Updated "Gallery Resources" and "Gallery Ships" so that you can toggle on and 
+  off ships and resources from this mod or the HW1RM campaign.
+• Fixed a bug in "Gallery Ships" that was causing it to crash.
+
 1.27.2 - 2020/08/02
 • Forgot to rename the pebbles earlier.
 
@@ -213,8 +226,8 @@ CHANGE LOG
 • Renamed custom asteroids, clouds, etc. so as not to conflict with the default 
   vanilla objects or objects created for other mods.
 • Updated crystal HODs to 2.0-patch format.
-• Updated "2p_Gallery_Resources.level".
-• "Asteroids_m_1" and "Asteroid_m_2" are now harvestable thanks to sastrei. As 
+• Updated "Gallery Resources".
+• "Asteroid_m_1" and "Asteroid_m_2" are now harvestable thanks to sastrei. As 
   a consequence the affected maps need their resources rebalanced.
 • Rebalanced RUs in "Spline Crazy", "Chicken Scratch", "The Squid" and 
   "Plasma_Globe".
@@ -606,3 +619,8 @@ TO DO LIST/NOTES
   I believe. As a result, the thumbnails are very faint and hard to make out. I 
   need to re-capture all of them at some point.
 • "Metaballs II" does not have a thumbnail yet.
+• The text clouds don't seem to work with the 2.0 patch's new HOD format. They
+  will crash the game.
+• Pebbles should maybe only exist in the nondeterministic chunk of a level file.
+• The clouds in HWRM are much fainter than they were in HW2C. Need to find some 
+  way to fix them so they are more visible.

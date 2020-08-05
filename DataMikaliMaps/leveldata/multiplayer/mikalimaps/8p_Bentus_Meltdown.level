@@ -1,10 +1,13 @@
--- (8P) Bentus Meltdown v1.6.8 by Mikali
+-- (8P) Bentus Meltdown v1.6.9 by Mikali
 -- Created: 2004/03/15
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: odds vs. evens
 
-levelDesc = "<c=FF4800>Bentus Meltdown 1.6.8</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Bentus Meltdown 1.6.9</c>"
 maxPlayers = 8
 player = {}
 
@@ -186,5 +189,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

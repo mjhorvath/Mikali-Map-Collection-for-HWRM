@@ -1,10 +1,13 @@
--- (6P) Gehenna v1.2.16 by Mikali
+-- (6P) Gehenna v1.2.17 by Mikali
 -- Created: 2004/02/24
--- Updated: 2016/08/02
+-- Updated: 2016/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Gehenna 1.2.16</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Gehenna 1.2.17</c>"
 maxPlayers = 6
 player = {}
 
@@ -1084,5 +1087,3 @@ Clouds =
 	{Neb3_O4, Cld_N2, {21866,-1362, 40182,}, {1, 1, 1, 0.25,}, 260.977, 5817.504,},
 	{Neb3_O4, Cld_N2, {24075,-1365, 48671,}, {1, 1, 1, 0.25,}, 249.848, 2977.017,},
 }
-
-dofilepath("data:scripts/MapFunctions.lua")

@@ -1,10 +1,13 @@
--- (2P) Veil of Fire v1.2.11 by Mikali
+-- (2P) Veil of Fire v1.2.12 by Mikali
 -- Created: 2004/02/12
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>Veil of Fire 1.2.11</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Veil of Fire 1.2.12</c>"
 maxPlayers = 2
 player = {}
 
@@ -52,7 +55,6 @@ function NonDetermChunk()
 	for i, iCount in Pebbles do
 		addPebble(iCount[1], iCount[2], iCount[3], iCount[4], iCount[5])
 	end
-
 end
 
 --------------------------------------------------------------------------------
@@ -1180,5 +1182,3 @@ Pebbles =
 	{"pebble_m_0", {15971, -9602, -21751,}, 0, 155.126, 0,},
 	{"pebble_m_0", {14103, -4926, -23308,}, 0, 155.126, 0,},
 }
-
-dofilepath("data:scripts/MapFunctions.lua")

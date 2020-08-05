@@ -1,10 +1,13 @@
--- (5P) Rheotomic Spaces v1.0.10 by Mikali
+-- (5P) Rheotomic Spaces v1.0.11 by Mikali
 -- Created: 2013/09/22
--- Updated: 2020/07/31
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
 
-levelDesc = "<c=FF4800>Rheotomic Spaces 1.0.10</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Rheotomic Spaces 1.0.11</c>"
 maxPlayers = 5
 player = {}
 
@@ -192,5 +195,3 @@ function fix_coords(in_table)
 	local translate = {-5000,0,-5000,}
 	return vaddV({in_table[1] * scale, in_table[3] * scale, in_table[2] * scale}, translate)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

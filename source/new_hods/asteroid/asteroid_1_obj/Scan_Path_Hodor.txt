@@ -1,0 +1,11 @@
+= -$HWRM_BASE=C:\Program Files (x86)\Steam\steamapps\common\Homeworld
+= -$SHIP_NAME=asteroid_1_obj
+= -$PATH_NAME=asteroid_1_obj
+= -$SHADER_MAP=$[HWRM_BASE]\GBXTools\HODOR\SHADERS.MAP
+= -$SHADE_OPT_LOADDAE=Force8888
+= -$HOD_SAVE_OPTS=ForceScars FilterScars=thruster,bay
+= -$CONVERT_IN=D:\GitHub\Mikali-Maps-for-Homeworld-Remastered\source\new_hods\asteroid\$[PATH_NAME]\$[SHIP_NAME]_02.dae
+= -$CONVERT_OUT=D:\GitHub\Mikali-Maps-for-Homeworld-Remastered\source\new_hods\asteroid\$[PATH_NAME]\$[SHIP_NAME]_02.hod
+= -do=convert
+= -action=null
+= -wait

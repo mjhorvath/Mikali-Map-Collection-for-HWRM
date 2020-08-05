@@ -1,13 +1,16 @@
--- (8P) Spline Crazy v1.4.9 by Mikali
+-- (8P) Spline Crazy v1.4.10 by Mikali
 -- Created: 2013/09/17
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 -- Notes:
 --   1. Should maybe check and make sure the spline endpoints aren't too close 
 --      to one another.
 
-levelDesc = "<c=FF4800>Spline Crazy 1.4.9</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Spline Crazy 1.4.10</c>"
 maxPlayers = 8
 player = {}
 
@@ -101,5 +104,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

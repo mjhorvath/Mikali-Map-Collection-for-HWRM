@@ -1,10 +1,13 @@
--- (4P) Strange Attractor v1.0.14 by Mikali
+-- (4P) Strange Attractor v1.0.15 by Mikali
 -- Created: 2013/08/28
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: random
 
-levelDesc = "<c=FF4800>Strange Attractor 1.0.14</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Strange Attractor 1.0.15</c>"
 maxPlayers = 4
 player = {}
 
@@ -81,5 +84,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

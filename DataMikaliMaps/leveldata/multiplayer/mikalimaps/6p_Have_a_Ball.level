@@ -1,10 +1,13 @@
--- (6P) Have a Ball v1.3.20 by Mikali
+-- (6P) Have a Ball v1.3.21 by Mikali
 -- Created: 2004/03/18
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: odds vs. evens
 
-levelDesc = "<c=FF4800>Have a Ball 1.3.20</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Have a Ball 1.3.21</c>"
 maxPlayers = 6
 player = {}
 
@@ -93,5 +96,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

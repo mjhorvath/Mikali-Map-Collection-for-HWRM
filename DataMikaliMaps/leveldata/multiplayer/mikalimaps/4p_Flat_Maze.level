@@ -1,10 +1,13 @@
--- (4P) Flat Maze v1.0.4 by Mikali
+-- (4P) Flat Maze v1.0.5 by Mikali
 -- Created: 2015/03/20
--- Updated: 2020/07/31
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>Flat Maze 1.0.4</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Flat Maze 1.0.5</c>"
 maxPlayers = 4
 player = {}
 
@@ -253,5 +256,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end -- end of nondeterm function
-
-dofilepath("data:scripts/MapFunctions.lua")

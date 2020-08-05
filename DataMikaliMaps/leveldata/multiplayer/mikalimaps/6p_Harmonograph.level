@@ -1,10 +1,13 @@
--- (6P) Harmonograph v1.2.11 by Mikali
+-- (6P) Harmonograph v1.2.12 by Mikali
 -- Created: 2013/08/26
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Harmonograph 1.2.11</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Harmonograph 1.2.12</c>"
 maxPlayers = 6
 player = {}
 
@@ -152,5 +155,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

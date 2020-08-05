@@ -1,10 +1,13 @@
--- (6P) Voronoi Steppes v1.0.10 by Mikali
+-- (6P) Voronoi Steppes v1.0.11 by Mikali
 -- Created: 2006/01/02
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Voronoi Steppes 1.0.10</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Voronoi Steppes 1.0.11</c>"
 maxPlayers = 6
 player = {}
 
@@ -213,5 +216,3 @@ function fix_coords(in_table, in_height)
 	local translate = {-horz_scale/2,0,-horz_scale/2,}
 	return vaddV({in_table[1] * horz_scale, in_height * vert_scale, in_table[2] * horz_scale}, translate)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

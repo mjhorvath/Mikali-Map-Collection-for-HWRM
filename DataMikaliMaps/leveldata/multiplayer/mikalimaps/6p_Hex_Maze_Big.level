@@ -1,13 +1,16 @@
--- (6P) Hex Maze Big 1.0.4 by Mikali
+-- (6P) Hex Maze Big 1.0.6 by Mikali
 -- Created: 2015/03/24
--- Updated: 2020/07/31
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 -- Based on HexMaze, version 1.0, by Dan Rollins at Experts Exchange.
 -- http://www.experts-exchange.com/Programming/Languages/Scripting/JavaScript/A_7849-Hex-Maze.html
 -- Thanks also to Jon Mark Perry at Stack Exchange, as well as crufty.
 
-levelDesc = "<c=FF4800>Hex Maze Big 1.0.4</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Hex Maze Big 1.0.6</c>"
 maxPlayers = 6
 player = {}
 
@@ -543,5 +546,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

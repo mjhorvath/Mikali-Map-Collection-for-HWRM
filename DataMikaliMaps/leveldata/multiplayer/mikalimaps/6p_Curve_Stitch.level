@@ -1,10 +1,13 @@
--- (6P) Curve Stitch v1.0.16 by Mikali
+-- (6P) Curve Stitch v1.0.17 by Mikali
 -- Created: 2013/09/05
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
-levelDesc = "<c=FF4800>Curve Stitch 1.0.16</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Curve Stitch 1.0.17</c>"
 maxPlayers = 6
 player = {}
 
@@ -102,5 +105,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

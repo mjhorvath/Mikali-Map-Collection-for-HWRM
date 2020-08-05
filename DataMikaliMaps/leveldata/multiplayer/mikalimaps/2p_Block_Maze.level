@@ -1,10 +1,13 @@
--- (2P) Block Maze v1.1.3 by Mikali
+-- (2P) Block Maze v1.1.4 by Mikali
 -- Created: 2010/12/28
--- Updated: 2020/07/31
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Block Maze 1.1.3</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Block Maze 1.1.4</c>"
 maxPlayers = 2
 player = {}
 for k = 0, maxPlayers - 1 do
@@ -246,5 +249,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end -- end of nondeterm function
-
-dofilepath("data:scripts/MapFunctions.lua")

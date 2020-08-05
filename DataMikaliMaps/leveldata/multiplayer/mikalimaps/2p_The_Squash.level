@@ -1,10 +1,13 @@
--- (2P) The Squash v1.1.11 by Mikali
+-- (2P) The Squash v1.1.12 by Mikali
 -- Created: 2005/09/05
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>The Squash 1.1.11</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>The Squash 1.1.12</c>"
 maxPlayers = 2
 player = {}
 
@@ -53,5 +56,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

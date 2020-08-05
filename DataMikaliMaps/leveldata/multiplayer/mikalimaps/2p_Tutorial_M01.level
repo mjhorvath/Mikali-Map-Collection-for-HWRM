@@ -1,10 +1,13 @@
--- (2P) Tutorial Mission No.3 v1.0.12 by Mikali
+-- (2P) Tutorial Mission No.3 v1.0.13 by Mikali
 -- Created: 2005/09/27
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>Tutorial Mission No.3 1.0.12</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Tutorial Mission No.3 1.0.13</c>"
 maxPlayers = 2
 player = {}
 
@@ -1101,5 +1104,3 @@ Pebbles =
 }
 
 Clouds = {}
-
-dofilepath("data:scripts/MapFunctions.lua")

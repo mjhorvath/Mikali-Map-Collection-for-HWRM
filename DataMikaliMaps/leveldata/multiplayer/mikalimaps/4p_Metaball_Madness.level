@@ -1,13 +1,16 @@
--- (4P) Metaball Madness v2.0.4 by Mikali
+-- (4P) Metaball Madness v2.0.5 by Mikali
 -- Created: 2013/08/22
--- Updated: 2020/07/31
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
 -- Notes:
 -- 1. Need to also ensure that harvestable resources are not placed too closely 
 --    to one another.
 
-levelDesc = "<c=FF4800>Metaball Madness 2.0.4</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Metaball Madness 2.0.5</c>"
 max_blobs = 4
 maxPlayers = 4
 player = {}
@@ -84,5 +87,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

@@ -1,6 +1,6 @@
--- (8P) Andromeda v1.6.5 by Mikali
+-- (8P) Andromeda v1.6.6 by Mikali
 -- Created: 2004/10/29
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 -- Positions: fixed
@@ -19,7 +19,10 @@
 -- could place some radiation clouds in the center. But I made enough maps like 
 -- that already.
 
-levelDesc = "<c=FF4800>Andromeda 1.6.5</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Andromeda 1.6.6</c>"
 maxPlayers = 8
 player = {}
 
@@ -159,5 +162,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

@@ -1,8 +1,11 @@
 -- (4P) Spiral Galaxy v1.5.14 by Mikali
 -- Created: 2003/11/12
--- Updated: 2016/07/11
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
+
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
 
 levelDesc = "<c=FF4800>Spiral Galaxy 1.5.14</c>"
 maxPlayers = 4
@@ -35,7 +38,7 @@ function DetermChunk()
 	local dustSpiral =
 	{
 		--addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
-		{36, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {srandom(my_seed_2),srandom(my_seed_2),srandom(my_seed_2),srandom(my_seed_2)}, 0, 5000,},
+		{36, "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {srandom(my_seed_2),srandom(my_seed_2),srandom(my_seed_2),1}, 0, 5000,},
 	}
 	local centerSphere =
 	{
@@ -92,5 +95,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

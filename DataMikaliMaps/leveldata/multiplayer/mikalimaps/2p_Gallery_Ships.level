@@ -1,12 +1,17 @@
--- (2P) Ship Gallery v1.1.2 by Mikali
+-- (2P) Ship Gallery v1.1.3 by Mikali
 -- Created: 2005/09/22
--- Updated: 2016/07/11
+-- Updated: 2016/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
-levelDesc = "<c=FF4800>Gallery - Ships 1.1.2</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Gallery - Ships 1.1.3</c>"
 maxPlayers = 2
 player = {}
+loadHW1 = false
+loadMMM = false
 
 for k = 0, maxPlayers - 1 do
 	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
@@ -15,12 +20,12 @@ end
 shiplist =
 {
 "ben_bentusiexchange",
---"ben_bentusiexchange_hold00",		-- HW1RM only
---"ben_bentusiexchange_hold01",		-- HW1RM only
---"ben_bentusiexchange_hold02",		-- HW1RM only
---"ben_bentusiexchange_hold03",		-- HW1RM only
---"ben_bentusiexchange_hold04",		-- HW1RM only
---"ben_bentusiexchange_hold05",		-- HW1RM only
+loadHW1 and "ben_bentusiexchange_hold00" or nil,		-- HW1RM only
+loadHW1 and "ben_bentusiexchange_hold01" or nil,		-- HW1RM only
+loadHW1 and "ben_bentusiexchange_hold02" or nil,		-- HW1RM only
+loadHW1 and "ben_bentusiexchange_hold03" or nil,		-- HW1RM only
+loadHW1 and "ben_bentusiexchange_hold04" or nil,		-- HW1RM only
+loadHW1 and "ben_bentusiexchange_hold05" or nil,		-- HW1RM only
 "ben_cargobarge",
 --"borgcone",		-- bugged
 "der_carrier",
@@ -92,9 +97,9 @@ shiplist =
 "hgn_attackbomberelite",
 "hgn_battlecruiser",
 "hgn_carrier",
---"hgn_carrier_pavel",		-- bugged
+--"hgn_carrier_pavel",			-- bugged
 --"hgn_cloakingfrigate",		-- bugged
---"hgn_cloudexplode",		-- bugged
+--"hgn_cloudexplode",			-- bugged
 "hgn_defensefieldfrigate",
 "hgn_destroyer",
 "hgn_dreadnaught",
@@ -102,7 +107,7 @@ shiplist =
 "hgn_drone_frigate_2",
 "hgn_drone_frigate_3",
 "hgn_ecmprobe",
---"hgn_gunplatform",		-- bugged
+--"hgn_gunplatform",			-- bugged
 "hgn_gunturret",
 "hgn_hscore",
 "hgn_interceptor",
@@ -304,11 +309,11 @@ shiplist =
 --"misc_galaxymap_labels",				-- bugged
 --"misc_galaxymap_routes",				-- bugged
 "misc_t-matmegaship",
---"misc_t-matmegaship_hold",			-- HW1RM only
+loadHW1 and "misc_t-matmegaship_hold" or nil,			-- HW1RM only
 --"neu_soundtest",				-- bugged
 --"neu_transport",				-- bugged
 "nis_galaxymap",
-"oni_cm_testship",
+--"oni_cm_testship",			-- removed?
 "special_eventsimulator",
 "special_splitter",
 "special_unittestmap",
@@ -439,5 +444,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

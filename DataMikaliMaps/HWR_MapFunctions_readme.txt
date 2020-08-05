@@ -1,8 +1,8 @@
-Title: HWR Map Functions
-Version: 1.23.2
+Caption: HWR Map Functions
+Version: 1.23.4
 Authors: Mikali
 Created: 2004/10/07
-Updated: 2020/08/01
+Updated: 2020/08/04
 Website: http://isometricland.net/homeworld/homeworld.php
 Discussion:
 http://forums.relicnews.com/showthread.php?t=48818
@@ -369,6 +369,14 @@ CREDITS
 
 
 CHANGE LOG
+
+1.24.4 --- 2020/08/04
+• The script files "utilfunc.lua" and "MapFunctions.lua" are now loaded at the 
+  beginnings of each level file instead of the bottom since there are now some 
+  dependencies.
+
+1.23.3 --- 2020/08/??
+• I forgot.
 
 1.23.2 --- 2020/08/01
 • Tweaks to "appendShape".

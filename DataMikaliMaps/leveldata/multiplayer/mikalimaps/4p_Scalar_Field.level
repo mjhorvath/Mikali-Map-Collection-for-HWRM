@@ -1,10 +1,13 @@
--- (4P) Scalar Field v1.0.13 by Mikali
+-- (4P) Scalar Field v1.0.14 by Mikali
 -- Created: 2013/09/19
--- Updated: 2020/08/02
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
-levelDesc = "<c=FF4800>Scalar Field 1.0.13</c>"
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Scalar Field 1.0.14</c>"
 maxPlayers = 4
 player = {}
 
@@ -82,5 +85,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")

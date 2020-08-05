@@ -1,10 +1,10 @@
--- (8P) Greek Cross Fractal 1.2.2 by Mikali
+-- (8P) Greek Cross Fractal 1.2.3 by Mikali
 -- Created: 2010/12/28
--- Updated: 2020/07/31
+-- Updated: 2020/08/04
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
-levelDesc = "<c=FF4800>Greek Cross Fractal 1.2.2</c>"
+levelDesc = "<c=FF4800>Greek Cross Fractal 1.2.3</c>"
 maxPlayers = 8
 player = {}
 
@@ -345,5 +345,3 @@ function NonDetermChunk()
 	randomMusic(my_seed_1, 1)
 	randomBattleMusic(my_seed_1, 1)
 end
-
-dofilepath("data:scripts/MapFunctions.lua")
