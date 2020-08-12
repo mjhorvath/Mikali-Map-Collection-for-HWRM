@@ -1,17 +1,17 @@
--- (2P) Resource Gallery v2.0.1 by Mikali
+-- (2P) Resource Gallery v2.0.2 by Mikali
 -- Created: 2004/01/21
--- Updated: 2020/08/04
+-- Updated: 2020/08/11
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Gallery - Resources 2.0.1</c>"
+levelDesc = "<c=FF4800>Gallery - Resources 2.0.2</c>"
 maxPlayers = 2
 player = {}
 loadHW1 = false
-loadMMM = false
+loadMMM = true
 
 for k = 0, maxPlayers - 1 do
 	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
@@ -144,56 +144,50 @@ function DetermChunk()
 --	local offsetCoo = {-20000,0,-20000}
 	local offsetCoo = {0,0,0}
 
-	setWorldBoundsInner({0, 0, 0}, {100000, 50000, 100000})
+	setWorldBoundsInner({0, 0, 0}, {150000, 50000, 150000})
 
-	addPoint("StartPos0", {0,      0, 0}, {0, 0, 0})
-	addPoint("StartPos1", {0, 100000, 0}, {0, 0, 0})
+	addPoint("StartPos0", { 100000, 0, 0}, {0, 0, 0})
+	addPoint("StartPos1", { 0, 100000, 0}, {0, 0, 0})
 
 --	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
 
 	print("Pebbles")
-	for i = 1, getn(pebbles) do
-		local oType = pebbles[i]
+	for i, oType in pebbles do
 		local xShift = i * 5000
 		local zShift = 5000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
 		addPebble(oType, tCoo, 0, 0, 0)
 	end
 	print("Asteroids")
-	for i = 1, getn(asteroids) do
-		local oType = asteroids[i]
+	for i, oType in asteroids do
 		local xShift = i * 5000
 		local zShift = 10000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
 		addAsteroid(oType, tCoo, 100, 0, 0, 0, 0)
 	end
 	print("Salvage")
-	for i = 1, getn(salvage) do
-		local oType = salvage[i]
+	for i, oType in salvage do
 		local xShift = i * 5000
 		local zShift = 15000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
 		addSalvage(oType, tCoo, 100, 0, 0, 0, 0)
 	end
 	print("Clouds")
-	for i = 1, getn(clouds) do
-		local oType = clouds[i]
+	for i, oType in clouds do
 		local xShift = i * 5000
 		local zShift = 20000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
 		addCloud("polySurface1", oType, tCoo, {1,1,1,1}, 0, 2500)
 	end
 	print("Dust Clouds")
-	for i = 1, getn(dustclouds) do
-		local oType = dustclouds[i]
+	for i, oType in dustclouds do
 		local xShift = i * 5000
 		local zShift = 25000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
 		addDustCloud("polySurface1", oType, tCoo, {1,1,1,1}, 0, 2500)
 	end
 	print("Nebulae")
-	for i = 1, getn(nebulae) do
-		local oType = nebulae[i]
+	for i, oType in nebulae do
 		local xShift = i * 5000
 		local zShift = 30000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
@@ -201,8 +195,7 @@ function DetermChunk()
 	end
 	-- requires DustCloud0 to DustCloud3 from HW1 campaign
 	print("Harvestable Dust Clouds")
-	for i = 1, getn(harvestdustclouds) do
-		local oType = harvestdustclouds[i]
+	for i, oType in harvestdustclouds do
 		local xShift = i * 5000
 		local zShift = 35000
 		local tCoo = vaddV({xShift,0,zShift}, offsetCoo)
@@ -210,8 +203,7 @@ function DetermChunk()
 	end
 	-- requires Nebula0 from HW1 campaign
 	print("Harvestable Nebulae and Tendrils")
-	for i = 1, getn(harvestnebulae) do
-		local oType = harvestnebulae[i]
+	for i, oType in harvestnebulae do
 		local jCoo = {}
 		for j = 1, 6 do
 			local xShift = j * 5000

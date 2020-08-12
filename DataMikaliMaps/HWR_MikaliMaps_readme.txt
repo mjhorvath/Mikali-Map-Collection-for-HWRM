@@ -1,8 +1,8 @@
 Caption:	Mikali's Multiplayer Map Collection
-Version:	1.27.4
+Version:	1.27.5
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2020/08/04
+Updated:	2020/08/12
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -202,6 +202,15 @@ CREDITS
 
 CHANGE LOG
 
+1.27.5 - 2020/08/12
+• The HODs for "Asteroid_m_1" and "Asteroid_m_2" are still not working. 
+  Replaced them both with the HOD from "Asteroid_m_3".
+• Changed the type of "for" loop used in "Gallery Resources". The previous one 
+  was causing crashes.
+
+1.27.4 - ???
+• I forgot.
+
 1.27.3 - 2020/08/04
 • The harvestable dust clouds and nebulae now work properly in the "Gallery 
   Resources" map.
@@ -212,8 +221,8 @@ CHANGE LOG
 • "MapFunctions.lua" and "utilfunc.lua" are now parsed at the beginning of each 
   level file instead of the end.
 • Updated "Gallery Resources" and "Gallery Ships" so that you can toggle on and 
-  off ships and resources from this mod or the HW1RM campaign.
-• Fixed a bug in "Gallery Ships" that was causing it to crash.
+  off ships and resources from this mod and the HW1RM campaign.
+• Fixed a bug in "Gallery Ships" that was causing it to crash the game.
 
 1.27.2 - 2020/08/02
 • Forgot to rename the pebbles earlier.
@@ -624,3 +633,12 @@ TO DO LIST/NOTES
 • Pebbles should maybe only exist in the nondeterministic chunk of a level file.
 • The clouds in HWRM are much fainter than they were in HW2C. Need to find some 
   way to fix them so they are more visible.
+• Harvestable dustclouds and nebulae need to be processed by the "appendShape" 
+  function as well.
+• Unfortunately, strings in this mod are nearly always case-sensitive. For 
+  instance, "Asteroid_1" and "asteroid_1" are two different things, and  
+  "DustCloud" and "dustcloud" are also not the same. The game in general is 
+  more flexible, however, and often allows you to use your own preferred 
+  capitalization.
+• I could create a gametype flag that sets the PRNG seeds differently depending 
+  on whether the match is a skirmish versus the CPU or a true human-human match.

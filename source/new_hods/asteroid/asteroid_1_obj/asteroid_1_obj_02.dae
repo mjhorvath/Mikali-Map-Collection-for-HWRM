@@ -6,9 +6,9 @@
       <authoring_tool>DAEnerys b7529</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>8/4/2020 9:42:07 PM</created>
+    <created>8/12/2020 5:06:47 PM</created>
     <keywords></keywords>
-    <modified>8/4/2020 9:42:07 PM</modified>
+    <modified>8/12/2020 5:06:47 PM</modified>
     <revision></revision>
     <subject>Meant for Homeworld Remastered</subject>
     <title></title>
@@ -1403,7 +1403,7 @@
         <rotate sid="rotateY">0 1 0 0</rotate>
         <rotate sid="rotateX">1 0 0 0</rotate>
         <node name="JNT[Latch1]" id="JNT[Latch1]" sid="JNT[Latch1]">
-          <translate sid="translate">0 8 0</translate>
+          <translate sid="translate">0 0 -40</translate>
           <rotate sid="rotateZ">0 0 1 0</rotate>
           <rotate sid="rotateY">0 1 0 0</rotate>
           <rotate sid="rotateX">1 0 0 0</rotate>
@@ -1444,6 +1444,12 @@
           <rotate sid="rotateZ">0 0 1 0</rotate>
           <rotate sid="rotateY">0 1 0 0</rotate>
           <rotate sid="rotateX">1 0 0 0</rotate>
+          <node name="MAT[resource]_PARAM[Colour4]_Type[RGBA]_Data[1,1,1,1]" id="MAT[resource]_PARAM[Colour4]_Type[RGBA]_Data[1,1,1,1]" sid="MAT[resource]_PARAM[Colour4]_Type[RGBA]_Data[1,1,1,1]">
+            <translate sid="translate">0 0 0</translate>
+            <rotate sid="rotateZ">0 0 1 0</rotate>
+            <rotate sid="rotateY">0 1 0 0</rotate>
+            <rotate sid="rotateX">1 0 0 0</rotate>
+          </node>
           <node name="MAT[resource]_PARAM[Colour4]_Type[RGBA]_Data[1,1,1,1]" id="MAT[resource]_PARAM[Colour4]_Type[RGBA]_Data[1,1,1,1]" sid="MAT[resource]_PARAM[Colour4]_Type[RGBA]_Data[1,1,1,1]">
             <translate sid="translate">0 0 0</translate>
             <rotate sid="rotateZ">0 0 1 0</rotate>

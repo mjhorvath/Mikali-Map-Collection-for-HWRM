@@ -1,8 +1,8 @@
 -- Caption: Utility Functions for HWRM
 -- Authors: Mikali
 -- Created: A long time ago
--- Updated: 2020-08-04
--- License:	Attribution 4.0 International (CC BY 4.0)
+-- Updated: 2020-08-06
+-- License:	Creative Commons Attribution 4.0 International (CC BY 4.0)
 -- Should check first if functions with these names have already been defined before attempting to define again.
 
 
@@ -754,13 +754,13 @@ end
 
 -- alternative with a larger parameter limit
 function unpack2(t, i)
-        i = i or 1
-        if (t[i] ~= nil) then
-                return t[i], unpack2(t, i + 1)
-        end
+	i = i or 1
+	if (t[i] ~= nil) then
+		return t[i], unpack2(t, i + 1)
+	end
 end
 
--- Lua 4 doesn't have ternary operators by default, so let's make this.
+-- Lua 4 doesn't have ternary operators by default, so let's rectify this.
 function ternary(cond, T, F)
     if cond then
 		return T

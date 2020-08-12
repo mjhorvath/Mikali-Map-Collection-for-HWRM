@@ -12,7 +12,7 @@
 // Path: HomeworldRM/DataMikaliMaps
 
 // title of the MOD that appears on the Steam Workshop (limited to 128 characters)
-Title: [HWRM] Mikali's Multiplayer Map Collection 1.27.4
+Title: [HWRM] Mikali's Multiplayer Map Collection 1.27.5
 
 // tags must be individual words separated by spaces.
 Tags: HomeworldRM multiplayer maps functions shapes

@@ -16,12 +16,6 @@
 --    OpenProcessing.org.
 --  * Lorenzo Donati at Stack Overflow for the new pseudo random number 
 --    generator.
---  Notes:
---  * Unfortunately, strings in this mod are nearly always case-sensitive. For 
---    instance, "Asteroid_1" and "asteroid_1" are two different things, and  
---    "DustCloud" and "dustcloud" are also not the same. The game in general is 
---    more flexible, however, and often allows you to use your own preferred 
---    capitalization.
 
 
 --------------------------------------------------------------------------------
