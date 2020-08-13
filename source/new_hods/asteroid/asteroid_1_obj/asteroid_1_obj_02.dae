@@ -6,9 +6,9 @@
       <authoring_tool>DAEnerys b7529</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>8/12/2020 5:06:47 PM</created>
+    <created>8/12/2020 9:44:02 PM</created>
     <keywords></keywords>
-    <modified>8/12/2020 5:06:47 PM</modified>
+    <modified>8/12/2020 9:44:02 PM</modified>
     <revision></revision>
     <subject>Meant for Homeworld Remastered</subject>
     <title></title>
@@ -1408,19 +1408,19 @@
           <rotate sid="rotateY">0 1 0 0</rotate>
           <rotate sid="rotateX">1 0 0 0</rotate>
           <node name="JNT[Latch1Heading]" id="JNT[Latch1Heading]" sid="JNT[Latch1Heading]">
-            <translate sid="translate">0 0 0</translate>
+            <translate sid="translate">0 0 5</translate>
             <rotate sid="rotateZ">0 0 1 0</rotate>
             <rotate sid="rotateY">0 1 0 0</rotate>
             <rotate sid="rotateX">1 0 0 0</rotate>
           </node>
           <node name="JNT[Latch1Left]" id="JNT[Latch1Left]" sid="JNT[Latch1Left]">
-            <translate sid="translate">0 0 0</translate>
+            <translate sid="translate">5 0 0</translate>
             <rotate sid="rotateZ">0 0 1 0</rotate>
             <rotate sid="rotateY">0 1 0 0</rotate>
             <rotate sid="rotateX">1 0 0 0</rotate>
           </node>
           <node name="JNT[Latch1Up]" id="JNT[Latch1Up]" sid="JNT[Latch1Up]">
-            <translate sid="translate">0 0 0</translate>
+            <translate sid="translate">0 5 0</translate>
             <rotate sid="rotateZ">0 0 1 0</rotate>
             <rotate sid="rotateY">0 1 0 0</rotate>
             <rotate sid="rotateX">1 0 0 0</rotate>

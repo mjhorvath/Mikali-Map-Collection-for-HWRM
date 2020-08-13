@@ -203,10 +203,11 @@ CREDITS
 CHANGE LOG
 
 1.27.5 - 2020/08/12
-• The HODs for "Asteroid_m_1" and "Asteroid_m_2" are still not working. 
-  Replaced them both with the HOD from "Asteroid_m_3".
+• Fixed the HODs for "Asteroid_m_1" and "Asteroid_m_2". Collectors are once 
+  again harvesting.
 • Changed the type of "for" loop used in "Gallery Resources". The previous one 
   was causing crashes.
+• Removed text clouds.
 
 1.27.4 - ???
 • I forgot.
