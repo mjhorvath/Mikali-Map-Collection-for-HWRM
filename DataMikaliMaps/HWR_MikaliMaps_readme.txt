@@ -14,6 +14,10 @@ Discussion:	http://forums.relicnews.com/showthread.php?t=48818
 ================================================================================
 
 
+UPDATE: Should now be compatible with the Players Patch 2.3! The patch needs to 
+be loaded before this mod, however. See below.
+
+
 DESCRIPTION
 
 A collection of multiplayer maps demonstrating my custom map-making functions. 

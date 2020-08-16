@@ -35,6 +35,8 @@ WorkshopID: 399477672
 
 // description that will appear on the Steam Workshop for this item
 Description:
+UPDATE: Should now be compatible with the Players Patch 2.3! The patch needs to be loaded before this mod, however. See below.
+____
 A collection of multiplayer maps created to demonstrate my custom map-making functions.
 ____
 Additional documentation can be found at this project's GitHub repository, located here:
@@ -52,6 +54,6 @@ For the GOG.com version of the game--or if you want to view and modify the mods'
 ____
 If you are not using the game launcher and are trying to load more than one mod at the same time, simply append or prepend the name of each mod's data folder after the "-moddatapath" command line parameter. For instance: "-moddatapath DataPlayersPatch,DataMikaliMaps,DataTestMod". Multiple names should be separated by a comma.
 ____
-Note that the PlayersPatch is listed before my mod, and the Test mod is listed after it. The order in which mods are listed matters, and mods that are listed to the right in the list override the data belonging to mods that are listed to the left. Exactly which mod should appear first, and which mods should appear afterward, varies from mod to mod.
+Note that the Players Patch 2.3 is listed before my mod, and the Test mod is listed after it. The order in which mods are listed matters, and mods that are listed to the right in the list override the data belonging to mods that are listed to the left. Exactly which mod should appear first, and which mods should appear afterward, varies from mod to mod.
 ____
 License: Attribution 4.0 International (CC BY 4.0)
