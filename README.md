@@ -1,28 +1,15 @@
 # Mikali Maps for Homeworld Remastered
 
-This mod has two readmes:
+This mod has two readmes and an HTML reference sheet:
 
 * [HWR_MapFunctions_readme.txt](DataMikaliMaps/docs/HWR_MapFunctions_readme.txt)
 * [HWR_MikaliMaps_readme.txt](DataMikaliMaps/docs/HWR_MikaliMaps_readme.txt)
-
-There is also an HTML reference document for the custom map functions:
-
 * [HWR_MapFunctions_reference.html](DataMikaliMaps/docs/HWR_MapFunctions_reference.html)
 
-You will need to download the mod first before you can view the document properly, however.
+Links:
 
-Previews of the map thumbnails can be found here:
-
-* https://isometricland.net/blog/homeworld-modifications-hwrm/
-
-The Steam Workshop page for this mod is here:
-
-* https://steamcommunity.com/sharedfiles/filedetails/?id=399477672
-
-Old versions of this mod can be downloaded from here:
-
-* http://www.moddb.com/mods/mikalis-multiplayer-map-collection
-
-An older version of this mod for Homeworld 2 Classic is located here:
-
-* https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-2-Classic
+* [Discussion](https://forums.gearboxsoftware.com/t/mod-mikalis-multiplayer-maps/4555907)
+* [Map thumbnails](https://github.com/mjhorvath/Mikali-Map-Collection-for-HWRM/tree/master/source/thumbnails/PNG)
+* [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=399477672)
+* [Old versions](http://www.moddb.com/mods/mikalis-multiplayer-map-collection)
+* [HW2C version](https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-2-Classic)
