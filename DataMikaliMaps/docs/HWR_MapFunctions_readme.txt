@@ -134,7 +134,7 @@ two types:
      doily.
    • stitchAdd: Generates a triangle made of cross-hatched line segments, like 
      in the art of curve stitching.
-   • easyPatch: Creates a resource patch with minimal effort.
+   • randomPatch: Creates a resource patch with minimal effort.
 
 2. "NONDETERMCHUNK" FUNCTIONS (these go in the "NonDetermChunk" portion of your
    level file):
@@ -160,7 +160,7 @@ Here's an example of a distribution table:
 		{512,     "Pebble",     "Pebble_0", {0,0,0,}, 0, 0, 0,},
 		{  4,   "Asteroid",   "Asteroid_4", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{100, "Coordinate", {},},
-		{ 10,   "Function",      easyPatch, {0,0,0,}, 100,},
+		{ 10,   "Function",      randomPatch, {0,0,0,}, 100,},
 		{  6, "StartPoint",     "StartPos", {0,0,0,}, {0,0,0,}, 1,},
 		{100,      "Point",      "MyPoint", {0,0,0,}, {0,0,0,}, 1,},
 		{36,   "DustCloud", "polySurface1", "DustCloud_NoRes", {0,0,0,}, {1, 1, 1, 1}, 0, 10000,}
@@ -256,7 +256,7 @@ the values from them.
 The "Function" class allows one to pass the output of one function as the input
 of another function. This nesting of functions makes it possible to do things
 like placing spirals at the vertices of a cube. In the example above, the
-"easyPatch" function is being used as a nested function. The "easyPatch"
+"randomPatch" function is being used as a nested function. The "randomPatch"
 function is a shortcut that generates ready-made resource patches, featuring
 typical numbers of asteroids and RUs. It takes some of the labor out of crea-
 ting resource patches by automatically placing several asteroids and pebbles 
@@ -373,6 +373,8 @@ CHANGE LOG
 1.24.5 --- 2020/08/04
 • Fixed a bug in "makeCuboid".
 • Changed the order of some functions in this file.
+• Rename "easyPatch" function to "randomPatch".
+• Add "staticPatch" function.
 
 1.24.4 --- 2020/08/04
 • The script files "utilfunc.lua" and "MapFunctions.lua" are now loaded at the 
@@ -460,7 +462,7 @@ CHANGE LOG
   Maps utilizing it will need to be fixed.
 
 1.15.0
-• The "easyPatch" function now generates one additional asteroid.
+• The "randomPatch" function now generates one additional asteroid.
 • Renamed the "splineAdd" function to "spline3Add" since it is a cubic spline.
 • Fixed the reversed rotational directions for the tubular cross-section of the 
   "spline3Add" function.
@@ -530,7 +532,7 @@ CHANGE LOG
   side-effect is that the maps will look identical each time you play.
 • Updated all shape functions to use these new random functions instead of the
   old, volatile random ones. As a result, they all - with the exception of
-  "easyPatch" - now require you to pass a seed to them as the final argument
+  "randomPatch" - now require you to pass a seed to them as the final argument
   using "newseed".
 • Fixed bug in "randomMusic" that caused the track name not to be printed to
   "HW2.log".
@@ -619,7 +621,7 @@ CHANGE LOG
   argument in the distribution table.
 • Added the "Function" class. Functions now be nested by naming them in the
   distribution tables.
-• The "EasyPatch" class has been deprecated in favor of using the new 
+• The "randomPatch" class has been deprecated in favor of using the new 
   "Function" class.
 • Added the "Camera" class.
 • Moved starting point generation to its own class, called "StartPoint".
@@ -673,7 +675,7 @@ CHANGE LOG
   along all three axes.
 • The length of the third axis has been doubled to its correct size for "Helix"
   in the "shapeAdd" function.
-• The "easyPatch" and "adjustPatch" functions have been merged, preserving 
+• The "randomPatch" and "adjustPatch" functions have been merged, preserving 
   their respective syntaxes.
 • The rotation matrices have been changed due to my having gotton the order of
   the Z and Y axes mixed up. This is an internal change, and should only affect

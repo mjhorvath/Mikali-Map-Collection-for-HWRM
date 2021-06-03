@@ -140,8 +140,8 @@ function DetermChunk()
 	harmonographAdd({0,0,0,}, threeRings, harmonograph_settings_3, {0,0,0,}, my_seed_1)
 
 --	for i, iCount in EasyCoordinates do
---		--easyPatch(<tPos>, <fRUs>, <tSeed>)
---		easyPatch(iCount, 100, my_seed_1)
+--		--randomPatch(<tPos>, <fRUs>, <tSeed>)
+--		randomPatch(iCount, 100, my_seed_1)
 --	end
 end
 

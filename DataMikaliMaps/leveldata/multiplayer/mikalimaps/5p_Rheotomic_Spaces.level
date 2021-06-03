@@ -30,7 +30,7 @@ function DetermChunk()
 		{-1,7,0,},
 		{6,6,0,},
 	}
-	local easypatch_table =
+	local randomPatch_table =
 	{
 		{-5.10885,9.30781,0},
 	}
@@ -166,9 +166,9 @@ function DetermChunk()
 		addDustCloud("polySurface1", "DustCloud_NoRes", fix_coords(iCount), {1, 1, 1, 1}, 0, 8000)
 	end
 
-	for i, iCount in easypatch_table do
-		--easyPatch(<tPos>, <fRUs>, <tSeed>)
-		easyPatch(fix_coords(iCount), 100)
+	for i, iCount in randomPatch_table do
+		--randomPatch(<tPos>, <fRUs>, <tSeed>)
+		randomPatch(fix_coords(iCount), 100)
 	end
 
 	local iMax = 3

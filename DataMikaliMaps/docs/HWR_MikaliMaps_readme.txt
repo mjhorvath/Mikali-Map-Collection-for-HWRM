@@ -228,6 +228,7 @@ CHANGE LOG
 • Resources in "Go Around" are now arranged in a helix.
 • Renamed "Go Around" to "Go Around Helix".
 • Added "Go Around Cube", a new 8-player map.
+• Tweaks to "Greek Cross Fractal".
 
 1.27.5 - 2020/08/12
 • Fixed the HODs for "Asteroid_m_1" and "Asteroid_m_2". Collectors are once 
@@ -339,11 +340,11 @@ CHANGE LOG
 1.21.0 - 2015/03/30
 • Redesigned "(4P) Metaball Madness" to be a FFA random map with better-looking 
   blobs.
-• Added some easyPatches to "(4P) Metaball Madness", and reduced the number of 
+• Added some randomPatches to "(4P) Metaball Madness", and reduced the number of 
   the largest asteroids in the surrounding area.
 • Changed the way wall panels are selected and placed in "(8P) Greek Cross 
   Fractal".
-• Added some easyPatches to "(8P) Greek Cross Fractal".
+• Added some randomPatches to "(8P) Greek Cross Fractal".
 • Switched to using a different texture for the wall panel objects.
 
 1.20.0 - 2015/03/26
@@ -448,7 +449,7 @@ CHANGE LOG
   sphere looks a more defined. The effect is only cosmetic, however.
 • Recreated all the level thumbnails at a higher resolution. They should appear 
   more crisp in the level selection menu now.
-• The "easyPatch" function now generates one additional asteroid.
+• The "randomPatch" function now generates one additional asteroid.
 • Fixed the flattened branches of "4p_Plasma_Globe.level".
 • Fixed the very center of "4p_Plasma_Globe.level" which had overlapping re-
   sources.

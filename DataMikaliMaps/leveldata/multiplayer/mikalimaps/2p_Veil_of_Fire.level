@@ -28,8 +28,8 @@ function DetermChunk()
 --		addCloud("polySurface1", "cloud_text_" .. i, iCount[2], {1, 1, 1, 1}, 0, 4096)
 	end
 
-	for i, iCount in EasyPatches do
-		easyPatch(iCount[1], 100, my_seed_1)
+	for i, iCount in randomPatches do
+		randomPatch(iCount[1], 100, my_seed_1)
 	end
 
 	for i, iCount in Squadrons do
@@ -73,7 +73,7 @@ StartPoints =
 	{"StartPos3", {-16893, 2190, -13548,}, {0, 90, 0,},},
 }
 
-EasyPatches =
+randomPatches =
 {
 	{{17077, 676, -198,},},
 	{{-7713, 928, 10408,},},

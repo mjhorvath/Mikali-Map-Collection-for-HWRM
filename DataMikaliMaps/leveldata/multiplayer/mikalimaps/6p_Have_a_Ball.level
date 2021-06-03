@@ -31,11 +31,11 @@ function DetermChunk()
 	}
 	local patchRing =
 	{
-		{6, "Function", easyPatch, {0,0,0,}, 100,},
+		{6, "Function", randomPatch, {0,0,0,}, 100,},
 	}
 	local patchRing2 =
 	{
-		{4, "Function", easyPatch, {0,0,0,}, 10,},
+		{4, "Function", randomPatch, {0,0,0,}, 10,},
 	}
 	local pebbleRing =
 	{
@@ -66,9 +66,9 @@ function DetermChunk()
 --	shapeAdd({0, 0, 0,}, dustcloudRing, {"Ellipse", RRad, RRad, RRad/4, RRad/4, 0,}, {0, 0, 0,}, 1)
 --	shapeAdd({0, 0, 0,}, dustcloudRing, {"Ellipsoid", RRad, RRad, RRad/4, RRad/4, 0,}, {0, 0, 0,}, 0)
 
-	easyPatch({0,    0,0,}, 100, my_seed_1)
-	easyPatch({0, RRad,0,}, 100, my_seed_1)
-	easyPatch({0,-RRad,0,}, 100, my_seed_1)
+	randomPatch({0,    0,0,}, 100, my_seed_1)
+	randomPatch({0, RRad,0,}, 100, my_seed_1)
+	randomPatch({0,-RRad,0,}, 100, my_seed_1)
 
 --	globeAdd(<tPos>, <tDst>, {<fRad>, <fLat>, <fLon>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <xNull>, <tSeed>)
 	globeAdd({0,0,0,}, pebbleRing, {RRad, 5, 3, 1000, 0, { 0, 360,}, 2,}, nil, my_seed_1)

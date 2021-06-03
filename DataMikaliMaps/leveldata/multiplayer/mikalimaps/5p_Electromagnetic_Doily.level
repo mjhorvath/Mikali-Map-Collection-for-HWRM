@@ -42,8 +42,8 @@ function DetermChunk()
 	for i = 0, maxPlayers - 1 do
 		addPoint("StartPos" .. i, vrotate({0, 0, 20000 * 5/4,}, {0, i * 72 + 18, 0,}), {0, i * 72 + 18, 0,})
 --		addCloud("polySurface1", "cloud_text_" .. (i+1), vrotate({0, 0, 20000 * 5/4,}, {0, i * 72 + 18, 0,}), {1, 1, 1, 1}, 0, 4096)
-		easyPatch(vrotate({0,     0, 20000 * 4/4,}, {0, i * 72 + 18, 0,}), 100, my_seed_1)
-		easyPatch(vrotate({0, -5000, 20000 * 3/4,}, {0, i * 72 - 18, 0,}), 100, my_seed_1)
+		randomPatch(vrotate({0,     0, 20000 * 4/4,}, {0, i * 72 + 18, 0,}), 100, my_seed_1)
+		randomPatch(vrotate({0, -5000, 20000 * 3/4,}, {0, i * 72 - 18, 0,}), 100, my_seed_1)
 		addAsteroid("Asteroid_M_5", vrotate({0, -10000, 20000 * 1/4,}, {0, i * 72 + 18, 0,}), 100, 0, 0, 0, 0)
 	end
 

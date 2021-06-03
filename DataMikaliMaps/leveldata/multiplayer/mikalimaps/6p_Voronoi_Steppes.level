@@ -167,7 +167,7 @@ function DetermChunk()
 		elseif (cellTeam == 2) then
 			tinsert(team_2_coo, vaddV(new_coord, {1000,1000,1000,}))
 		end
-		easyPatch(new_coord, 100, my_seed_1)
+		randomPatch(new_coord, 100, my_seed_1)
 
 		local cellSides = corners[i]
 		local sideMax = getn(cellSides)

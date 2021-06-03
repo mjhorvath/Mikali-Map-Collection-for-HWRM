@@ -36,11 +36,11 @@ function DetermChunk()
 	}
 	local EasyDist =
 	{
-		{3, "Function", easyPatch, {0,0,0,}, 100, my_seed_1,},
+		{3, "Function", randomPatch, {0,0,0,}, 100, my_seed_1,},
 	}
 
-	easyPatch({-9000, 12000,-9000,}, 100, my_seed_1)
-	easyPatch({ 9000,-12000, 9000,}, 100, my_seed_1)
+	randomPatch({-9000, 12000,-9000,}, 100, my_seed_1)
+	randomPatch({ 9000,-12000, 9000,}, 100, my_seed_1)
 
 --	ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
 	ringAdd({0,0,0,},  EasyDist, {30000, 30000, 0, 0, {  5, 145,}, 0,}, {0,0,0,}, my_seed_1)

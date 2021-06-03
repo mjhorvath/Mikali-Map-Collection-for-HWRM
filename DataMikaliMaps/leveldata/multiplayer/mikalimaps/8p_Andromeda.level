@@ -47,7 +47,7 @@ function DetermChunk()
 	}
 	local polarRing =
 	{
-		{2, "Function", easyPatch, {0,0,0,}, 100,},
+		{2, "Function", randomPatch, {0,0,0,}, 100,},
 	}
 	local centerSphere =
 	{
@@ -100,7 +100,7 @@ function DetermChunk()
 		local patchPos = vmultiply(tPos, 22000/20000)
 		local roidPos = vmultiply(tPos, 19000/20000)
 		local playerRot = {0,-360 * k/maxPlayers + 90,0}
-		easyPatch(patchPos, 100, my_seed_1)
+		randomPatch(patchPos, 100, my_seed_1)
 		addSquadron("Player" .. playerNum .. "Asteroid1", "meg_asteroid_mikali", roidPos, playerNum, playerRot, 1, 0)
 	end
 
@@ -113,7 +113,7 @@ function DetermChunk()
 		local patchPos = vmultiply(tPos, 62000/60000)
 		local roidPos = vmultiply(tPos, 58000/60000)
 		local playerRot = {0,-360 * k/maxPlayers + 90,0}
-		easyPatch(patchPos, 100, my_seed_1)
+		randomPatch(patchPos, 100, my_seed_1)
 		addPoint("StartPos" .. playerNum, tPos, playerRot)
 		addSquadron("Player" .. playerNum .. "Asteroid2", "meg_asteroid_mikali", roidPos, playerNum, playerRot, 1, 0)
 --		addCloud("polySurface1", "cloud_text_" .. k, tPos, {1, 1, 1, 1}, 0, 4096)
@@ -128,7 +128,7 @@ function DetermChunk()
 		local patchPos = vmultiply(tPos, 102000/100000)
 		local roidPos = vmultiply(tPos, 98000/100000)
 		local playerRot = {0,-360 * k/maxPlayers + 90,0}
-		easyPatch(patchPos, 100, my_seed_1)
+		randomPatch(patchPos, 100, my_seed_1)
 		addSquadron("Player" .. playerNum .. "Asteroid3", "meg_asteroid_mikali", roidPos, playerNum, playerRot, 1, 0)
 	end
 

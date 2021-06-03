@@ -46,7 +46,7 @@ function DetermChunk()
 		{ 0, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{ 2, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
 		{ 1, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
---		{ 1, "Function", easyPatch, {0,0,0,}, 100,},
+--		{ 1, "Function", randomPatch, {0,0,0,}, 100,},
 		-- addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
 		{ 1, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, cloudColor, 0, srandom(my_seed_1, 10000),},
 		{ 1, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, cloudColor, 0, srandom(my_seed_1, 10000),},

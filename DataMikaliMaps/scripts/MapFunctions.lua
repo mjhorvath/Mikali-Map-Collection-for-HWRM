@@ -1531,9 +1531,9 @@ end
 
 
 --------------------------------------------------------------------------------
---  Name:		easyPatch
+--  Name:		randomPatch
 --  Description:	Creates a resource patch with minimal effort.
---  Syntax:		easyPatch(<tPos>, <fRUs>, <tSeed>)
+--  Syntax:		randomPatch(<tPos>, <fRUs>, <tSeed>)
 --  Arguments:
 --	<tPos>: the shape's center coordinates.
 --	<fRUs>: the percent of the default RU to retain.
@@ -1542,18 +1542,18 @@ end
 --	1. Need to consider once again whether <fRUs> and <tSeed> should be optional.
 --------------------------------------------------------------------------------
 
-function easyPatch(tPos, fRUs, tSeed)
+function randomPatch(tPos, fRUs, tSeed)
 	if not (fRUs) then
 		fRUs = 100
 	end
 	if not (tSeed) then
-		tSeed = newseed(-977322)
+		tSeed = newseed(977322)
 	end
 	local tCoo = {}
 	-- Does Asteroid_M_2 maybe grant too many RUs? Should I maybe switch back to stock version?
 	-- asteroid_type = {amount, inner radius, outer radius,}
-	local easyPatchDist = {Asteroid_M_4 = {1, 0, 0,}, Asteroid_M_3 = {4, 400, 800,}, Asteroid_2 = {5, 800, 1600,},}
-	for k, tTab in easyPatchDist do
+	local randomPatchDist = {Asteroid_M_4 = {1, 0, 0,}, Asteroid_M_3 = {4, 400, 800,}, Asteroid_M_2 = {5, 800, 1600,},}
+	for k, tTab in randomPatchDist do
 		for j = 1, tTab[1] do
 			local r = srandom3(tSeed, tTab[2], tTab[3])
 			local v, u = srandomSet(tSeed, 180,360)
@@ -1566,6 +1566,28 @@ function easyPatch(tPos, fRUs, tSeed)
 			addAsteroid(k, tCoo, fRUs, 0, 0, 0, 0)
 		end
 	end
+end
+
+
+--------------------------------------------------------------------------------
+--  Name:		staticPatch
+--  Description:	Creates a very regular shaped resource patch.
+--  Syntax:		randomPatch(<tPos>, <fRUs>)
+--  Arguments:
+--	<tPos>: the shape's center coordinates.
+--	<fRUs>: the percent of the default RU to retain.
+--------------------------------------------------------------------------------
+
+function staticPatch(tPos, fRUs)
+	if not (fRUs) then
+		fRUs = 100
+	end
+	addAsteroid("Asteroid_M_3", vaddV(tPos, {-512,0,0}), fRUs, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_3", vaddV(tPos, { 512,0,0}), fRUs, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_3", vaddV(tPos, {0,-512,0}), fRUs, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_3", vaddV(tPos, {0, 512,0}), fRUs, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_3", vaddV(tPos, {0,0,-512}), fRUs, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_3", vaddV(tPos, {0,0, 512}), fRUs, 0, 0, 0, 0)
 end
 
 

@@ -52,9 +52,9 @@ function DetermChunk()
 --		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
 		{4, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1)}, 0, 12500,}
 	}
-	local EasyPatches =
+	local randomPatches =
 	{
-		{2, "Function", easyPatch, {0,0,0,}, 100,},
+		{2, "Function", randomPatch, {0,0,0,}, 100,},
 	}
 
 	-- center sphere
@@ -64,11 +64,11 @@ function DetermChunk()
 
 	-- corner clouds & patches
 --	ringAdd(<tPos>, <tDst>, {<fAx1>, <fAx2>, <fThk>, <fHgh>, <tArc>, <iMod>,}, <tRot>, <tSeed>)
-	ringAdd({0, 0, 0,}, EasyPatches, {50000, 50000, 0, 0, {0,360,}, 0,}, { 0, 0, 0,}, my_seed_1)
-	ringAdd({0, 0, 0,}, EasyPatches, {50000, 50000, 0, 0, {0,360,}, 0,}, { 0,90, 0,}, my_seed_1)
+	ringAdd({0, 0, 0,}, randomPatches, {50000, 50000, 0, 0, {0,360,}, 0,}, { 0, 0, 0,}, my_seed_1)
+	ringAdd({0, 0, 0,}, randomPatches, {50000, 50000, 0, 0, {0,360,}, 0,}, { 0,90, 0,}, my_seed_1)
 
 	-- top patches
-	ringAdd({0, 0, 0,}, EasyPatches, {40000, 40000, 0, 0, {0,360,}, 0,}, {0, 0, 90,}, my_seed_1)
+	ringAdd({0, 0, 0,}, randomPatches, {40000, 40000, 0, 0, {0,360,}, 0,}, {0, 0, 90,}, my_seed_1)
 end
 
 function NonDetermChunk()
