@@ -13,7 +13,7 @@ You will need to download the mod first before you can view the document properl
 
 Previews of the map thumbnails can be found here:
 
-* http://isometricland.net/homeworld/homeworld.php
+* https://isometricland.net/blog/homeworld-modifications-hwrm/
 
 The Steam Workshop page for this mod is here:
 
