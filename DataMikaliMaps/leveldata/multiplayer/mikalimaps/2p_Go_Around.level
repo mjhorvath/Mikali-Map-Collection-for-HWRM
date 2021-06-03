@@ -1,4 +1,4 @@
--- (2P) Go Around v1.0.5 by Mikali
+-- (2P) Go Around v1.1.0 by Mikali
 -- Created: 2015/03/26
 -- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
@@ -10,7 +10,7 @@
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Go Around 1.0.5</c>"
+levelDesc = "<c=FF4800>Go Around 1.1.0</c>"
 maxPlayers = 2
 player = {}
 
@@ -21,29 +21,31 @@ end
 function DetermChunk()
 	local my_seed_1 = newseed(190805)
 
-	-- addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
---	addSquadron("", "hgn_destroyer", {1000,1000,1000}, -1, {0,0,0}, 1, 0)
---	addSquadron("", "hgn_destroyer", {-1000,-1000,-1000}, -1, {0,0,0}, 1, 0)
+	-- distributions
+	local spiralRings =
+	{
+--		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{ 0, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
+--		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{ 30, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  0, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  0, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{  0, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
+	}
 
 	setWorldBoundsInner({0, 0, 0}, {100000, 50000, 100000})
 
-	addPoint("StartPos0", {-32768,0,-2048}, {0,180,0})
-	addPoint("StartPos1", { 32768,0, 2048}, {0,  0,0})
+	addPoint("StartPos0", vrotate({32768,0,0}, {0, 30,0}), {0,210,0})
+	addPoint("StartPos1", vrotate({32768,0,0}, {0,210,0}), {0, 30,0})
 
 --	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
---	addCloud("cloud", "cloud_text_1", {-32768,0,-2048}, {1, 1, 1, 1}, 0, 4096)
---	addCloud("cloud", "cloud_text_2", { 32768,0, 2048}, {1, 1, 1, 1}, 0, 4096)
 
-	addSquadron("noname", "box_131072_64_131072", {0,0,0}, -1, {0,0,90}, 1, 0)
+	-- addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+	addSquadron("noname", "box_131072_64_131072", {0,0,0}, -1, {90,0,0}, 1, 0)
 
-	-- player 0
-	easyPatch({-32768,0,     0}, 100, my_seed_1)
-	easyPatch({ -8192,0,-32768}, 100, my_seed_1)
-	easyPatch({ -8192,0, 32768}, 100, my_seed_1)
-	-- player 1
-	easyPatch({ 32768,0,     0}, 100, my_seed_1)
-	easyPatch({  8192,0,-32768}, 100, my_seed_1)
-	easyPatch({  8192,0, 32768}, 100, my_seed_1)
+	-- sLay, nRad, nArm, nRot, nAng, nHgh, nWid, nThk, tTim, iMod
+	spiralAdd({0,0,0}, spiralRings, {"Helix", 32768, 2, 1, 90, 32768*3, 0, 0, {0,1}, 0}, {0,0,0}, my_seed_1)
 end
 
 function NonDetermChunk()

@@ -224,6 +224,7 @@ CHANGE LOG
 • Fixed a few bugs preventing some of the maps from loading.
 • I have provided five additional non-random versions of each of the random 
   maps. These should work okay in multiplayer against human opponents.
+• Resources in "Go Around" are now arranged in a helix.
 
 1.27.5 - 2020/08/12
 • Fixed the HODs for "Asteroid_m_1" and "Asteroid_m_2". Collectors are once 

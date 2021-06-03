@@ -1378,11 +1378,11 @@ end
 --	<tPos>: a table containing the shape's center coordinates.
 --	<tDst>: the distribution table used to populate the shape.
 --	<tPar>: a table containing the following ten parameters:
---		<sLay>: may be either "Nautilus" or "Archimedes".
+--		<sLay>: may be either "Nautilus", "Archimedes" or "Helix".
 --		<fRad>: depending on <fAng>, this is either the minimum or maximum radius of the spiral.
 --		<iArm>: the number of arms the spiral will have.
 --		<fRot>: the number of times the spiral will rotate around the origin.
---		<fAng>: the angle (degrees) of deviation (90' and 270' make a circle).
+--		<fAng>: the angle (degrees) of deviation. ("Nautilus" only.)
 --		<fHgh>: the height of the spiral above the plane.
 --		<fWid>: the width of the spiral arms.
 --		<fThk>: the thickness of the spiral arms.
@@ -1408,16 +1408,10 @@ function spiralAdd(tPos, tDst, tPar, tRot, tSeed)
 				if (iMod == 1) then
 					v, t = v, srandom3(tSeed, minTim, maxTim)
 					s = t
-					if (sLay == "Archimedes") then
-					--	s = 1 - t
-					end
 					l, w, h = srandom3(tSeed, nWid) - nWid/2, srandom3(tSeed, nWid) - nWid/2, srandom3(tSeed, nThk) - nThk/2
 				elseif (iMod == 2) then
 					v, t = v, srandom3(tSeed, minTim, maxTim)
 					s = t
-					if (sLay == "Archimedes") then
-					--	s = 1 - t
-					end
 					l, w, h = srandom3(tSeed, 0, nWid * s), srandom3(tSeed, 0, nWid * s), srandom3(tSeed, nThk) - nThk/2
 				elseif (iMod == 0) then
 					v, t = v, t_X
@@ -1438,6 +1432,13 @@ function spiralAdd(tPos, tDst, tPar, tRot, tSeed)
 						cos(v * t) * t * nRad + l,
 						h + nHgh * t - nHgh/2,
 						sin(v * t) * t * nRad + w,
+					}
+				elseif (sLay == "Helix") then
+					tCoo =
+					{
+						cos(v * t) * nRad + l,
+						h + nHgh * t - nHgh/2,
+						sin(v * t) * nRad + w,
 					}
 				end
 				appendShape(tPos, i, tTab, j, vrotate(tCoo, {0,rotArm,0,}), tRot)
