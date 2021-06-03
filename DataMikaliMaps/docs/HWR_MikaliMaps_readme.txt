@@ -8,7 +8,8 @@ Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
 ModDB:		http://www.moddb.com/mods/mikalis-multiplayer-map-collection
 Steam:		http://steamcommunity.com/sharedfiles/filedetails/?id=399477672
-Discussion:	http://forums.relicnews.com/showthread.php?t=48818
+Discussion:	https://forums.gearboxsoftware.com/t/mod-mikalis-multiplayer-maps/4555907
+		http://forums.relicnews.com/showthread.php?t=48818
 		http://forums.relicnews.com/showthread.php?t=82964
 		http://forums.relicnews.com/showthread.php?t=40779
 
@@ -225,6 +226,8 @@ CHANGE LOG
 • I have provided five additional non-random versions of each of the random 
   maps. These should work okay in multiplayer against human opponents.
 • Resources in "Go Around" are now arranged in a helix.
+• Renamed "Go Around" to "Go Around Helix".
+• Added "Go Around Cube", a new 8-player map.
 
 1.27.5 - 2020/08/12
 • Fixed the HODs for "Asteroid_m_1" and "Asteroid_m_2". Collectors are once 

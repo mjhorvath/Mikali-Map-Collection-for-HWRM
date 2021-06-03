@@ -1773,7 +1773,8 @@ end
 
 function makeCuboid(tPar, tSeed)
 	local t, p = srandom(tSeed), srandomSign(tSeed)
-	local l, w, h, L, W, H = srandomSet2(tSeed, -tPar[2], tPar[2], -tPar[3], tPar[3], -tPar[4], tPar[4], tPar[2] - tPar[5], tPar[2], tPar[3] - tPar[5], tPar[3], tPar[4] - tPar[5], tPar[4])
+	local l, w, h = srandomSet2(tSeed, -tPar[2], tPar[2], -tPar[3], tPar[3], -tPar[4], tPar[4])
+	local L, W, H = srandomSet2(tSeed, tPar[2] - tPar[5], tPar[2], tPar[3] - tPar[5], tPar[3], tPar[4] - tPar[5], tPar[4])
 	if (t < 1/3) then
 		l = L * p
 	elseif (t < 2/3) then

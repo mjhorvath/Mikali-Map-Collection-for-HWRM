@@ -1,0 +1,60 @@
+-- (2P) Go Around Helix v1.0.0 by Mikali
+-- Created: 2021/06/03
+-- Updated: 2021/06/03
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: 1 vs. 1
+-- Notes:
+-- 1. Should make use of vertical axis more.
+-- 2. Place the RU deposits at the vertices of an octahedron.
+
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Go Around Helix 1.0.0</c>"
+maxPlayers = 2
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	local my_seed_1 = newseed(190805)
+
+	-- distributions
+	local spiralRings =
+	{
+--		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{ 0, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
+--		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{ 30, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  0, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  0, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{  0, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
+	}
+
+	setWorldBoundsInner({0, 0, 0}, {100000, 50000, 100000})
+
+	addPoint("StartPos0", vrotate({32768,0,0}, {0, 30,0}), {0,210,0})
+	addPoint("StartPos1", vrotate({32768,0,0}, {0,210,0}), {0, 30,0})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	-- addSquadron(<sSquadronName>, <sSquadronType>, <tPosition>, <iPlayerIndex>, <tRotation>, <iNumberShips>, <bHyperspace>)
+	addSquadron("noname", "box_131072_64_131072", {0,0,0}, -1, {90,0,0}, 1, 0)
+
+	-- sLay, nRad, nArm, nRot, nAng, nHgh, nWid, nThk, tTim, iMod
+	spiralAdd({0,0,0}, spiralRings, {"Helix", 32768, 2, 1, 90, 32768*3, 0, 0, {0,1}, 0}, {0,0,0}, my_seed_1)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = newseed(190805)
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)
+	setSensorsManagerCameraDistances(0, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end
