@@ -4,6 +4,9 @@
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
 levelDesc = "<c=FF4800>Greek Cross Fractal 1.2.4</c>"
 maxPlayers = 8
 player = {}
