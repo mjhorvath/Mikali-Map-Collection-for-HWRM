@@ -2,12 +2,12 @@
 
 This mod has two readmes:
 
-* [HWR_MapFunctions_readme.txt](DataMikaliMaps/HWR_MapFunctions_readme.txt)
-* [HWR_MikaliMaps_readme.txt](DataMikaliMaps/HWR_MikaliMaps_readme.txt)
+* [HWR_MapFunctions_readme.txt](DataMikaliMaps/docs/HWR_MapFunctions_readme.txt)
+* [HWR_MikaliMaps_readme.txt](DataMikaliMaps/docs/HWR_MikaliMaps_readme.txt)
 
 There is also an HTML reference document for the custom map functions:
 
-* [HWR_MapFunctions_reference.html](DataMikaliMaps/HWR_MapFunctions_reference.html)
+* [HWR_MapFunctions_reference.html](DataMikaliMaps/docs/HWR_MapFunctions_reference.html)
 
 You will need to download the mod first before you can view the document properly, however.
 

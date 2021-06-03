@@ -1,13 +1,13 @@
--- (6P) Have a Ball v1.3.21 by Mikali
+-- (6P) Have a Ball v1.3.22 by Mikali
 -- Created: 2004/03/18
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: odds vs. evens
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Have a Ball 1.3.21</c>"
+levelDesc = "<c=FF4800>Have a Ball 1.3.22</c>"
 maxPlayers = 6
 player = {}
 
@@ -17,7 +17,7 @@ end
 
 function DetermChunk()
 	-- seed value for random functions
-	local my_seed_1 = {seed = -12345}
+	local my_seed_1 = newseed(123456)
 	local RRad = 30000
 
 	setWorldBoundsInner({0, 0, 0}, {RRad*3/2, RRad*3/2, RRad*3/2})
@@ -85,7 +85,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -871687}
+	local my_seed_1 = newseed(871687)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

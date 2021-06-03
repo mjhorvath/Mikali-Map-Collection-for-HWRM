@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Chicken Scratch D 1.2.10</c>"
+seed_proto = 148111
+dofilepath("data:leveldata/multiplayer/mikalimaps/8p_Chicken_Scratch_Proto.level")

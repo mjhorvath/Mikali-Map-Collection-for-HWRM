@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Plasma Globe Random 1.0.15</c>"
+seed_proto = random(491790)
+dofilepath("data:leveldata/multiplayer/mikalimaps/4p_Plasma_Globe_Proto.level")

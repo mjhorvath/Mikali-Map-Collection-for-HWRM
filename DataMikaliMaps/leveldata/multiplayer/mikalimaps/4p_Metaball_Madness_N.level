@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Metaball Madness Random 2.0.6</c>"
+seed_proto = random(726829)
+dofilepath("data:leveldata/multiplayer/mikalimaps/4p_Metaball_Madness_Proto.level")

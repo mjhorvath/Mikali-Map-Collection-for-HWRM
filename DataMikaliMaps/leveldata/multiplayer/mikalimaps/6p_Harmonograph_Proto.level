@@ -1,0 +1,157 @@
+-- (6P) Harmonograph v1.2.13 by Mikali
+-- Created: 2013/08/26
+-- Updated: 2021/06/03
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+--levelDesc = "<c=FF4800>Harmonograph 1.2.13</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	local my_seed_1 = newseed(seed_proto)
+	local EasyCoordinates = {}
+
+	local iMax = maxPlayers
+	local stepU = 360/iMax
+	local stepV = 180/iMax
+	for i = 1, iMax do
+		aU = i * stepU + srandom(my_seed_1, stepU) - stepU/2
+		aV = i * stepV + srandom(my_seed_1, stepV) - stepV/2
+		aR = sqrt(sqrt(srandom(my_seed_1))) * 15000 + 15000
+		aPoint =
+		{
+			aR * cos(aU) * sin(aV),
+			aR * cos(aV) * 2/3,
+			aR * sin(aU) * sin(aV),
+		}
+		addPoint("StartPos" .. (i-1), aPoint, {0,0,0,})
+--		addCloud("polySurface1", "cloud_text_" .. i, aPoint, {1, 1, 1, 1}, 0, 4096)
+	end
+
+--	for i = 0, maxPlayers - 1 do
+--		local u, v, r = srandom(my_seed_1, 360), srandom(my_seed_1, 45, 135), sqrt(sqrt(srandom(my_seed_1))) * 15000 + 15000
+--		local tCoo =
+--		{
+--			r * cos(u) * sin(v),
+--			r * cos(v),
+--			r * sin(u) * sin(v),
+--		}
+--		addPoint("StartPos" .. i, tCoo, {0,srandom(my_seed_1,360), 0,})
+--	end
+
+	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	-- distributions
+	-- need prime numbers here
+	local threeRings =
+	{
+		--addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{199, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{103, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
+--		{27, "Asteroid", "Asteroid_M_5", {0,0,0,}, 100, 0, 0, 0, 0,},
+		--addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+--		{maxPlayers, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {1, 1, 1, 1}, 0, srandom(my_seed_1) * 5000 + 5000,}
+	}
+	local prettyPebs =
+	{
+		--addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{7883, "Pebble", "pebble_m_1", {0,0,0,}, 0, 0, 0,},
+	}
+	-- too many?
+	local patchEasy =
+	{
+		{maxPlayers * 3, "Coordinate", EasyCoordinates},
+	}
+
+	local harmonograph_settings_1 =
+	{
+		--Amp, Frq, Phs, Dmp
+--		{10000, 1,  90, 0.00,},
+--		{10000, 6, 270, 0.00,},
+--		{10000, 1,   0, 0.00,},	--ignore
+--		{10000, 1,   0, 0.00,},	--ignore
+--		{10000, 1,   0, 0.00,},
+--		{10000, 6,   0, 0.00,},
+
+		--Amp, Frq, Phs, Dmp
+		{15000, random(1, 10), random(1, 12) * 30, random() * 0.02,},
+		{15000, random(1, 10), random(1, 12) * 30, random() * 0.02,},
+		{15000, random(1, 10), random(1, 12) * 30, random() * 0.02,},
+		{15000, random(1, 10), random(1, 12) * 30, random() * 0.02,},
+		{15000, random(1, 10), random(1, 12) * 30, random() * 0.02,},
+		{15000, random(1, 10), random(1, 12) * 30, random() * 0.02,},
+
+		--Amp, Frq, Phs, Dmp
+--		{10000, random() * 10, random() * 360, 0.02,},
+--		{10000, random() * 10, random() * 360, 0.02,},
+--		{10000, random() * 10, random() * 360, 0.02,},
+--		{10000, random() * 10, random() * 360, 0.02,},
+--		{10000, random() * 10, random() * 360, 0.02,},
+--		{10000, random() * 10, random() * 360, 0.02,},
+
+		360 * 4,
+		0,
+		0,
+		{1,1,1},
+		0,
+	}
+	local harmonograph_settings_2 =
+	{
+		harmonograph_settings_1[1],
+		harmonograph_settings_1[2],
+		harmonograph_settings_1[3],
+		harmonograph_settings_1[4],
+		harmonograph_settings_1[5],
+		harmonograph_settings_1[6],
+		180,
+		harmonograph_settings_1[8],
+		harmonograph_settings_1[9],
+		harmonograph_settings_1[10],
+		0,
+	}
+	local harmonograph_settings_3 =
+	{
+		harmonograph_settings_1[1],
+		harmonograph_settings_1[2],
+		harmonograph_settings_1[3],
+		harmonograph_settings_1[4],
+		harmonograph_settings_1[5],
+		harmonograph_settings_1[6],
+		harmonograph_settings_1[7],
+		harmonograph_settings_1[8],
+		harmonograph_settings_1[9],
+		harmonograph_settings_1[10],
+		1,
+	}
+
+	--harmonographAdd(<tPos>, <tDst>, {{<fA>, <fF>, <fP>, <fD>}, <tGrp2>, <tGrp3>, <tGrp4>, <tGrp5>, <tGrp6>, <fTim>, <fRad>, <fThck>, <iMod>}, <tRot>, <tSeed>)
+	harmonographAdd({0,0,0,}, prettyPebs, harmonograph_settings_1, {0,0,0,}, my_seed_1)
+	harmonographAdd({0,0,0,}, patchEasy, harmonograph_settings_2, {0,0,0,}, my_seed_1)
+	harmonographAdd({0,0,0,}, threeRings, harmonograph_settings_3, {0,0,0,}, my_seed_1)
+
+--	for i, iCount in EasyCoordinates do
+--		--easyPatch(<tPos>, <fRUs>, <tSeed>)
+--		easyPatch(iCount, 100, my_seed_1)
+--	end
+end
+
+function NonDetermChunk()
+	local my_seed_1 = newseed(seed_proto)
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 50000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end

@@ -1,13 +1,13 @@
--- (2P) Ship Gallery v1.1.3 by Mikali
+-- (2P) Ship Gallery v1.1.4 by Mikali
 -- Created: 2005/09/22
--- Updated: 2016/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Gallery - Ships 1.1.3</c>"
+levelDesc = "<c=FF4800>Gallery - Ships 1.1.4</c>"
 maxPlayers = 2
 player = {}
 loadHW1 = false
@@ -435,7 +435,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -123983445}
+	local my_seed_1 = newseed(123983445)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

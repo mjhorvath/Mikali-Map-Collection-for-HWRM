@@ -1,13 +1,13 @@
--- (2P) The Squash v1.1.12 by Mikali
+-- (2P) The Squash v1.1.13 by Mikali
 -- Created: 2005/09/05
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net
 -- Teams: Top vs. Bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>The Squash 1.1.12</c>"
+levelDesc = "<c=FF4800>The Squash 1.1.13</c>"
 maxPlayers = 2
 player = {}
 
@@ -17,9 +17,8 @@ end
 
 function DetermChunk()
 	-- seed value for random functions
-	local my_seed_1 = {seed = -12345}
-	local my_seed_2 = {seed = -12345}
-	local my_seed_3 = {seed = -12345}
+	local my_seed_1 = newseed(12345)
+	local my_seed_2 = newseed(12345)
 
 	setWorldBoundsInner({0, 0, 0}, {50000, 50000, 50000})
 	addPoint("StartPos0", { 25000,-25000, 0}, {0, 270, 0})
@@ -47,7 +46,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -1230892345}
+	local my_seed_1 = newseed(12345)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

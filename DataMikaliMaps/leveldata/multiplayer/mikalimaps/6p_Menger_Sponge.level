@@ -1,13 +1,13 @@
--- (6P) Menger Sponge 1.1.4 by Mikali
+-- (6P) Menger Sponge 1.1.5 by Mikali
 -- Created: 2010/12/28
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Odds vs. Evens
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Menger Sponge 1.1.4</c>"
+levelDesc = "<c=FF4800>Menger Sponge 1.1.5</c>"
 maxPlayers = 6
 player = {}
 
@@ -128,7 +128,7 @@ function DetermChunk()
 end -- end of deterministic function
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -8724216}
+	local my_seed_1 = newseed(8724216)
 	fogSetActive(0)
 	setGlareIntensity(0.000000)
 	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)

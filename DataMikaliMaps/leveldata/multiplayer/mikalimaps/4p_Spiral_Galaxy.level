@@ -1,13 +1,13 @@
--- (4P) Spiral Galaxy v1.5.14 by Mikali
+-- (4P) Spiral Galaxy v1.5.15 by Mikali
 -- Created: 2003/11/12
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Spiral Galaxy 1.5.14</c>"
+levelDesc = "<c=FF4800>Spiral Galaxy 1.5.15</c>"
 maxPlayers = 4
 player = {}
 
@@ -17,8 +17,8 @@ end
 
 function DetermChunk()
 	-- seed value for random functions
-	local my_seed_1 = {seed = -12345}
-	local my_seed_2 = {seed = -12345}
+	local my_seed_1 = newseed(12345)
+	local my_seed_2 = newseed(12345)
 
 	setWorldBoundsInner({0,0,0,}, {60000, 30000, 60000,})
 
@@ -86,7 +86,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -2340806578}
+	local my_seed_1 = newseed(2340806578)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0,0,0,1)

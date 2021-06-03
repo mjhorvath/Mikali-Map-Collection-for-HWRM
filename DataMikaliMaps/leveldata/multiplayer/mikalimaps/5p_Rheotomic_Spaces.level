@@ -1,13 +1,13 @@
--- (5P) Rheotomic Spaces v1.0.11 by Mikali
+-- (5P) Rheotomic Spaces v1.0.12 by Mikali
 -- Created: 2013/09/22
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Rheotomic Spaces 1.0.11</c>"
+levelDesc = "<c=FF4800>Rheotomic Spaces 1.0.12</c>"
 maxPlayers = 5
 player = {}
 
@@ -16,11 +16,12 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
+	local my_seed_1 = newseed(123456)
+
 	setWorldBoundsInner({0, 0, 0}, {50000, 25000, 50000})
 
 --	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
 
-	local my_seed_1 = {seed = -12345}
 	local startpoints_table =
 	{
 		{-5,2,0,},
@@ -180,7 +181,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -978321}
+	local my_seed_1 = newseed(978321)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

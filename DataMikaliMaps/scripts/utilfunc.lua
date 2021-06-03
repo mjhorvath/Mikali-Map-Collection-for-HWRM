@@ -1,7 +1,7 @@
 -- Caption: Utility Functions for HWRM
 -- Authors: Mikali
 -- Created: A long time ago
--- Updated: 2020-08-06
+-- Updated: 2021-06-03
 -- License:	Creative Commons Attribution 4.0 International (CC BY 4.0)
 -- Should check first if functions with these names have already been defined before attempting to define again.
 
@@ -104,9 +104,36 @@ function randomSet2(...)
 	end
 end
 
+-- Returns a vector with random components.
+function vrand(tVecIn)
+	local tVecOut = {}
+	for i = 1, getn(tVecIn) do
+		tinsert(tVecOut, random(tVecIn[i]))
+	end
+	return tVecOut
+end
+
+-- Returns a vector with random components.
+function vrand2(tVecIn)
+	local tVecOut = {}
+	for i = 1, getn(tVecIn) do
+		tinsert(tVecOut, random2(tVecIn[i][1], tVecIn[i][2]))
+	end
+	return tVecOut
+end
+
+-- Returns a vector with random components.
+function vrand3(tVecIn)
+	local tVecOut = {}
+	for i = 1, getn(tVecIn) do
+		tinsert(tVecOut, random3(tVecIn[i][1], tVecIn[i][2]))
+	end
+	return tVecOut
+end
+
 -- Creates a new seed for seeded functions such as srandom().
 function newseed(seednum)
-	return {seed = seednum}
+	return {seed = -seednum}
 end
 
 -- rough adaptation of Knuth float generator
@@ -239,6 +266,7 @@ function srandom3(seedobj, fVal1, fVal2)
 end
 
 -- For each argument, returns a random float value between 0 and the argument. Seeded.
+-- Up to five numbers.
 function srandomSet(seedobj, ...)
 	local v = {}
 	for i = 1, getn(arg) do
@@ -258,6 +286,7 @@ function srandomSet(seedobj, ...)
 end
 
 -- For every two arguments, returns a random float value between the former argument and the latter argument. Seeded.
+-- Up to five numbers.
 function srandomSet2(seedobj, ...)
 	local v = {}
 	for i = 2, getn(arg), 2 do
@@ -276,15 +305,6 @@ function srandomSet2(seedobj, ...)
 	end
 end
 
--- Returns a vector with random components.
-function vrand(tVecIn)
-	local tVecOut = {}
-	for i = 1, getn(tVecIn) do
-		tinsert(tVecOut, random(tVecIn[i]))
-	end
-	return tVecOut
-end
-
 -- Returns a vector with random components. Seeded.
 function svrand(seedobj, tVecIn)
 	local tVecOut = {}
@@ -294,29 +314,11 @@ function svrand(seedobj, tVecIn)
 	return tVecOut
 end
 
--- Returns a vector with random components.
-function vrand2(tVecIn)
-	local tVecOut = {}
-	for i = 1, getn(tVecIn) do
-		tinsert(tVecOut, random2(tVecIn[i][1], tVecIn[i][2]))
-	end
-	return tVecOut
-end
-
 -- Returns a vector with random components. Seeded.
 function svrand2(seedobj, tVecIn)
 	local tVecOut = {}
 	for i = 1, getn(tVecIn) do
 		tinsert(tVecOut, srandom2(seedobj, tVecIn[i][1], tVecIn[i][2]))
-	end
-	return tVecOut
-end
-
--- Returns a vector with random components.
-function vrand3(tVecIn)
-	local tVecOut = {}
-	for i = 1, getn(tVecIn) do
-		tinsert(tVecOut, random3(tVecIn[i][1], tVecIn[i][2]))
 	end
 	return tVecOut
 end
@@ -768,6 +770,5 @@ function ternary(cond, T, F)
 		return F
 	end
 end
-
 
 dofilepath("data:scripts/bit.lua")

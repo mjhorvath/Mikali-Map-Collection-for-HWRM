@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Harmonograph B 1.2.13</c>"
+seed_proto = 592585
+dofilepath("data:leveldata/multiplayer/mikalimaps/6p_Harmonograph_Proto.level")

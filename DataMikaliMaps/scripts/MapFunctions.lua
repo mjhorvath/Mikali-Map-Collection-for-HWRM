@@ -1,8 +1,8 @@
 --  Title: MapFunctions
---  Version: 1.23.4
+--  Version: 1.23.5
 --  Authors: Mikali
 --  Created: 2004/10/07
---  Updated: 2020/08/04
+--  Updated: 2021/06/03
 --  Website: http//isometricland.net/homeworld/homeworld.php
 --  Discussion:
 --  * http://forums.relicnews.com/showthread.php?t=48818
@@ -1764,6 +1764,7 @@ function randomBackground(tSeed, iMod, tTab)
 		print("MAP_TRACE: Level background: \"" .. backgroundTable[ranNum] .. "\" (" .. ranNum .. "/" .. iTot .. ")")
 	end
 end
+
 
 --------------------------------------------------------------------------------
 -- Mathematical shape functions

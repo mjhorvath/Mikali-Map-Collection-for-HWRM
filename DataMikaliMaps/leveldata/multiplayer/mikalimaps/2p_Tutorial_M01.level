@@ -1,13 +1,13 @@
--- (2P) Tutorial Mission No.3 v1.0.13 by Mikali
+-- (2P) Tutorial Mission No.3 v1.0.14 by Mikali
 -- Created: 2005/09/27
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Tutorial Mission No.3 1.0.13</c>"
+levelDesc = "<c=FF4800>Tutorial Mission No.3 1.0.14</c>"
 maxPlayers = 2
 player = {}
 
@@ -16,6 +16,8 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
+	local my_seed_1 = newseed(123456)
+
 	setWorldBoundsInner( { 0, 0, 0, }, { 30000, 30000, 30000, })
 	-- value set in m03
 --	setWorldBoundsInner( { 0, 0, 0, }, { 38314.52, 38314.52, 38314.52, })
@@ -27,7 +29,7 @@ function DetermChunk()
 --		addCloud("polySurface1", "cloud_text_" .. i, iCount[2], {1, 1, 1, 1}, 0, 4096)
 	end
 	for i, iCount in EasyPatches do
-		easyPatch(iCount[1])
+		easyPatch(iCount[1], 100, my_seed_1)
 	end
 	for i, iCount in Squadrons do
 		addSquadron(iCount[1], iCount[2], iCount[3], iCount[4], iCount[5], iCount[6], iCount[7])

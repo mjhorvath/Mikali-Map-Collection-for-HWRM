@@ -1,13 +1,13 @@
--- (6P) Curve Stitch v1.0.17 by Mikali
+-- (6P) Curve Stitch v1.0.18 by Mikali
 -- Created: 2013/09/05
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Curve Stitch 1.0.17</c>"
+levelDesc = "<c=FF4800>Curve Stitch 1.0.18</c>"
 maxPlayers = 6
 player = {}
 
@@ -16,7 +16,7 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
-	local my_seed_1 = {seed = -12345}
+	local my_seed_1 = newseed(123456)
 	local n = 20
 	local dim = 10000
 	local dim2 = 9000
@@ -96,7 +96,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -186573945}
+	local my_seed_1 = newseed(186573945)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

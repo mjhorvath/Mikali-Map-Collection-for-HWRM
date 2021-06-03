@@ -1,13 +1,13 @@
--- (6P) Gehenna v1.2.17 by Mikali
+-- (6P) Gehenna v1.2.18 by Mikali
 -- Created: 2004/02/24
--- Updated: 2016/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Gehenna 1.2.17</c>"
+levelDesc = "<c=FF4800>Gehenna 1.2.18</c>"
 maxPlayers = 6
 player = {}
 
@@ -49,7 +49,7 @@ local DCld_N3_M5 = "DustCloud_NoRes3_M05"
 
 function DetermChunk()
 	-- seed value for random functions
-	local my_seed_1 = {seed = -977322}
+	local my_seed_1 = newseed(977322)
 
 	setWorldBoundsInner({0,0,0,}, {47866.36,27599.16,44018.11,})
 

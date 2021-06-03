@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Hex Maze Small A 1.0.6</c>"
+seed_proto = 128374
+dofilepath("data:leveldata/multiplayer/mikalimaps/3p_Hex_Maze_Small_Proto.level")

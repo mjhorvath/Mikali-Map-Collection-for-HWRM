@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Flat Maze E 1.0.6</c>"
+seed_proto = 990713
+dofilepath("data:leveldata/multiplayer/mikalimaps/4p_Flat_Maze_Proto.level")

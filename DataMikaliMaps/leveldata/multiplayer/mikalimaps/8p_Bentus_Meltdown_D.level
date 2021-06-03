@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Bentus Meltdown D 1.6.10</c>"
+seed_proto = 148111
+dofilepath("data:leveldata/multiplayer/mikalimaps/8p_Bentus_Meltdown_Proto.level")

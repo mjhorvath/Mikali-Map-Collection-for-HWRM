@@ -1,0 +1,550 @@
+-- (6P) Hex Maze Big 1.0.7 by Mikali
+-- Created: 2015/03/24
+-- Updated: 2021/06/03
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: Top vs. Bottom
+-- Based on HexMaze, version 1.0, by Dan Rollins at Experts Exchange.
+-- http://www.experts-exchange.com/Programming/Languages/Scripting/JavaScript/A_7849-Hex-Maze.html
+-- Thanks also to Jon Mark Perry at Stack Exchange, as well as crufty.
+
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Hex Maze Big A 1.0.7</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+basedm = 8192
+modobj = "box_8192_64_8192"
+gnX = nil
+gnY = nil
+gtMaze = nil	   -- the TMaze object -- variables and functions
+radius = 4
+gnWide = radius * 2 - 1
+gnHigh = radius * 2 - 1
+hexWide = basedm*3/2
+hexHigh = basedm*sin(60)*2
+hexRad = basedm*sin(60)
+adjX = hexWide*(-radius+1)
+adjY = hexHigh*(-radius+1-mod(radius-1,2)/2)
+adjH = basedm/2
+startRad = hexRad*(radius+2)
+boundRad = hexRad*(radius+3)
+restrictTable = {}
+restrictCount = 0
+gride = {}
+grido = {}
+panelCoords = {}
+
+--------------------------------------------------------------------------------
+-- CONSTANTS
+--
+DIR_N = 0; DIR_NE = 1; DIR_SE = 2; DIR_S = 3; DIR_SW = 4; DIR_NW = 5;
+DOOR_N = 1; DOOR_NE = 2; DOOR_SE = 4; DOOR_S = 8; DOOR_SW = 16; DOOR_NW = 32; DOOR_ALL = 63;
+
+
+
+--==============================================================================
+--==============================================================================
+--==============================================================================
+
+
+--------------------------------------------------------------------------------
+-- generate the debug text
+--
+function PrintMaze()
+	local s = "";
+	for y = 1, gtMaze.high do
+		------------------------- first line of images per cell row
+		for x = 1, gtMaze.wide do
+			local v = gtMaze:GetCell(x, y)
+			if (mod(x,2) == 1) then
+				if (v < 10) then
+					s = s .. "0" .. v
+				else
+					s = s .. v
+				end
+			else
+				s = s .. "--"
+			end
+		end
+		s = s .. "\n"
+		------------------------- second line of images per cell row
+		for x = 1, gtMaze.wide do
+			local v = gtMaze:GetCell(x, y)
+			if (mod(x,2) == 0) then
+				if (v < 10) then
+					s = s .. "0" .. v
+				else
+					s = s .. v
+				end
+			else
+				s = s .. "--"
+			end
+		end
+		s = s .. "\n"
+	end
+	print(s)
+end
+
+--------------------------------------------------------------------------------
+-- generate the inner HTML (all of the img objects)
+--
+function BuildMaze()
+	for y = 1, gtMaze.high do
+		local cooy = (y-1) * hexHigh + adjY
+		for x = 1, gtMaze.wide do
+			local coox = (x-1) * hexWide + adjX
+			local v = gtMaze:GetCell(x, y)
+			if (v ~= 0) then
+				if (mod(x-1,2) == 0) then
+					local trans = {coox, adjH, cooy}
+					addAsteroid("Asteroid_M_5", trans, 100, 0, 0, 0, 0)
+					if (bit.band(v, DOOR_N) == 0) then
+						panelN(trans)
+					end
+					if (bit.band(v, DOOR_NE) == 0) then
+						panelNE(trans)
+					end
+					if (bit.band(v, DOOR_SE) == 0) then
+						panelSE(trans)
+					end
+					if (bit.band(v, DOOR_S) == 0) then
+						panelS(trans)
+					end
+					if (bit.band(v, DOOR_SW) == 0) then
+						panelSW(trans)
+					end
+					if (bit.band(v, DOOR_NW) == 0) then
+						panelNW(trans)
+					end
+				else
+					local trans = {coox, adjH, cooy + hexHigh/2}
+					addAsteroid("Asteroid_M_5", trans, 100, 0, 0, 0, 0)
+					if (bit.band(v, DOOR_N) == 0) then
+						panelN(trans)
+					end
+					if (bit.band(v, DOOR_NE) == 0) then
+						panelNE(trans)
+					end
+					if (bit.band(v, DOOR_SE) == 0) then
+						panelSE(trans)
+					end
+					if (bit.band(v, DOOR_S) == 0) then
+						panelS(trans)
+					end
+					if (bit.band(v, DOOR_SW) == 0) then
+						panelSW(trans)
+					end
+					if (bit.band(v, DOOR_NW) == 0) then
+						panelNW(trans)
+					end
+				end
+			end
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+function ClearTheMaze()
+	gtMaze = TMaze
+	gtMaze.high = gnHigh
+	gtMaze.wide = gnWide
+	gtMaze.ary = TMazeArray(gnHigh, gnWide)
+	gtMaze.totRooms = gnHigh * gnWide - restrictCount
+	gtMaze.curRoomCnt = 0
+	for y = 1, gtMaze.high do
+		for x = 1, gtMaze.wide do
+			gtMaze.ary[y][x] = 0
+		end
+	end
+end
+
+--==============================================================================
+--==============================================================================
+--==============================================================================
+
+--------------------------------------------------------------------------------
+-- Create the maze, using the incremental technique to enable 
+-- watching the creation process
+--
+function DoCreate(tSeed)
+	ClearTheMaze()	   -- set all cells to 0
+
+	gnX = floor(gtMaze.wide/2)
+	gnY = floor(gtMaze.high/2)
+	gtMaze.curRoomCnt = 1  -- account for the entry room
+
+	while (gtMaze.curRoomCnt < gtMaze.totRooms) do
+		DoOneStepCreate(tSeed)
+		gtMaze.curRoomCnt = gtMaze.curRoomCnt + 1
+	end
+
+	PrintMaze()
+	BuildMaze()
+end
+
+--------------------------------------------------------------------------------
+-- Perform one step of the creation process
+-- Add a door to a room and the adjacent room
+-- If stuck, scan for a place to branch
+--
+function DoOneStepCreate(tSeed)
+	local anDirs = {}							-- N, WE, SE, S, SW, NW
+	local nDirCnt = GetDirs(gnX, gnY, anDirs)	-- Fill anDirs with valid directions to move from here
+
+	while (nDirCnt == 0) do					-- Trapped! Look for a room I've been in
+		gnY = gnY + 1						-- that is next to a doorless one
+		if (gnY > gtMaze.high) then
+			gnY = 1
+			gnX = gnX + 1
+			if (gnX > gtMaze.wide) then
+				gnX = 1
+			end
+		end
+		if (gtMaze:GetCell(gnX, gnY) ~= 0) then
+			nDirCnt = GetDirs(gnX, gnY, anDirs)
+		end
+	end
+
+	---------- It is now possible to move to another room
+	local nDirIdx = RndmInt(tSeed, 0, nDirCnt)		-- 0 thru possible dirs -- pick one at random
+	local nDir = anDirs[nDirIdx+1]			-- 0, 1, 2, 3, 4,  or 5  (direction code)
+	local nDoorVal = bit.blshift(1, nDir)	-- 1, 2, 4, 8, 16, or 32 (door value)
+	gtMaze:SetCellBit(gnX, gnY, nDoorVal)	-- put the door in place
+
+	local o = gtMaze:GetNewXY(gnX, gnY, nDir)
+	gnX = o.newX							-- move into that room
+	gnY = o.newY
+											--======= set door in this room, too
+	nDir = mod(nDir+3, 6)					--=== clockwize opposite (1->4, 2->5, 3->0, etc
+	nDoorVal = bit.blshift(1, nDir)			-- 1, 2, 4, 8, 16, or 32 (door value)
+	gtMaze:SetCellBit(gnX, gnY, nDoorVal)	-- put the door in place
+end
+
+--------------------------------------------------------------------------------
+-- See which directions are possible; populate array anDirs
+--
+function GetDirs(x, y, anDirs)
+	local nCnt = 0
+	local f = gtMaze:IsEmptyCellAt(x, y, DIR_N)
+	if (f == 1) then
+		anDirs[nCnt+1] = DIR_N			-- can go N
+		nCnt = nCnt + 1
+	end
+	f = gtMaze:IsEmptyCellAt(x, y, DIR_NE)
+	if (f == 1) then
+		anDirs[nCnt+1] = DIR_NE			-- can go NE
+		nCnt = nCnt + 1
+	end
+	f = gtMaze:IsEmptyCellAt(x, y, DIR_SE)
+	if (f == 1) then
+		anDirs[nCnt+1] = DIR_SE			-- can go SE
+		nCnt = nCnt + 1
+	end
+	f = gtMaze:IsEmptyCellAt(x, y, DIR_S)
+	if (f == 1) then
+		anDirs[nCnt+1] = DIR_S			-- can go S
+		nCnt = nCnt + 1
+	end
+	f = gtMaze:IsEmptyCellAt(x, y, DIR_SW)
+	if (f == 1) then
+		anDirs[nCnt+1] = DIR_SW			-- can go SW
+		nCnt = nCnt + 1
+	end
+	f = gtMaze:IsEmptyCellAt(x, y, DIR_NW)
+	if (f == 1) then
+		anDirs[nCnt+1] = DIR_NW			-- can go NW
+		nCnt = nCnt + 1
+	end
+	return nCnt
+end
+
+--------------------------------------------------------------------------------
+-- utility fn:  get a random integer in the specified range, inclusive
+--
+function RndmInt(tseed, min, max)
+	local tmp = srandom(tseed) * (max-min)
+	return floor(tmp) + min
+end
+
+
+--==============================================================================
+--==============================================================================
+--==============================================================================
+
+--------------------------------------------------------------------------------
+-- The TMaze object
+--
+TMaze =
+{
+	high = 0,
+	wide = 0,
+	ary = {},
+    totRooms = 0,
+	curRoomCnt = 0,		-- rooms that have been visited/door opened
+}
+function TMaze:GetCell(x,y) return self.ary[y][x] end
+function TMaze:SetCell(x,y,value) self.ary[y][x] = value end
+function TMaze:HasCellBit(x,y,value) return bit.band(self.ary[y][x], value) == value end
+function TMaze:SetCellBit(x,y,value) self.ary[y][x] = bit.bor(self.ary[y][x], value) end
+function TMaze:ClearCellBit(x,y,value) self.ary[y][x] = bit.band(self.ary[y][x], bit.bnot(value)) end
+function TMaze:ToggleCellBit(x,y,value) self.ary[y][x] = bit.bxor(self.ary[y][x], value) end
+
+
+--------------------------------------------------------------------------------
+-- TRUE if cell in that direction is empty and valid
+--
+function TMaze:IsEmptyCellAt(x, y, dir)
+	local o = self:GetNewXY(x, y, dir)
+	if (self:IsValidXY(o.newX, o.newY) ~= 1) then return 0 end
+	if (self:GetCell(o.newX, o.newY) ~= 0) then return 0 end
+	return 1  -- yes, it's possible to move into that cell
+end
+
+
+--------------------------------------------------------------------------------
+-- return -1 if that would be an invalid move (off the board)
+-- true if X,Y is on the board
+--
+function TMaze:IsValidXY(x, y)
+	if (y < 1) then return 0 end
+	if (y > self.high) then return 0 end
+	if (x < 1) then return 0 end
+	if (x > self.wide) then return 0 end
+	if (restrictTable[y][x] == 1) then return 0 end
+	return 1  -- possible to move into that direction
+end
+
+
+--------------------------------------------------------------------------------
+-- If I move in a direction, what are the new X,Y values?
+-- Return an object with newX and newY properties
+--
+function TMaze:GetNewXY(x, y, dir)
+	local oRet = {newX=-1, newY=-1, isValid=0}
+	local newX = x
+	local newY = y
+
+	------------------------------- delta arrays  00 offsets to add to 
+	------------------------------- X,Y when moving in any of 6 directions
+	local ganDeltaX = {}
+	local ganDeltaY = {}
+
+	ganDeltaX[DIR_N+1]  = 0
+	ganDeltaX[DIR_S+1]  = 0
+	ganDeltaX[DIR_NE+1] = 1  
+	ganDeltaX[DIR_SE+1] = 1  
+	ganDeltaX[DIR_SW+1] =-1  
+	ganDeltaX[DIR_NW+1] =-1
+
+	ganDeltaY[DIR_N+1]  =-1
+	ganDeltaY[DIR_S+1]  = 1
+
+	if (mod(x,2) == 1) then
+		ganDeltaY[DIR_NE+1]  =-1
+		ganDeltaY[DIR_SE+1]  = 0
+		ganDeltaY[DIR_SW+1]  = 0
+		ganDeltaY[DIR_NW+1]  =-1
+	else
+		ganDeltaY[DIR_NE+1]  = 0
+		ganDeltaY[DIR_SE+1]  = 1
+		ganDeltaY[DIR_SW+1]  = 1
+		ganDeltaY[DIR_NW+1]  = 0
+	end
+
+	newX = newX + ganDeltaX[dir+1]  -- add the deltas
+	newY = newY + ganDeltaY[dir+1]
+
+	if (self:IsValidXY(newX, newY) == 1) then
+		oRet.newX = newX
+		oRet.newY = newY
+		oRet.isValid = 1
+	end
+	return oRet
+end
+
+
+--------------------------------------------------------------------------------
+-- The 2-dimensional array that contains the cell information
+--
+function TMazeArray(nHigh, nWide)
+	local a = {}
+	for i = 1, nHigh do
+		a[i] = {}
+		for j = 1, nWide do
+			a[i][j] = 0
+		end
+	end
+	return a
+end
+
+
+--==============================================================================
+--==============================================================================
+--==============================================================================
+
+for y = 1, gnHigh do
+	restrictTable[y] = {}
+	for x = 1, gnWide do
+		restrictTable[y][x] = 0
+	end
+end
+
+for y = 1, gnHigh do
+	gride[y] = {}
+	grido[y] = {}
+	for x = 1, radius do
+		gride[y][x] = 0
+		grido[y][x] = 0
+	end
+end
+
+--------------------------------------------------------------------------------
+function makeHexagon()
+	cne = ceil(radius/2) - mod(radius,2)
+	for y = 1, gnHigh do
+		for x = 1, cne do
+			gride[y][x] = 1
+			gride[y][radius-x+1] = 1
+		end
+		if (y < radius) then
+			cne = cne - 1
+		elseif (y > radius-mod(radius,2)) then
+			cne = cne + 1
+		end
+	end
+	cne = ceil(radius/2) - mod(radius,2) - 1
+	for y = 1, gnHigh do
+		for x = 1, cne do
+			grido[y][x] = 1
+			grido[y][radius-x] = 1
+		end
+		if (y < radius-mod(radius,2)) then
+			cne = cne - 1
+		elseif (y > radius-1) then
+			cne = cne + 1
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+function combineTables()
+	for y = 1, gnHigh do
+		for x = 1, gnWide do
+			if (mod(x,2) == 1) then
+				local value = gride[y][ceil(x/2)]
+				restrictTable[y][x] = value
+				restrictCount = restrictCount + value
+			else
+				local value = grido[y][x/2]
+				restrictTable[y][x] = value
+				restrictCount = restrictCount + value
+			end
+		end
+	end
+end
+
+
+--==============================================================================
+--==============================================================================
+--==============================================================================
+
+--------------------------------------------------------------------------------
+function checkPanelCoords(in_coo)
+	for i = 1, getn(panelCoords) do
+		local this_coo = panelCoords[i]
+		if ((abs(this_coo[1] - in_coo[1]) < 100) and (abs(this_coo[3] - in_coo[3]) < 100)) then
+			return 0
+		end
+	end
+	tinsert(panelCoords, in_coo)
+	return 1
+end
+
+--------------------------------------------------------------------------------
+function panelN(trans)
+	local new_coo = vaddV(vrotate({hexRad,0,0}, {0, 90,0}), trans)
+	if (checkPanelCoords(new_coo) == 1) then
+		addSquadron("none", modobj, new_coo, -1, {90, 90+90,0,}, 1, 0)
+	end
+end
+function panelNE(trans)
+	local new_coo = vaddV(vrotate({hexRad,0,0}, {0, 30,0}), trans)
+	if (checkPanelCoords(new_coo) == 1) then
+		addSquadron("none", modobj, new_coo, -1, {90, 30+90,0,}, 1, 0)
+	end
+end
+function panelSE(trans)
+	local new_coo = vaddV(vrotate({hexRad,0,0}, {0,330,0}), trans)
+	if (checkPanelCoords(new_coo) == 1) then
+		addSquadron("none", modobj, new_coo, -1, {90,330+90,0,}, 1, 0)
+	end
+end
+function panelS(trans)
+	local new_coo = vaddV(vrotate({hexRad,0,0}, {0,270,0}), trans)
+	if (checkPanelCoords(new_coo) == 1) then
+		addSquadron("none", modobj, new_coo, -1, {90,270+90,0,}, 1, 0)
+	end
+end
+function panelSW(trans)
+	local new_coo = vaddV(vrotate({hexRad,0,0}, {0,210,0}), trans)
+	if (checkPanelCoords(new_coo) == 1) then
+		addSquadron("none", modobj, new_coo, -1, {90,210+90,0,}, 1, 0)
+	end
+end
+function panelNW(trans)
+	local new_coo = vaddV(vrotate({hexRad,0,0}, {0,150,0}), trans)
+	if (checkPanelCoords(new_coo) == 1) then
+		addSquadron("none", modobj, new_coo, -1, {90,150+90,0,}, 1, 0)
+	end
+end
+
+
+--==============================================================================
+--==============================================================================
+--==============================================================================
+
+function DetermChunk()
+	local my_seed_1 = newseed(seed_proto)
+
+	addPoint("StartPos0", vrotate({startRad,adjH,0}, {0, 35,0}), {0,305, 0})
+	addPoint("StartPos1", vrotate({startRad,adjH,0}, {0, 95,0}), {0,  5, 0})
+	addPoint("StartPos2", vrotate({startRad,adjH,0}, {0,155,0}), {0, 95, 0})
+	addPoint("StartPos3", vrotate({startRad,adjH,0}, {0,215,0}), {0,125, 0})
+	addPoint("StartPos4", vrotate({startRad,adjH,0}, {0,275,0}), {0,185, 0})
+	addPoint("StartPos5", vrotate({startRad,adjH,0}, {0,335,0}), {0,245, 0})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+--	addCloud("polySurface1", "cloud_text_1", vrotate({startRad,adjH,0}, {0, 35,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_2", vrotate({startRad,adjH,0}, {0, 95,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_3", vrotate({startRad,adjH,0}, {0,155,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_4", vrotate({startRad,adjH,0}, {0,215,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_5", vrotate({startRad,adjH,0}, {0,275,0}), {1, 1, 1, 1}, 0, 4096)
+--	addCloud("polySurface1", "cloud_text_6", vrotate({startRad,adjH,0}, {0,335,0}), {1, 1, 1, 1}, 0, 4096)
+
+--	addAsteroid("Asteroid_M_5", {10000,0,0}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,10000,0}, 100, 0, 0, 0, 0)
+--	addAsteroid("Asteroid_M_5", {0,0,10000}, 100, 0, 0, 0, 0)
+
+	makeHexagon()
+	combineTables()
+	DoCreate(my_seed_1)
+
+	setWorldBoundsInner({0,adjH,0}, {boundRad,adjH,boundRad})
+end
+
+function NonDetermChunk()
+	local my_seed_1 = newseed(seed_proto)
+	fogSetActive(0)
+	setGlareIntensity(0.000000)
+	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)
+	setSensorsManagerCameraDistances(0, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end

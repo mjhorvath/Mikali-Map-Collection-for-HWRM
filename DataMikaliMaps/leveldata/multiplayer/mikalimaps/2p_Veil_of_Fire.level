@@ -1,13 +1,13 @@
--- (2P) Veil of Fire v1.2.12 by Mikali
+-- (2P) Veil of Fire v1.2.13 by Mikali
 -- Created: 2004/02/12
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: Top vs. Bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Veil of Fire 1.2.12</c>"
+levelDesc = "<c=FF4800>Veil of Fire 1.2.13</c>"
 maxPlayers = 2
 player = {}
 
@@ -16,6 +16,8 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
+	local my_seed_1 = newseed(123456)
+
 	setWorldBoundsInner({0, 0, -3822.71,}, {50854.06, 37625.76, 55413.49,})
 	setWorldBoundsInner({-4957.07, 0, 0,}, {46720.12, 19706.58, 44159.92,})
 
@@ -27,7 +29,7 @@ function DetermChunk()
 	end
 
 	for i, iCount in EasyPatches do
-		easyPatch(iCount[1])
+		easyPatch(iCount[1], 100, my_seed_1)
 	end
 
 	for i, iCount in Squadrons do

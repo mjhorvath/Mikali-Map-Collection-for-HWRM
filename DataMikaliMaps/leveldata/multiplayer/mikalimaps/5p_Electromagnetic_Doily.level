@@ -1,13 +1,13 @@
--- (5P) Electromagnetic Doily v1.2.14 by Mikali
+-- (5P) Electromagnetic Doily v1.2.15 by Mikali
 -- Created: 2013/09/05
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: any
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Electromagnetic Doily 1.2.14</c>"
+levelDesc = "<c=FF4800>Electromagnetic Doily 1.2.15</c>"
 maxPlayers = 5
 player = {}
 
@@ -16,7 +16,7 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
-	local my_seed_1 = {seed = -12345}
+	local my_seed_1 = newseed(12345)
 
 	setWorldBoundsInner({0, 0, 0}, {40000, 20000, 30000})
 
@@ -72,7 +72,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -9735893678334}
+	local my_seed_1 = newseed(9735893678334)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

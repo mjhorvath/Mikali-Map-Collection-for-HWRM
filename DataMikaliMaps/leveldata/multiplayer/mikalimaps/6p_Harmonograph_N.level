@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Harmonograph Random 1.2.13</c>"
+seed_proto = random(757142)
+dofilepath("data:leveldata/multiplayer/mikalimaps/6p_Harmonograph_Proto.level")

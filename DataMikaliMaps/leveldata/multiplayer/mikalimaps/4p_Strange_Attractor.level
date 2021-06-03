@@ -1,13 +1,13 @@
--- (4P) Strange Attractor v1.0.15 by Mikali
+-- (4P) Strange Attractor v1.0.16 by Mikali
 -- Created: 2013/08/28
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: random
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Strange Attractor 1.0.15</c>"
+levelDesc = "<c=FF4800>Strange Attractor 1.0.16</c>"
 maxPlayers = 4
 player = {}
 
@@ -16,7 +16,7 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
-	local my_seed_1 = {seed = -12345}
+	local my_seed_1 = newseed(12345)
 	local StartCoordinates = {}
 
 	setWorldBoundsInner({0, 0, 0}, {30000, 30000, 30000})
@@ -75,7 +75,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -43207998045}
+	local my_seed_1 = newseed(43207998045)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

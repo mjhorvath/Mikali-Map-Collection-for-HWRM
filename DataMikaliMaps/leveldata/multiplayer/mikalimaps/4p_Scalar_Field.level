@@ -1,13 +1,13 @@
--- (4P) Scalar Field v1.0.14 by Mikali
+-- (4P) Scalar Field v1.0.15 by Mikali
 -- Created: 2013/09/19
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Scalar Field 1.0.14</c>"
+levelDesc = "<c=FF4800>Scalar Field 1.0.15</c>"
 maxPlayers = 4
 player = {}
 
@@ -16,9 +16,9 @@ for k = 0, maxPlayers - 1 do
 end
 
 function DetermChunk()
-	local my_seed_1 = {seed = -235}
-	local my_seed_2 = {seed = -67890}
-	local my_seed_3 = {seed = -67890}
+	local my_seed_1 = newseed(235)
+	local my_seed_2 = newseed(67890)
+	local my_seed_3 = newseed(67890)
 
 	local plane_height = 18000
 	local my_coordinates_1 = {}
@@ -76,7 +76,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -408093248745}
+	local my_seed_1 = newseed(408093248745)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0, 0, 0, 1)

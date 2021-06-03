@@ -1,0 +1,106 @@
+-- (8P) Spline Crazy v1.4.11 by Mikali
+-- Created: 2013/09/17
+-- Updated: 2021/06/03
+-- Homepage: http://isometricland.net/homeworld/homeworld.php
+-- Teams: top vs. bottom
+-- Notes:
+--   1. Should maybe check and make sure the spline endpoints aren't too close 
+--      to one another.
+
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+--levelDesc = "<c=FF4800>Spline Crazy 1.4.11</c>"
+maxPlayers = 8
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+	-- seed value for random functions
+	local my_seed_1 = newseed(seed_proto)
+	local cloudColor = {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1/4}
+	local startPointsTable = {}
+
+	setWorldBoundsInner({0, 0, 0,}, {75000, 75000, 75000,})
+
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+
+	-- distributions
+	local threeRings =
+	{
+		-- addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
+		{ 64, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
+		-- addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
+		{  8, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
+		{  4, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
+		-- addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
+		{  4, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, cloudColor, 0, srandom(my_seed_1, 15000),},
+		{  4, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, cloudColor, 0, srandom(my_seed_1, 15000),},
+		{  4, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, cloudColor, 0, srandom(my_seed_1, 15000),},
+		{  4, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, cloudColor, 0, srandom(my_seed_1, 15000),},
+		-- addCoordinate(<tTableObj>, <tPosition>)
+		{  1, "Coordinate", startPointsTable, {0,0,0,}, {0,0,0,},},
+	}
+
+	local aPoint = {}
+	local aRadius = {}
+	local aU = {}
+	local aV = {}
+	local aR = {}
+	local iMax = 32		-- minimum 18 for an 8-player map
+	local stepU = 360/iMax * 4
+	local stepV = 180/iMax * 4
+	for i = 1, iMax do
+		if (i == 1) then
+			aU[i] = srandom(my_seed_1, stepU)
+			aV[i] = srandom(my_seed_1, stepV)
+			aR[i] = sqrt(sqrt(srandom(my_seed_1))) * 50000
+		else
+			aU[i] = aU[i - 1] + srandom(my_seed_1, stepU)
+			aV[i] = aV[i - 1] + srandom(my_seed_1, stepV)
+			aR[i] = sqrt(sqrt(srandom(my_seed_1))) * 50000
+		end
+		aPoint[i] =
+		{
+			aR[i] * cos(aU[i]) * sin(aV[i]),
+			aR[i] * cos(aV[i]) * 2/3,
+			aR[i] * sin(aU[i]) * sin(aV[i]),
+		}
+		aRadius[i] = srandom(my_seed_1, 4000) + 100
+		if (i > 3) and (mod(i, 2) == 0) then
+			-- spline3Add(<tPos>, <tDst>, {<tP1A>, <tP1B>, <tP2A>, <tP2B>, <tRad>, <tThk>,}, <tRot>, <tSeed>)
+			spline3Add({0,0,0,}, threeRings, {aPoint[i-3], aPoint[i-2], aPoint[i-1], aPoint[i], {aRadius[i-2], aRadius[i]}, {100,100}}, {0,0,0}, my_seed_1)
+		end
+	end
+
+	-- there may be many spline segments, but we need only one random segment per player
+	local iPlayer = 1
+	local playerTable = {}
+	while iPlayer <= maxPlayers do
+		local splineNumber = getn(startPointsTable)
+		local iTemp = srandom(my_seed_1, 1, splineNumber)
+		if (playerTable[iTemp] == nil) then
+			local tLocation = startPointsTable[iTemp]
+			playerTable[iTemp] = iPlayer
+			-- addPoint(<sPointName>, <tPosition>, <tRotation>)
+			addPoint("StartPos" .. (iPlayer-1), tLocation, {0,0,0,})
+			-- addCloud(<sCloudName>, <sCloudType>, <tPosition>, <tColor>, ?, <fRadius>)
+--			addCloud("polySurface1", "cloud_text_" .. iPlayer, tLocation, {1, 1, 1, 1}, 0, 4096)
+			iPlayer = iPlayer + 1
+		end
+	end
+end
+
+function NonDetermChunk()
+	local my_seed_1 = newseed(seed_proto)
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0, 0, 0, 1)
+	setSensorsManagerCameraDistances(10000, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end

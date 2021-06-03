@@ -1,13 +1,13 @@
--- (4P) The Squid v1.2.4 by Mikali
+-- (4P) The Squid v1.2.5 by Mikali
 -- Created: 2005/09/05
--- Updated: 2020/08/04
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>The Squid 1.2.4</c>"
+levelDesc = "<c=FF4800>The Squid 1.2.5</c>"
 maxPlayers = 4
 player = {}
 
@@ -17,12 +17,12 @@ end
 
 function DetermChunk()
 	-- seed value for random functions, should be less than 65536
-	local my_seed_1 = {seed = -12345}
-	local my_seed_2 = {seed = -12345}
-	local my_seed_3 = {seed = -12345}
-	local my_seed_4 = {seed = -12345}
-	local my_seed_5 = {seed = -12345}
-	local my_seed_6 = {seed = -12345}
+	local my_seed_1 = newseed(12345)
+	local my_seed_2 = newseed(12345)
+	local my_seed_3 = newseed(12345)
+	local my_seed_4 = newseed(12345)
+	local my_seed_5 = newseed(12345)
+	local my_seed_6 = newseed(12345)
 	local AstPerc = 100
 
 	setWorldBoundsInner({0,0,0,}, {50000, 50000, 50000,})
@@ -70,7 +70,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -2198845}
+	local my_seed_1 = newseed(2198845)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0,0,0,1)

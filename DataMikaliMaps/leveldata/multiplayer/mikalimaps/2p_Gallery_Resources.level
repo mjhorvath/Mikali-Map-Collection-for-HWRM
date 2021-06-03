@@ -1,13 +1,13 @@
--- (2P) Resource Gallery v2.0.2 by Mikali
+-- (2P) Resource Gallery v2.0.3 by Mikali
 -- Created: 2004/01/21
--- Updated: 2020/08/11
+-- Updated: 2021/06/03
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
 -- Teams: top vs. bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Gallery - Resources 2.0.2</c>"
+levelDesc = "<c=FF4800>Gallery - Resources 2.0.3</c>"
 maxPlayers = 2
 player = {}
 loadHW1 = false
@@ -219,7 +219,7 @@ function DetermChunk()
 end
 
 function NonDetermChunk()
-	local my_seed_1 = {seed = -19082105445}
+	local my_seed_1 = newseed(19082105445)
 	fogSetActive(0)
 	setGlareIntensity(0)
 	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)

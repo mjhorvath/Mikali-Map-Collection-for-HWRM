@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Plasma Globe D 1.0.15</c>"
+seed_proto = 560049
+dofilepath("data:leveldata/multiplayer/mikalimaps/4p_Plasma_Globe_Proto.level")

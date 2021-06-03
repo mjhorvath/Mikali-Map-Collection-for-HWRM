@@ -1,0 +1,3 @@
+levelDesc = "<c=FF4800>Spline Crazy D 1.4.11</c>"
+seed_proto = 760900
+dofilepath("data:leveldata/multiplayer/mikalimaps/8p_Spline_Crazy_Proto.level")
