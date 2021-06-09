@@ -82,7 +82,7 @@ LevelList =
 	{Tags = "6p",	Name = "6p_Metaballs_II_E",		Desc = "<c=FF4800>Metaballs II E 1.2.3</c>",		MaxPlayers = 6,},
 	{Tags = "6p",	Name = "6p_Metaballs_II_N",		Desc = "<c=FF4800>Metaballs II Random 1.2.3</c>",	MaxPlayers = 6,},
 	{Tags = "6p",	Name = "6p_Voronoi_Steppes",		Desc = "<c=FF4800>Voronoi Steppes 1.0.12</c>",		MaxPlayers = 6,},
-	{Tags = "8p",	Name = "8p_Andromeda",			Desc = "<c=FF4800>Andromeda 1.6.7</c>",			MaxPlayers = 8,},
+	{Tags = "8p",	Name = "8p_Andromeda",			Desc = "<c=FF4800>Andromeda 1.7.0</c>",			MaxPlayers = 8,},
 	{Tags = "8p",	Name = "8p_Bentus_Meltdown_A",		Desc = "<c=FF4800>Bentus Meltdown A 1.6.10</c>",	MaxPlayers = 8,},
 	{Tags = "8p",	Name = "8p_Bentus_Meltdown_B",		Desc = "<c=FF4800>Bentus Meltdown B 1.6.10</c>",	MaxPlayers = 8,},
 	{Tags = "8p",	Name = "8p_Bentus_Meltdown_C",		Desc = "<c=FF4800>Bentus Meltdown C 1.6.10</c>",	MaxPlayers = 8,},
