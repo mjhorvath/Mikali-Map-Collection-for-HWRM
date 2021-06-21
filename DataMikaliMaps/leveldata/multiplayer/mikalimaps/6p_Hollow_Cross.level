@@ -1,0 +1,87 @@
+-- Caption: (6P) Hollow Cross v1.0.0
+-- Authors: Mikali
+-- Created: 2021/06/21
+-- Updated: 2021/06/21
+-- Website: http://isometricland.net
+-- Teams:   2 vs. 2 vs. 2
+
+dofilepath("data:scripts/utilfunc.lua")
+dofilepath("data:scripts/MapFunctions.lua")
+
+levelDesc = "<c=FF4800>Hollow Cross 1.0.0</c>"
+maxPlayers = 6
+player = {}
+
+for k = 0, maxPlayers - 1 do
+	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
+end
+
+function DetermChunk()
+--	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+	local my_seed_1 = newseed(190805)
+	setWorldBoundsInner({0, 0, 0}, {32768*2, 32768*2, 32768*2})
+
+	addPoint("StartPos0", {-32768*15/16,0,0}, {0, 90,0})
+	addPoint("StartPos1", { 32768*15/16,0,0}, {0,270,0})
+	addPoint("StartPos4", {0,-32768*15/16,0}, {0,  0,0})
+	addPoint("StartPos5", {0, 32768*15/16,0}, {0,180,0})
+	addPoint("StartPos2", {0,0,-32768*15/16}, {0,  0,0})
+	addPoint("StartPos3", {0,0, 32768*15/16}, {0,180,0})
+
+	staticPatch({0,0,0}, 100)
+	staticPatch({-32768/1,0,0}, 100)
+	staticPatch({ 32768/1,0,0}, 100)
+	staticPatch({0,-32768/1,0}, 100)
+	staticPatch({0, 32768/1,0}, 100)
+	staticPatch({0,0,-32768/1}, 100)
+	staticPatch({0,0, 32768/1}, 100)
+
+	addAsteroid("Asteroid_M_5", {0,0,0}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", {-32768/1,0,0}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", { 32768/1,0,0}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", {0,-32768/1,0}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", {0, 32768/1,0}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", {0,0,-32768/1}, 100, 0, 0, 0, 0)
+	addAsteroid("Asteroid_M_5", {0,0, 32768/1}, 100, 0, 0, 0, 0)
+
+	addSquadron("noname", "box_32768_64_32768", {-32768/1,0,-32768/2}, -1, {90,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {-32768/1,0, 32768/2}, -1, {90,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {-32768/1,-32768/2,0}, -1, {0,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {-32768/1, 32768/2,0}, -1, {0,0,0}, 1, 0)
+
+	addSquadron("noname", "box_32768_64_32768", { 32768/1,0,-32768/2}, -1, {90,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/1,0, 32768/2}, -1, {90,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/1,-32768/2,0}, -1, {0,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/1, 32768/2,0}, -1, {0,0,0}, 1, 0)
+
+	addSquadron("noname", "box_32768_64_32768", {-32768/2,0,-32768/1}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/2,0,-32768/1}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0,-32768/2,-32768/1}, -1, {0,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0, 32768/2,-32768/1}, -1, {0,0,0}, 1, 0)
+
+	addSquadron("noname", "box_32768_64_32768", {-32768/2,0, 32768/1}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/2,0, 32768/1}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0,-32768/2, 32768/1}, -1, {0,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0, 32768/2, 32768/1}, -1, {0,0,0}, 1, 0)
+
+	addSquadron("noname", "box_32768_64_32768", {-32768/2,-32768/1,0}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/2,-32768/1,0}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0,-32768/1,-32768/2}, -1, {90,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0,-32768/1, 32768/2}, -1, {90,0,0}, 1, 0)
+
+	addSquadron("noname", "box_32768_64_32768", {-32768/2, 32768/1,0}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", { 32768/2, 32768/1,0}, -1, {0,0,90}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0, 32768/1,-32768/2}, -1, {90,0,0}, 1, 0)
+	addSquadron("noname", "box_32768_64_32768", {0, 32768/1, 32768/2}, -1, {90,0,0}, 1, 0)
+end
+
+function NonDetermChunk()
+	local my_seed_1 = newseed(190805)
+	fogSetActive(0)
+	setGlareIntensity(0)
+	setLevelShadowColour(0.000000, 0.000000, 0.000000, 1.0)
+	setSensorsManagerCameraDistances(0, 100000)
+	randomBackground(my_seed_1, 1)
+	randomMusic(my_seed_1, 1)
+	randomBattleMusic(my_seed_1, 1)
+end

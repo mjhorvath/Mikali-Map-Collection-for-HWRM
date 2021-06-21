@@ -1,8 +1,8 @@
 ﻿Caption:	Mikali's Multiplayer Map Collection
-Version:	1.28.1
+Version:	1.29.0
 Authors:	Mikali
 Created:	2004/11/14
-Updated:	2021/06/09
+Updated:	2021/06/21
 License:	Attribution 4.0 International (CC BY 4.0)
 Website:	http://isometricland.net/homeworld/homeworld.php
 GitHub:		https://github.com/mjhorvath/Mikali-Maps-for-Homeworld-Remastered
@@ -220,6 +220,10 @@ CREDITS
 
 
 CHANGE LOG
+
+1.29.0 - 2021/06/21
+• Tweaks to "Go Around Cube" so that asteroid doesn't disappear when zooming.
+• New map "Hollow Cross".
 
 1.28.1 - 2021/06/09
 • Tweaked "Andromeda". Fewer resources. Resources spread out more.

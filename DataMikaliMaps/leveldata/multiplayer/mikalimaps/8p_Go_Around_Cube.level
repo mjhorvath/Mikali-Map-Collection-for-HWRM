@@ -1,16 +1,13 @@
--- (2P) Go Around Cube v1.0.0 by Mikali
+-- (8P) Go Around Cube v1.0.1 by Mikali
 -- Created: 2021/06/03
--- Updated: 2021/06/03
+-- Updated: 2021/06/21
 -- Homepage: http://isometricland.net/homeworld/homeworld.php
--- Teams: 1 vs. 1
--- Notes:
--- 1. Should make use of vertical axis more.
--- 2. Place the RU deposits at the vertices of an octahedron.
+-- Teams: Top vs. Bottom
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
-levelDesc = "<c=FF4800>Go Around Cube 1.0.0</c>"
+levelDesc = "<c=FF4800>Go Around Cube 1.0.1</c>"
 maxPlayers = 8
 player = {}
 
@@ -20,19 +17,6 @@ end
 
 function DetermChunk()
 	local my_seed_1 = newseed(190805)
-
-	-- distributions
-	local spiralRings =
-	{
---		addPebble(<sPebbleType>, <tPosition>, ?, ?, ?)
-		{ 0, "Pebble", "pebble_m_2", {0,0,0,}, 0, 0, 0,},
---		addAsteroid(<sAsteroidType>, <tPosition>, <fRU>, ?, ?, ?, ?)
-		{ 30, "Asteroid", "Asteroid_M_2", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  0, "Asteroid", "Asteroid_M_3", {0,0,0,}, 100, 0, 0, 0, 0,},
-		{  0, "Asteroid", "Asteroid_M_4", {0,0,0,}, 100, 0, 0, 0, 0,},
---		addDustCloud(<sObjName>, <sDustCloudType>, <tPosition>, <tColor>, ?, <fSize>)
-		{  0, "DustCloud", "polySurface1", "DustCloud_NoRes3", {0,0,0,}, {srandom(my_seed_1), srandom(my_seed_1), srandom(my_seed_1), 1}, 0, srandom(my_seed_1, 12500),},
-	}
 
 	setWorldBoundsInner({0, 0, 0}, {32768*2, 32768*2, 32768*2})
 
@@ -64,7 +48,7 @@ function DetermChunk()
 					for k = 0, cubeParts do
 						if (k ~= cubeParts/2) then
 							local zCoo = -cubeWidth/2 + k * sectLength
-							addAsteroid("Asteroid_M_2", {xCoo, yCoo, zCoo}, 100, 0, 0, 0, 0)
+							addAsteroid("Asteroid_M_3", {xCoo, yCoo, zCoo}, 50, 0, 0, 0, 0)
 						end
 					end
 				end

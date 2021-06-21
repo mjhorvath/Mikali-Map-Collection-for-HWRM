@@ -1,17 +1,18 @@
--- (6P) Metaballs II v1.2.3 by Mikali
+-- (6P) Metaballs II v1.2.4 by Mikali
 -- Created: 2020/07/22
--- Updated: 2021/06/03
+-- Updated: 2021/06/09
 -- Website: http://isometricland.net/homeworld/homeworld.php
 -- Teams: FFA
 
 dofilepath("data:scripts/utilfunc.lua")
 dofilepath("data:scripts/MapFunctions.lua")
 
---levelDesc = "<c=FF4800>Metaballs II 1.2.3</c>"
+--levelDesc = "<c=FF4800>Metaballs II 1.2.4</c>"
 max_size = 50000
 max_blobs = 6
 maxPlayers = max_blobs
 player = {}
+show_start = true
 
 for k = 0, maxPlayers - 1 do
 	player[k] = {id = k, name = "", raceName = "Vaygr", resources = 1500, raceID = 2, startPos = 1,}
@@ -25,7 +26,9 @@ function DetermChunk()
 
 	setWorldBoundsInner({0, 0, 0}, {max_size, max_size, max_size})
 
---	addCamera("pieplatetest", {0,0,0,}, {0, 32768,0,})
+	if (show_start == true) then
+		addCamera("start_pos_camera", {0,0,0,}, {0, 32768,0,})
+	end
 
 	local i = 1
 	while (i <= max_blobs) do
@@ -73,6 +76,9 @@ function DetermChunk()
 		local rotate_amt = {0,srandom(my_seed_1, 360),0}
 		local translate_amt = vaddV(vmultiplyV(object_coo, blob_scale), adjust_y)
 		addPoint("StartPos"..(i-1), translate_amt, rotate_amt)
+		if (show_start == true) then
+			addCloud("polySurface1", "cloud_text_"..i, translate_amt, {1, 1, 1, 1}, 0, 1024)
+		end
 	end
 
 	--blobAdd2(<tPos>, <xNil>, {<tBlobs>, <iAmount>, <fThrsh1>, <fThrsh2>, <tScale>,}, <tRot>, <tSeed>)

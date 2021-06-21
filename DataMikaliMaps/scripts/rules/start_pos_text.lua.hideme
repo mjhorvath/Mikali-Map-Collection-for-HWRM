@@ -1,0 +1,105 @@
+--GUID = { 110,91,157,190,18,23,250,78,144,20,41,246,181,128,214,12 }
+GameRulesName = "Start Position Text 1.0.0"
+Description = "For tacking screenshots of levels."
+SaveGameVersion = 1.0
+SinglePlayer = 0
+ExtFilter = "rules_dm"
+Race_Paths = "Deathmatch"
+Level_Pass_Tags = "dm"
+Race_Pass_Tags = "race_dm,race_random"
+
+GameSetupOptions =
+{
+    {
+        name = "resources",
+        locName = "$3240",
+        tooltip = "$3239",
+        default = 1,
+        visible = 1,
+        choices =
+        {
+            "$3241", "0.5",
+            "$3242", "1.0",
+            "$3243", "2.0",
+        },
+    },
+    {
+        name = "unitcaps",
+        locName = "$3214",
+        tooltip = "$3234",
+        default = 1,
+        visible = 1,
+        choices =
+        {
+            "$3215", "Small",
+            "$3216", "Normal",
+            "$3217", "Large",
+			"$4801", "Huge",	--to localize
+        },
+    },
+    {
+        name = "resstart",
+        locName = "$3205",
+        tooltip = "$3232",
+        default = 0,
+        visible = 1,
+        choices =
+        {
+            "$3206", "1000",
+            "$3207", "3000",
+            "$3208", "10000",
+            "$3209", "0",
+        },
+    },
+    {
+        name = "lockteams",
+        locName = "$3220",
+        tooltip = "$3235",
+        default = 0,
+        visible = 1,
+        choices =
+        {
+            "$3221", "yes",
+            "$3222", "no",
+        },
+    },
+    {
+        name = "startlocation",
+        locName = "$3225",
+        tooltip = "$3237",
+        default = 0,
+        visible = 1,
+        choices =
+        {
+            "$3226", "random",
+            "$3227", "fixed",
+        },
+    },
+}
+
+dofilepath("data:scripts/SCAR/SCAR_Util.lua")
+dofilepath("data:scripts/scar/restrict.lua")
+
+function OnInit()
+	Rule_Add("start_pos_text")
+	MPRestrict()
+end
+
+function start_pos_text()
+	Event_Start("pausegame")
+--	Universe_Pause(0, 100)
+--	Universe_AllowClicks(0)
+--	Camera_AllowControl(0)
+--	Camera_UsePanning(0)
+	SetStartFleetSuffix("startpostext")
+	Camera_UseCameraPoint("start_pos_camera")
+	Rule_Remove("start_pos_text")
+end
+
+Events = {}
+Events.pausegame =
+{
+	{
+--		HW2_Pause(1),
+	},
+}
